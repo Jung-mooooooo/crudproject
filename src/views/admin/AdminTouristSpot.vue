@@ -10,35 +10,52 @@
       &nbsp;&nbsp;
       <router-link to="/">고객센터</router-link>
   </nav>
-
+<br>
   <nav class="nav d-flex justify-content-between">
       <router-link to="/admin/counselling">심리/고민상담</router-link> 
       &nbsp;&nbsp;
       <router-link to="/admin/welfareProgram">복지프로그램</router-link>
   </nav>
-
+<br>
   <nav class="nav d-flex justify-content-between">
-      <router-link to="/admin/counsellingCenter">상담센터리스트</router-link> 
+      <router-link to="/admin/AdminWelfareFacility">복지시설</router-link> 
       &nbsp;&nbsp;
-      <router-link to="/admin/speechRecognitionHelper">음성인식도우미관리</router-link>
+      <router-link to="/admin/AdminTouristSpot">힐링스팟</router-link>
+      &nbsp;&nbsp;
+      <router-link to="/admin/AdminHobby">원데이클래스</router-link>
   </nav>
-      
-  <table align="center" class="board-table">
+
+<div id="board-search">
+    <div class="container">
+        <div class="search-window">
+            <div class="search-wrap">	
+                <label for="search" class="blind"></label>
+                    <input id="search" type="search" name="keyword" placeholder="검색어를 입력하세요.">
+                    <button type="submit" class="btn btn-dark">검색</button> 
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div align="center">
+<table align="center" class="board-table">
 <thead>
-  <h3>상담센터 리스트</h3>
+  <h3>힐링스팟</h3>
+  <br>
 	<tr>
 		<th scope="col" class="th-num">번호</th> 
-		<th scope="col" class="th-title">센터 이름</th> 
-		<th scope="col" class="th-title">주소</th>  
-    <th scope="col" class="th-title">전화번호</th>  
+		<th scope="col" class="th-title">시설명</th> 
+		<th scope="col" class="th-title">지역</th>  
+    <th scope="col" class="th-title">작성일자</th> 
 	</tr>
 	</thead>
 <tbody>
 		<tr align="center">
 			<td align="center">1</td>
-			<td align="center">상담센터</td>
-      <td align="center">서울시 서대문구</td>
-			<td align="center">02-1234-5678</td>
+			<td align="center">해수욕장</td>
+			<td align="center">부산</td>
+      <td align="center">20230501</td>
 		</tr>
 	</tbody>
 </table>
@@ -51,7 +68,7 @@
 &nbsp;&nbsp;
 <button class="btn2 btn-gray">삭제</button>
 
-
+</div>
 </template>
 
 <style scoped>
@@ -77,6 +94,39 @@ section.notice {
   text-align: center;
 }
 
+#board-search .search-window {
+  padding: 15px 0;
+  background-color: #f9f7f9;
+}
+#board-search .search-window .search-wrap {
+  position: relative;
+/*   padding-right: 124px; */
+  margin: 0 auto;
+  width: 80%;
+  max-width: 564px;
+}
+#board-search .search-window .search-wrap input {
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+#board-search .search-window .search-wrap input:focus {
+  border-color: #333;
+  outline: 0;
+  border-width: 1px;
+}
+#board-search .search-window .search-wrap .btn {
+  position: absolute;
+  right: 0;
+  top: 2;
+  bottom: 0;
+  width: 70px;
+  height: 40px;
+  padding: 0;
+  font-size: 16px;
+}
 
 .board-table {
   font-size: 13px;
@@ -167,17 +217,6 @@ section.notice {
   color: #fff;
 }
 
-.btn-dark {
-  background: #555;
-  color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-  background: #373737;
-  border-color: #373737;
-  color: #fff;
-}
-
 .btn2 {
   display: inline-block;
   padding: 0 30px;
@@ -209,6 +248,33 @@ section.notice {
 .btn-gray {
 background: #555;
 color: #fff;
+}
+
+/* reset */
+
+* {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.container {
+  width: 1100px;
+  margin: 0 auto;
+}
+.blind {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  width: 1px;
+  height: 1px;
 }
 </style>
 
