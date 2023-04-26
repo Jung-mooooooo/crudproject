@@ -1,6 +1,6 @@
 <!-- PageAbout.vue -->
 <template>
-  <h1>Counseling Page</h1>
+  <h1>이 페이지는 사이트 설명 페이지이다.</h1>
 </template>
 
 <script>
@@ -8,7 +8,7 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: "Counseling",
+  name: "Depression",
   components: {
     // HelloWorld,
   },

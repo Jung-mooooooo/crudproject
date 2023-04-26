@@ -4,7 +4,7 @@
 <template>
   <div class="container">
     <header>
-      <router-link to="/"
+      <router-link to="/login"
         ><img class="home_img" alt="Vue homelogo" src="@/assets/home.jpg"
       /></router-link>
       <div class="tap_box">
@@ -72,8 +72,7 @@
             </ul>
           </router-link>
         </li>
-        <li class="s_tap"><router-link to="/">로그인</router-link></li>
-        <li class="s_tap"><router-link to="/">회원가입</router-link></li>
+        <li class="s_tap"><router-link to="/">로그아웃</router-link></li>
       </div>
     </header>
   </div>
