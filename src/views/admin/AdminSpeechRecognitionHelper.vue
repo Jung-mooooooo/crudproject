@@ -1,32 +1,19 @@
 <!-- PageAbout.vue -->
 <template>
-  <div class="admin">
-    <img alt="btt" src="@/assets/btt.png">
-  </div>
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/">회원관리</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/counselling">게시물관리</router-link>
-      &nbsp;&nbsp;
-      <router-link to="/">고객센터</router-link>
-  </nav>
 <br>
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/admin/counselling">심리/고민상담</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/welfareProgram">복지프로그램</router-link>
-  </nav>
 <br>
-  <nav class="nav d-flex justify-content-between">
+<br>
+  <div align="center">
       <router-link to="/admin/counsellingCenter">상담센터리스트</router-link> 
       &nbsp;&nbsp;
       <router-link to="/admin/speechRecognitionHelper">음성인식도우미관리</router-link>
-  </nav>
+  </div>
       
 <br>
 <br>
 <div class="admin_box">      
 <div class= "counting_user">
+<br>
   <h3>음성인식도우미관리 현황</h3>
   <div>
     <div>오늘의 사용자수</div>
@@ -42,7 +29,8 @@
   </div>
 </div>
 </div>
-
+<br>
+<br>
 <table align="center" class="board-table">
 <thead>
   <h3>1주일간 이용내역이 없는 회원 리스트</h3>

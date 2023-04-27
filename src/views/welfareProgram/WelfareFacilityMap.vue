@@ -1,34 +1,108 @@
 <!-- PageAbout.vue -->
 <template>
-<nav class="nav d-flex justify-content-between">
-      <router-link to="/welfareProgram/welfareFacility">복지시설</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/welfareProgram/touristSpot">힐링스팟</router-link>
-      &nbsp;&nbsp;
-      <router-link to="/welfareProgram/hobby">원데이클래스</router-link>
-</nav>
-
-<div id="board-search">
+  <br />
+  <br />
+  <br />
+  <div id="board-search">
     <div class="container">
-        <div class="search-window">
-            <div class="search-wrap">	
-                <label for="search" class="blind"></label>
-                    <input id="search" type="search" name="keyword" placeholder="검색어를 입력하세요.">
-                    <button type="submit" class="btn btn-dark">검색</button> 
-                <br>
-            </div>
+      <div class="search-window">
+        <div class="search-wrap">
+          <label for="search" class="blind"></label>
+          <input
+            id="search"
+            type="search"
+            name="keyword"
+            placeholder="검색어를 입력하세요."
+          />
+          <button type="submit" class="btn btn-dark">검색</button>
+          <br />
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div>
+  <div>
     <img alt="counselling" src="@/assets/counselling.png">
 </div>
-  
 </template>
 
-<style scoped>
+  <!-- <head>
+    <meta charset="utf-8" />
+    <title>Kakao 지도 시작하기</title>
+  </head>
+  <body>
+    <div id="map" style="width: 500px; height: 400px"></div>
+  </body>
 
+
+ <script>
+export default {
+  mounted() {
+    if (!window.kakao || !window.kakao.maps) {
+      const script = document.createElement("script");
+      script.src =
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1975648a88442d985c0473dc051a7483";
+      script.addEventListener("load", () => {
+        kakao.maps.load(this.initMap);
+      });
+      document.head.appendChild(script);
+    } else {
+      this.initMap();
+    }
+  },
+
+
+  methods: {
+    initMap() {
+      const container = document.getElementById("map");
+      const option = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667, 16),
+        level: 5,
+      };
+      this.map = new kakao.maps.Map(container, option);
+    },
+
+    displayMarkers(positions) {
+      if (this.markers.length > 0) {
+        this.markers.forEach((item) => {
+          item.setMap(null);
+        });
+      }
+      const imgSrc = require("@/assets/btt.png");
+      const imgSize = new kakao.maps.Size(24, 35);
+      const markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize);
+
+      positions.forEach((position) => {
+        const marker = new kakao.maps.Marker({
+          map: this.map,
+          position: position.latlng,
+          title: position.title,
+          image: markerImage,
+        });
+        this.markers.push(marker);
+      });
+
+      const bounds=positions.reduce(
+        (bounds,position) => bounds.extend(position.latlng),
+        new kakao.maps.LatLngBounds()
+      )
+      this.map.setBounds(bounds)
+    },
+
+
+
+    
+  },
+
+  data() {
+    return {
+      map: null,
+    };
+  },
+};
+</script> -->
+
+<style scoped>
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -53,7 +127,7 @@ section.notice {
 }
 #board-search .search-window .search-wrap {
   position: relative;
-/*   padding-right: 124px; */
+  /*   padding-right: 124px; */
   margin: 0 auto;
   width: 80%;
   max-width: 564px;
@@ -111,7 +185,8 @@ section.notice {
   width: 200px;
 }
 
-.board-table th, .board-table td {
+.board-table th,
+.board-table td {
   padding: 14px 0;
 }
 
@@ -127,7 +202,7 @@ section.notice {
   text-align: left;
 }
 
-.board-table tbody th p{
+.board-table tbody th p {
   display: none;
 }
 
@@ -164,7 +239,8 @@ section.notice {
   color: #fff;
 }
 
-.btn-dark:hover, .btn-dark:focus {
+.btn-dark:hover,
+.btn-dark:focus {
   background: #373737;
   border-color: #373737;
   color: #fff;
@@ -180,7 +256,7 @@ section.notice {
   box-sizing: border-box;
 }
 .clearfix:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }

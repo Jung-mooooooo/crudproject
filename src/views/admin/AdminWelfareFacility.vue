@@ -1,30 +1,17 @@
 <!-- PageAbout.vue -->
 <template>
-  <div class="admin">
-    <img alt="btt" src="@/assets/btt.png">
-  </div>
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/">회원관리</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/counselling">게시물관리</router-link>
-      &nbsp;&nbsp;
-      <router-link to="/">고객센터</router-link>
-  </nav>
 <br>
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/admin/counselling">심리/고민상담</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/welfareProgram">복지프로그램</router-link>
-  </nav>
 <br>
-  <nav class="nav d-flex justify-content-between">
+<br>
+  <div align="center">
       <router-link to="/admin/AdminWelfareFacility">복지시설</router-link> 
       &nbsp;&nbsp;
       <router-link to="/admin/AdminTouristSpot">힐링스팟</router-link>
       &nbsp;&nbsp;
       <router-link to="/admin/AdminHobby">원데이클래스</router-link>
-  </nav>
-
+  </div>
+<br>
+<br>
 <div id="board-search">
     <div class="container">
         <div class="search-window">
@@ -60,6 +47,8 @@
 		</tr>
 	</tbody>
 </table>
+<br>
+<br>
 
 <button class="btn2 btn-gray">전체선택</button>
 &nbsp;&nbsp;

@@ -6,7 +6,7 @@ const admin = [{
 
     path: '/',
     name: 'adminLayout',
-    component: () => import('../components/layouts/DefaultLayout.vue'),
+    component: () => import('../components/layouts/AdminLayout.vue'),
     children: [
         {
             path: "/admin",
