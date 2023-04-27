@@ -5,13 +5,12 @@
 const admin = [{
 
     path: '/',
-    name: 'defaultLayout',
+    name: 'adminLayout',
     component: () => import('../components/layouts/DefaultLayout.vue'),
     children: [
-
         {
             path: "/admin",
-            name: "Admin",
+            name: "admin",
             component: () => import("@/views/admin/AdminHome.vue"),
         },
         {
@@ -52,7 +51,7 @@ const admin = [{
 
     ]
 }
-];
+]
 
 // const router = createRouter({
 //   history: createWebHistory(process.env.BASE_URL),

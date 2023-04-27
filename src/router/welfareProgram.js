@@ -1,12 +1,12 @@
-import { createRouter, createWebHistory } from "vue-router";
+// import { createRouter, createWebHistory } from "vue-router";
 
 
 
 
-const routes = [{
+const welfareProgram = [{
 
     path: '/',
-    name: 'defaultLayout',
+    name: 'welfareProgramLayout',
     component: () => import('../components/layouts/DefaultLayout.vue'),
     children: [
 
@@ -44,9 +44,9 @@ const routes = [{
     ]}
     ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+// const router = createRouter({
+//   history: createWebHistory(process.env.BASE_URL),
+//   routes,
+// });
 
-export default router;
+export default welfareProgram;

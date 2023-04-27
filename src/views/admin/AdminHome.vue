@@ -1,6 +1,6 @@
 <!-- PageAbout.vue -->
 <template>
-  <div class="admin">
+  <!-- <div class="admin">
     <img alt="btt" src="@/assets/btt.png">
   </div>
   <nav class="nav d-flex justify-content-between">
@@ -9,7 +9,7 @@
       <router-link to="/admin/counselling">게시물관리</router-link>
       &nbsp;&nbsp;
       <router-link to="/">고객센터</router-link>
-  </nav>
+  </nav> -->
 <br>
 <br>
 <br>

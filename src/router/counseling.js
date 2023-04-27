@@ -1,13 +1,13 @@
-import { createRouter, createWebHistory } from "vue-router";
+// import { createRouter, createWebHistory } from "vue-router";
 
 import Counseling from "@/views/counseling/Counseling.vue";
 import Chatting from "@/views/counseling/Chatting.vue";
 import Chatbot from "@/views/counseling/Chatbot.vue";
 
-const routes = [{
+const counseling = [{
 
     path: '/',
-    name: 'defaultLayout',
+    name: 'counselingLayout',
     component: () => import('../components/layouts/DefaultLayout.vue'),
     children: [
         {
@@ -29,9 +29,9 @@ const routes = [{
     ]}
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+// const router = createRouter({
+//   history: createWebHistory(process.env.BASE_URL),
+//   routes,
+// });
 
-export default router;
+export default counseling;

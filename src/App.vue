@@ -13,17 +13,17 @@
 
 export default {
   name: "App",
-  mounted() {
-    this.fnMain();
-  },
-  methods: {
-    fnMain(){
-      this.$route.push({
-        path: './'
+  // mounted() {
+  //   this.fnMain();
+  // },
+  // methods: {
+  //   fnMain(){
+  //     this.$route.push({
+  //       path: './'
         
-      });
-    }
-  }
+  //     });
+  //   }
+  // }
 };
 </script>
 

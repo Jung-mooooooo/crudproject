@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+// import { createRouter, createWebHistory } from "vue-router";
 
 import Test from "@/views/test/Test.vue";
 // import Mbti from "@/views/test/Mbti.vue";
@@ -6,10 +6,10 @@ import Test from "@/views/test/Test.vue";
 // import Depression from "@/views/test/Depression.vue";
 
 
-const routes = [{
+const test = [{
 
     path: '/',
-    name: 'defaultLayout',
+    name: 'testLayout',
     component: () => import('../components/layouts/DefaultLayout.vue'),
     children: [
         {
@@ -38,9 +38,9 @@ const routes = [{
     ]}
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+// const router = createRouter({
+//   history: createWebHistory(process.env.BASE_URL),
+//   routes,
+// });
 
-export default router;
+export default test;
