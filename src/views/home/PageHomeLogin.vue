@@ -403,7 +403,7 @@ export default {
   border-radius: 20px;
   height: 250px;
   width: 15%;
-  font-size: 50px;
+  font-size: 40px;
   line-height: 250px;
   color: orange;
 }

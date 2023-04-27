@@ -3,10 +3,18 @@
     <button class="btn btn-light rounded-pill px-3" type="button">
       내정보보기
     </button>
-    <button class="btn btn-light rounded-pill px-3" type="button">
+    <button
+      class="btn btn-light rounded-pill px-3"
+      v-on:click="popUPdate"
+      type="button"
+    >
       내정보수정
     </button>
-    <button class="btn btn-light rounded-pill px-3" type="button">
+    <button
+      class="btn btn-light rounded-pill px-3"
+      v-on:click="popDelete"
+      type="button"
+    >
       회원탈퇴
     </button>
   </div>
@@ -15,11 +23,13 @@
       <div class="sweet_text">my sweet home</div>
       <br />
       <div class="sweet_content">
-        <img />
+        <img alt="sweet_home" src="@/assets/sweethome.png" />
       </div>
     </div>
-    <br /><br />
-    <div class="letter">
+  </div>
+  <br /><br />
+</template>
+<!-- <div class="letter">
       <div class="letter_text">💌 쪽지</div>
       <div class="d-flex gap-2 justify-content-center py-5">
         <button class="btn btn-light rounded-pill px-3" type="button">
@@ -70,11 +80,7 @@
         <div class="send_letter_text">
           오늘의 행복한 기분을<br />우리 잊지말아요!
         </div>
-      </div>
-      <br /><br />
-    </div>
-  </div>
-</template>
+      </div> -->
 
 <script>
 // @ is an alias to /src
@@ -84,6 +90,15 @@ export default {
   name: "Mypage",
   components: {
     // HelloWorld,
+  },
+  methods: {
+    popUPdate() {
+      location.href = "/mypage/popupU";
+    },
+
+    popDelete() {
+      location.href = "/mypage/popupD";
+    },
   },
 };
 </script>
@@ -108,12 +123,17 @@ export default {
 .sweet_content {
   width: 55%;
   height: 500px;
-  border-radius: 10px;
-  border: 2px solid black;
+  /* border-radius: 10px;
+  border: 2px solid black; */
   margin: auto;
 }
 
-.send_box {
+.sweet_content img {
+  width: 100%;
+  height: 500px;
+}
+
+/* .send_box {
   width: 55%;
   display: flex;
   margin: auto;
@@ -194,5 +214,5 @@ export default {
   position: relative;
   top: 20px;
   background: #ffab40;
-}
+} */
 </style>
