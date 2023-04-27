@@ -1,17 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <PageHeader v-if="$route.name === 'PageHome'" />
+  <PageHeaderToLogin v-if="$route.name !== 'PageHome'" /> -->
+  <router-view />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+
+// import PageHeader from "./components/common/PageHeader.vue";
+// import PageHeaderToLogin from "./components/common/PageHeaderToLogin.vue";
+// import PageFooter from "./components/common/PageFooter.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  // mounted() {
+  //   this.fnMain();
+  // },
+  // methods: {
+  //   fnMain(){
+  //     this.$route.push({
+  //       path: './'
+        
+  //     });
+  //   }
+  // }
+};
 </script>
 
 <style>
