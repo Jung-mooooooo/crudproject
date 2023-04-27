@@ -183,7 +183,7 @@
           <div>
             <button class="btn btn-primary1" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">가입하기</button>
             &nbsp; &nbsp; &nbsp;
-            <button class="btn btn-primary1" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">취 &nbsp; &nbsp; 소</button>
+            <button class="btn btn-primary1" onclick="window.history.back()" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">취 &nbsp; &nbsp; 소</button>
           </div>
           <hr class="my-4">
         </form>

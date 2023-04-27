@@ -2,20 +2,22 @@
 <template>
     <div class="col-md-7 col-lg-8">
       <div class="d-flex gap-2 justify-content-center py-5">
-    <button class="btn btn-light rounded-pill px-3" type="button">
+    <button class="btn btn-light rounded-pill px-3" type="button" 
+    onclick="location.href='/member/myinfo'" style="font-size: 40px;">
       내정보보기
     </button>
     <button
-      class="btn btn-light rounded-pill px-3"
-      v-on:click="popUPdate"
+      class="btn btn-light rounded-pill px-3" onclick="location.href='/mypage/popupU'"
       type="button"
+      style="font-size: 40px;"
     >
       내정보수정
     </button>
     <button
       class="btn btn-light rounded-pill px-3"
-      v-on:click="popDelete"
+      onclick="location.href='/mypage/popupD'"
       type="button"
+      style="font-size: 40px;"
     >
       회원탈퇴
     </button>
@@ -147,7 +149,7 @@
           <br>
           
           <div>
-            <button class="btn btn-primary1" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">이 &nbsp; &nbsp; 전</button>
+            <button class="btn btn-primary1" type="button" onclick="window.history.back()" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">이 &nbsp; &nbsp; 전</button>
           </div>
           <hr class="my-4">
         </form>
@@ -161,9 +163,57 @@
     }
   </script>
 
-<style>
+<style scoped>
 .col-md-7{
     margin: 0 auto;
+}
+
+.pop_box {
+  width: 40%;
+  height: 400px;
+  border: 2px solid black;
+  border-radius: 20px;
+  background: rgba(255, 192, 0, 0.6);
+  margin: auto;
+}
+
+.pop_box > * {
+  position: relative;
+  top: 80px;
+}
+
+.pop_box > div:first-child {
+  margin: auto;
+  width: 80%;
+  height: 80px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+hr {
+  margin: auto;
+  border: 3px solid black;
+  width: 80%;
+}
+
+.pop_box > form {
+  margin: auto;
+  width: 60%;
+  height: 150px;
+}
+.pop_box > form div:first-child input {
+  width: 100%;
+  height: 80px;
+  border-radius: 20px;
+}
+
+.pop_box > form div:last-child input {
+  width: 40%;
+  height: 60px;
+  border-radius: 10px;
+  position: relative;
+  top: 20px;
+  background: #3a99db;
 }
 
 </style>
