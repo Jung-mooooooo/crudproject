@@ -22,8 +22,14 @@
     <div class="sweet">
       <div class="sweet_text">my sweet home</div>
       <br />
-      <div class="sweet_content">
+      <div class="sweet_content" @click="popComment">
         <img alt="sweet_home" src="@/assets/sweethome.png" />
+        <div
+          class="Comment"
+          :style="{ visibility: isCommentVisible ? 'visible' : 'hidden' }"
+        >
+          오늘도 나로 사느라 고생했어
+        </div>
       </div>
     </div>
   </div>
@@ -91,6 +97,12 @@ export default {
   components: {
     // HelloWorld,
   },
+  data() {
+    return {
+      isCommentVisible: false,
+    };
+  },
+
   methods: {
     popUPdate() {
       location.href = "/mypage/popupU";
@@ -98,6 +110,10 @@ export default {
 
     popDelete() {
       location.href = "/mypage/popupD";
+    },
+
+    popComment() {
+      this.isCommentVisible = !this.isCommentVisible;
     },
   },
 };
@@ -128,9 +144,35 @@ export default {
   margin: auto;
 }
 
+.Comment {
+  width: 50%;
+  border: 2px solid #3a99db;
+  background: #3a99db;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 20px;
+  margin: auto;
+  position: relative;
+  top: -400px;
+}
+/* .sweet_content div {
+  visibility: hidden;
+}
+
+.sweet_content:hover {
+  .sweet_content div {
+    visibility: visible;
+  }
+} */
+
 .sweet_content img {
+  border: 5px solid black;
   width: 100%;
   height: 500px;
+  border-radius: 20px;
 }
 
 /* .send_box {

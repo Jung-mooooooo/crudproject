@@ -8,11 +8,15 @@
         <div class="emotions">🙄 😥 😫 😠</div>
       </div>
       <div class="text_box">
-        <div>내가 쓴 글 2 개</div>
-        <br />
-        <div>💌 쪽지 3 개</div>
+        <div>내가 쓴 글</div>
+        <div>
+          <div>2</div>
+          <div>개</div>
+        </div>
       </div>
-      <div class="mypage">my page</div>
+      <div v-on:click="this.$router.push('/mypage')" class="mypage">
+        my page
+      </div>
     </div>
   </div>
 
@@ -26,6 +30,7 @@
           style="background-image: url('unsplash-photo-1.jpg')"
         >
           <div
+            v-on:click="this.$router.push('/welfareProgram/welfareFacility')"
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">상담센터 찾기</h3>
@@ -62,6 +67,7 @@
           style="background-image: url('unsplash-photo-2.jpg')"
         >
           <div
+            v-on:click="this.$router.push('/counseling/chatting')"
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">1대1 채팅</h3>
@@ -97,7 +103,10 @@
           class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
           style="background-image: url('unsplash-photo-3.jpg')"
         >
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+          <div
+            v-on:click="this.$router.push('/counseling/chatbot')"
+            class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1"
+          >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">챗봇(베베)</h3>
             <!-- <ul class="d-flex list-unstyled mt-auto">
               <li class="me-auto">
@@ -138,6 +147,7 @@
           style="background-image: url('unsplash-photo-1.jpg')"
         >
           <div
+            v-on:click="this.$router.push('/test/mbti')"
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">MBTI</h3>
@@ -174,6 +184,7 @@
           style="background-image: url('unsplash-photo-2.jpg')"
         >
           <div
+            v-on:click="this.$router.push('/test/stress')"
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">스트레스 검사</h3>
@@ -209,7 +220,10 @@
           class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
           style="background-image: url('unsplash-photo-3.jpg')"
         >
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+          <div
+            v-on:click="this.$router.push('/test/depression')"
+            class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1"
+          >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">우울증 검사</h3>
             <!-- <ul class="d-flex list-unstyled mt-auto">
               <li class="me-auto">
@@ -250,6 +264,7 @@
           style="background-image: url('unsplash-photo-1.jpg')"
         >
           <div
+            v-on:click="this.$router.push('/welfareProgram/touristSpot')"
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">힐링 관광명소</h3>
@@ -286,6 +301,7 @@
           style="background-image: url('unsplash-photo-2.jpg')"
         >
           <div
+            v-on:click="this.$router.push('/welfareProgram/welfareFacility')"
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">사회복지시설</h3>
@@ -321,7 +337,10 @@
           class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
           style="background-image: url('unsplash-photo-3.jpg')"
         >
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+          <div
+            v-on:click="this.$router.push('/welfareProgram/hobby')"
+            class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1"
+          >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">원데이클래스</h3>
             <!-- <ul class="d-flex list-unstyled mt-auto">
               <li class="me-auto">
@@ -391,11 +410,37 @@ export default {
   font-size: 55px;
 }
 
-.text_box div {
+.text_box {
   border: 1px solid black;
   border-radius: 20px;
-  height: 80px;
+  height: 80%;
   font-size: 50px;
+}
+
+.text_box div:first-child {
+  position: relative;
+  top: 20px;
+}
+
+.text_box div:last-child {
+  position: relative;
+  top: 20px;
+  display: flex;
+}
+
+.text_box div:last-child div {
+  width: 30%;
+  height: 100px;
+  margin: auto;
+  line-height: 100px;
+}
+
+.text_box div:last-child div:first-child {
+  font-size: 70px;
+  color: orange;
+  position: relative;
+  right: -20%;
+  top: 15px;
 }
 
 .user_box > .mypage {

@@ -35,23 +35,9 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: "Test",
+  name: "test",
   components: {
     // HelloWorld,
-  },
-  methods: {
-    toMbti() {
-      location.href =
-        "https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC";
-    },
-
-    toStress() {
-      location.href = "https://www.wonju.go.kr/health/contents.do?key=2409&";
-    },
-
-    toDepression() {
-      location.href = "https://www.wonju.go.kr/health/contents.do?key=1694&";
-    },
   },
 };
 </script>
