@@ -21,19 +21,39 @@
         <button>보내기</button>
       </div>
     </div>
+
     <div class="chat_list">
+      <div class="todayEmotion">
+        <div class="todayEmotion_header">오늘 나의 기분</div>
+        <div class="todayEmotion_body">😀</div>
+      </div>
       <div class="chat_list_header">랜덤채팅 가능 유저 목록</div>
       <div class="chat_list_body">
-        <li>유저1<button>수락</button><button>거절</button></li>
-        <li>유저2<button>수락</button><button>거절</button></li>
-        <li>유저3<button>수락</button><button>거절</button></li>
-        <li>유저4<button>수락</button><button>거절</button></li>
-        <li>유저5<button>수락</button><button>거절</button></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>
+          유저1
+          <div></div>
+          <button>수락</button><button>거절</button>
+        </li>
+        <li>
+          유저2
+          <div></div>
+          <button>수락</button><button>거절</button>
+        </li>
+        <li>
+          유저3
+          <div></div>
+          <button>수락</button><button>거절</button>
+        </li>
+        <li>
+          유저4
+          <div></div>
+          <button>수락</button><button>거절</button>
+        </li>
+        <li>
+          유저5
+          <div></div>
+          <button>수락</button><button>거절</button>
+        </li>
       </div>
     </div>
   </div>
@@ -73,6 +93,38 @@ export default {
   right: -100px;
 }
 
+.todayEmotion {
+  height: 200px;
+}
+
+.todayEmotion_header {
+  width: 50%;
+  height: 60px;
+  border: 1px solid #3a99db;
+  background: #3a99db;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 60px;
+  position: relative;
+  top: -5px;
+  margin: auto;
+}
+
+.todayEmotion_body {
+  margin: auto;
+  width: 50%;
+  height: 120px;
+  border: 2px solid #3a99db;
+  font-size: 80px;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 120px;
+}
+
 .chating_box > div:last-child {
   width: 20%;
   height: 580px;
@@ -93,10 +145,20 @@ export default {
   color: white;
 }
 .chat_list_body {
-  height: 500px;
+  height: 250px;
   border: 2px solid #3a99db;
   /* background: #3a99db; */
   border-radius: 20px;
+}
+
+.chat_list_body li div {
+  border: 2px solid orange;
+  background: orange;
+  width: 10%;
+  height: 50%;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
 }
 .chating_box > div:last-child li {
   height: 50px;

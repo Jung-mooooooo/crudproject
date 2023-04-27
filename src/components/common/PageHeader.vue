@@ -1,5 +1,4 @@
 // Vue PageHeader = new Vuew(); => 이런식으로 객체 생성되는 개념.
-
 <!-- PageHeader.vue -->
 <template>
   <div class="container">
@@ -9,8 +8,8 @@
       /></router-link>
       <div class="tap_box">
         <li>
-          <router-link to="/counseling"
-            >심리/고민 상담
+          <div>
+            심리/고민 상담
             <ul class="list">
               <li>
                 <router-link to="/welfare/center">상담센터 찾기</router-link>
@@ -24,29 +23,25 @@
                 >
               </li>
             </ul>
-          </router-link>
+          </div>
         </li>
         <li>
-          <router-link to="/test"
-            >자기분석 테스트
+          <div>
+            자기분석 테스트
             <ul class="list">
-              <li><router-link to="" v-on:click="toMbti">MBTI</router-link></li>
+              <li><router-link to="/test/mbti">MBTI</router-link></li>
               <li>
-                <router-link to="" v-on:click="toStress"
-                  >스트레스 검사</router-link
-                >
+                <router-link to="/test/stress">스트레스 검사</router-link>
               </li>
               <li>
-                <router-link to="" v-on:click="toDepression"
-                  >우울증 검사</router-link
-                >
+                <router-link to="/test/depression">우울증 검사</router-link>
               </li>
             </ul>
-          </router-link>
+          </div>
         </li>
         <li>
-          <router-link to="/welfare"
-            >복지 프로그램
+          <div>
+            복지 프로그램
             <ul class="list">
               <li>
                 <router-link to="/welfare/healing">힐링 관광 명소</router-link>
@@ -60,42 +55,38 @@
                 <router-link to="/welfare/oneday">원데이클래스</router-link>
               </li>
             </ul>
-          </router-link>
+          </div>
         </li>
         <li>
-          <router-link to="/cs"
-            >고객센터
+          <div>
+            고객센터
             <ul class="list">
               <li><router-link to="/cs/notice">공지사항</router-link></li>
               <li><router-link to="/cs/faq">FAQ</router-link></li>
               <li><router-link to="/cs/qna">QNA</router-link></li>
             </ul>
-          </router-link>
+          </div>
         </li>
         <li class="s_tap"><router-link to="/">로그인</router-link></li>
         <li class="s_tap"><router-link to="/">회원가입</router-link></li>
-
       </div>
     </header>
   </div>
   <hr />
 </template>
-
 <script>
 export default {
   methods: {
-    toMbti() {
-      location.href =
-        "https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC";
-    },
-
-    toStress() {
-      location.href = "https://www.wonju.go.kr/health/contents.do?key=2409&";
-    },
-
-    toDepression() {
-      location.href = "https://www.wonju.go.kr/health/contents.do?key=1694&";
-    },
+    // toMbti() {
+    //   location.href =
+    //     "https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC";
+    // },
+    // toStress() {
+    //   location.href = "https://www.wonju.go.kr/health/contents.do?key=2409&";
+    // },
+    // toDepression() {
+    //   location.href = "https://www.wonju.go.kr/health/contents.do?key=1694&";
+    // },
   },
 };
 </script>
@@ -143,7 +134,7 @@ a {
 }
 
 .list li {
-  visibility: visible;
+  visibility: hidden;
   height: 40px;
   line-height: 40px;
   position: relative;
@@ -152,9 +143,23 @@ a {
   background: rgba(128, 128, 128, 0.3);
 }
 
+.tap_box li div:hover {
+  .list li {
+    visibility: visible;
+  }
+}
+
+/* .list li:hover {
+  visibility: visible;
+} */
+
 .list li a {
   color: white;
 }
+
+/* .tap_box > li {
+  
+} */
 
 /* $('.list').on("click"),
 function() {
