@@ -7,7 +7,7 @@ import test from './test'
 import welfareProgram from './welfareProgram'
 
 import PageHome from "@/views/home/PageHome.vue";
-import PageHomeLogin from "@/views/home/PageHomeLogin.vue";
+import PageHomeLogin from "@/views/home/PageHomeLogin.vue";                                                                                                                                                                                                                                                                                                                 
 
 // import BoardList from "@/views/board/BoardList.vue";
 // import BoardDetail from "@/views/board/BoardDetail.vue";

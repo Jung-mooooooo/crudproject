@@ -48,6 +48,46 @@ const admin = [{
             name: "AdminHobby",
             component: () => import("../views/admin/AdminHobby.vue"),
         },
+        {
+            path: "/admin/AdminNotice",
+            name: "AdminNotice",
+            component: () => import("../views/admin/AdminNotice.vue"),
+        },
+        {
+            path: "/admin/AdminNoticeDetail",
+            name: "AdminNoticeDetail",
+            component: () => import("../views/admin/AdminNoticeDetail.vue"),
+        },
+        {
+            path: "/admin/AdminNoticeWrite",
+            name: "AdminNoticeWrite",
+            component: () => import("../views/admin/AdminNoticeWrite.vue"),
+        },
+        {
+            path: "/admin/AdminQnA",
+            name: "AdminQnA",
+            component: () => import("../views/admin/AdminQnA.vue"),
+        },
+        {
+            path: "/admin/AdminQnADetail",
+            name: "AdminQnADetail",
+            component: () => import("../views/admin/AdminQnADetail.vue"),
+        },
+        {
+            path: "/admin/AdminQnAWrite",
+            name: "AdminQnAWrite",
+            component: () => import("../views/admin/AdminQnAWrite.vue"),
+        },
+        {
+            path: "/admin/AdminFAQ",
+            name: "AdminFAQ",
+            component: () => import("../views/admin/AdminFAQ.vue"),
+        },
+        {
+            path: "/admin/AdminMemberManage",
+            name: "AdminMemberManage",
+            component: () => import("../views/admin/AdminMemberManage.vue"),
+        },
 
     ]
 }

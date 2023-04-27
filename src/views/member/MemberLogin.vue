@@ -14,8 +14,9 @@
             <label for="floatingPassword">Password</label>
           </div>
           <div class="checkbox mb-3">
-            <a ref="/">아이디 찾기</a>
-            <a ref="/"> | 비밀번호 찾기</a>
+            <router-link style="text-decoration: none; color: black;" to="/member/findid">아이디 찾기</router-link>
+            |
+            <router-link style="text-decoration: none; color: black;" to="/member/findpw"> 비밀번호 찾기</router-link>
           </div>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
           <hr class="my-4">

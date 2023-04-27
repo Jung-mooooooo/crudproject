@@ -6,11 +6,11 @@
     </div>
     <br>
     <div class="dididid">
-      <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+      <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button" onclick="location.href='/member/findid'">
         &nbsp; &nbsp; I D 찾기 &nbsp; &nbsp;
       </button>
   &nbsp; &nbsp; &nbsp; &nbsp;
-      <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button">
+      <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button" onclick="location.href='/member/findpw'">
         &nbsp; &nbsp; P W 찾기 &nbsp; &nbsp;
       </button>
     </div>
@@ -104,7 +104,7 @@
           <div>
             <button class="btn btn-primary1" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">확 &nbsp; &nbsp; 인</button>
             &nbsp; &nbsp; &nbsp;
-            <button class="btn btn-primary1" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">취 &nbsp; &nbsp; 소</button>
+            <button class="btn btn-primary1" type="button" onclick="window.history.back()" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">취 &nbsp; &nbsp; 소</button>
           </div>
 
           <hr>
@@ -176,7 +176,7 @@
           <div>
             <button class="btn btn-primary1" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">확 &nbsp; &nbsp; 인</button>
             &nbsp; &nbsp; &nbsp;
-            <button class="btn btn-primary1" type="button" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">취 &nbsp; &nbsp; 소</button>
+            <button class="btn btn-primary1" type="button" onclick="window.history.back()" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">취 &nbsp; &nbsp; 소</button>
           </div>
 
         </div>

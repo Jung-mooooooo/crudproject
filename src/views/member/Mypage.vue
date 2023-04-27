@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex gap-2 justify-content-center py-5">
-    <button class="btn btn-light rounded-pill px-3" type="button">
+    <button class="btn btn-light rounded-pill px-3" type="button" onclick="location.href='/member/myinfo'">
       내정보보기
     </button>
     <button
