@@ -13,13 +13,17 @@
 
 export default {
   name: "App",
-  components: {
-    // HelloWorld
-    
-    // PageHeader,
-    // PageHeaderToLogin,
-    // PageFooter,
+  mounted() {
+    this.fnMain();
   },
+  methods: {
+    fnMain(){
+      this.$route.push({
+        path: './'
+        
+      });
+    }
+  }
 };
 </script>
 
