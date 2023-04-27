@@ -1,12 +1,7 @@
 <template>
-    <nav class="nav d-flex justify-content-between">
-      <router-link to="/welfareProgram/welfareFacility">복지시설</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/welfareProgram/touristSpot">힐링스팟</router-link>
-      &nbsp;&nbsp;
-      <router-link to="/welfareProgram/hobby">원데이클래스</router-link>
-  </nav>
-
+<br>
+<br>
+<br>
 <h1>원데이클래스</h1>
 <h4>원하는 탭을 선택하여 주세요</h4>
 <br>

@@ -66,7 +66,9 @@
   </div>
 </div>
 </div>
-
+<br>
+<br>
+<br>
 <table align="center" class="board-table">
 <thead>
   <h3>신규 가입자</h3>
@@ -90,7 +92,8 @@
 	</tr>
 </tbody>
 </table>
-
+<br>
+<br>
 <table align="center" class="board-table">
 <thead>
   <h3>신규 접수 문의</h3>
@@ -124,7 +127,6 @@ img{
 
 .counting_user {
   width: 50%;
-  border: 1px solid black;
   margin: auto;
   height: 200px;
 }
@@ -143,7 +145,6 @@ height: 30%;
 
 .counting_emotion {
   width: 50%;
-  border: 1px solid black;
   margin: auto;
   height: 300px;
 }

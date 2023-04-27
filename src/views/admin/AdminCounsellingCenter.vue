@@ -1,28 +1,15 @@
 <!-- PageAbout.vue -->
 <template>
-  <div class="admin">
-    <img alt="btt" src="@/assets/btt.png">
-  </div>
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/">회원관리</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/counselling">게시물관리</router-link>
-      &nbsp;&nbsp;
-      <router-link to="/">고객센터</router-link>
-  </nav>
 <br>
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/admin/counselling">심리/고민상담</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/welfareProgram">복지프로그램</router-link>
-  </nav>
 <br>
-  <nav class="nav d-flex justify-content-between">
+<br>
+  <div align="center">
       <router-link to="/admin/counsellingCenter">상담센터리스트</router-link> 
       &nbsp;&nbsp;
       <router-link to="/admin/speechRecognitionHelper">음성인식도우미관리</router-link>
-  </nav>
-      
+  </div>  
+<br>
+<br> 
   <table align="center" class="board-table">
 <thead>
   <h3>상담센터 리스트</h3>
@@ -42,7 +29,8 @@
 		</tr>
 	</tbody>
 </table>
-
+<br>
+<br> 
 <button class="btn2 btn-gray">전체선택</button>
 &nbsp;&nbsp;
 <button class="btn2 btn-gray">선택해제</button>

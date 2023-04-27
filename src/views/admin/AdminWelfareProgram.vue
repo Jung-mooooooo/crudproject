@@ -1,30 +1,17 @@
 <!-- PageAbout.vue -->
 <template>
-  <div class="admin">
-    <img alt="btt" src="@/assets/btt.png">
-  </div>
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/">회원관리</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/counselling">게시물관리</router-link>
-      &nbsp;&nbsp;
-      <router-link to="/">고객센터</router-link>
-  </nav>
-
-  <nav class="nav d-flex justify-content-between">
-      <router-link to="/admin/counselling">심리/고민상담</router-link> 
-      &nbsp;&nbsp;
-      <router-link to="/admin/welfareProgram">복지프로그램</router-link>
-  </nav>
-
-  <nav class="nav d-flex justify-content-between">
+<br>
+<br>
+<br>
+  <div align="center">
       <router-link to="/admin/AdminWelfareFacility">복지시설</router-link> 
       &nbsp;&nbsp;
       <router-link to="/admin/AdminTouristSpot">힐링스팟</router-link>
       &nbsp;&nbsp;
       <router-link to="/admin/AdminHobby">원데이클래스</router-link>
-  </nav>
-
+  </div>
+<br>
+<br>
 <div id="board-search">
     <div class="container">
         <div class="search-window">
@@ -37,8 +24,8 @@
         </div>
     </div>
 </div>
-
-<br> 
+  
+<br>
 <div align="center">
 <table align="center" class="board-table">
 <thead>
@@ -53,13 +40,24 @@
 </thead>
 <tbody>
 		<tr align="center">
-			<td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+			<td>1</td>
+			<td>병원</td>
+			<td>서울</td>
+      <td>202305051</td>
 		</tr>
 	</tbody>
 </table>
+<br>
+<br>
+
+<button class="btn2 btn-gray">전체선택</button>
+&nbsp;&nbsp;
+<button class="btn2 btn-gray">선택해제</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn2 btn-gray">확인</button>
+&nbsp;&nbsp;
+<button class="btn2 btn-gray">삭제</button>
+
 </div>
 </template>
 
@@ -122,7 +120,7 @@ section.notice {
 
 .board-table {
   font-size: 13px;
-  width: 80%;
+  width: 50%;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
@@ -155,6 +153,8 @@ section.notice {
 }
 
 .board-table tbody td {
+  padding-left: 28px;
+  padding-right: 14px;
   border-top: 1px solid #e7e7e7;
   text-align: center;
 }
@@ -208,6 +208,40 @@ section.notice {
   border-color: #373737;
   color: #fff;
 }
+
+.btn2 {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-gray {
+background: #555;
+color: #fff;
+}
+
 
 /* reset */
 
