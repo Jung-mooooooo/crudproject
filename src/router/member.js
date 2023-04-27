@@ -13,7 +13,7 @@ import PopDelete from "@/views/member/popupToDelete.vue";
 const member = [{
 
     path: '/',
-    name: 'defaultLayout',
+    name: 'memberLayout',
     component: () => import('../components/layouts/DefaultLayout.vue'),
     children: [
         {

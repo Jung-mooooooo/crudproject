@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import admin from './admin.js'
-import member from './member.js'
+import admin from './admin'
+import member from './member'
+import counseling from './counseling'
+import test from './test'
+import welfareProgram from './welfareProgram'
 
 import PageHome from "@/views/home/PageHome.vue";
 import PageHomeLogin from "@/views/home/PageHomeLogin.vue";
@@ -16,7 +19,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const routes = [
   {
     path: '/',
-    name: 'defaultLayout',
+    name: 'mainLayout',
     component: () => import('../components/layouts/DefaultLayout.vue'),
     children: [
       {
@@ -39,7 +42,7 @@ const routes = [
   },
   {
     path: '/',
-    name: 'NoNavLayout',
+    name: 'mainNoLayout',
     component: () => import('../components/layouts/NoNavLayout.vue'),
     children: [
       {
@@ -63,15 +66,12 @@ const routes = [
 
 ];
 
-const allrouter = [
-  routes,
-  ...admin,
-  ...member
-]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes: allrouter
+  routes: [
+    ...routes, ...admin, ...member, ...counseling, ...test, ...welfareProgram
+  ]
 })
 
 
