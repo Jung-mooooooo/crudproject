@@ -3,8 +3,12 @@
 <div class="char">
 <h2><b>&nbsp;자주하는질문</b></h2>
 <br>
+
+<div>
 </div>
-    <div class="accordion" id="accordionPanelsStayOpenExample">
+</div>
+<div class="accordion" id="accordionPanelsStayOpenExample">
+      <input id="qri" type=submit value="글쓰기" style="position: relative; left:-470px">
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">

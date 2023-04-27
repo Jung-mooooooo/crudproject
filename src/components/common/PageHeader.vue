@@ -61,14 +61,14 @@
           <div>
             고객센터
             <ul class="list">
-              <li><router-link to="/cs/notice">공지사항</router-link></li>
-              <li><router-link to="/cs/faq">FAQ</router-link></li>
-              <li><router-link to="/cs/qna">QNA</router-link></li>
+              <li><router-link to="/admin/AdminNotice">공지사항</router-link></li>
+              <li><router-link to="/admin/AdminFAQ">FAQ</router-link></li>
+              <li><router-link to="/admin/AdminQnA">QNA</router-link></li>
             </ul>
           </div>
         </li>
-        <li class="s_tap"><router-link to="/">로그인</router-link></li>
-        <li class="s_tap"><router-link to="/">회원가입</router-link></li>
+        <li class="s_tap"><router-link to="/member/login">로그인</router-link></li>
+        <li class="s_tap"><router-link to="/member/enroll">회원가입</router-link></li>
       </div>
     </header>
   </div>
