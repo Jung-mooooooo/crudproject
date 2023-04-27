@@ -26,7 +26,7 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: "Chatbot",
+  name: "ChatBot",
   components: {
     // HelloWorld,
   },

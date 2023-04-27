@@ -8,7 +8,7 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: "Counseling",
+  name: "CounseLing",
   components: {
     // HelloWorld,
   },
