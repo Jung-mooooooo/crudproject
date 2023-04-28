@@ -3,17 +3,18 @@
 <template>
   <hr />
   <footer>
-    <div class="row justify-content-center mb-0 pt-4 pb-2 row-2 px-5">
-           <div class="col-12">
-                <div class="row row-2">
-                    <div class="col-sm-2 text-md-center">
-                      <h5>
-                        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                        <img class="footer_img" alt="Vue homelogo" src="@/assets/footer2.png">
+    <div class="footer">
+      <div class="row justify-content-center mb-0 pt-4 pb-2 row-2 px-5">
+        <div class="col-12">
+          <div class="row row-2">
+            <div class="col-sm-2 text-md-center">
+              <h5>
+                <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                  <img class="footer_img" alt="Vue homelogo" src="@/assets/footer2.png">
                         </a>
                       </h5>
                     </div>
-
+                    
                     <div class="col-sm-2  my-sm-0 mt-5">
                       <ul class="list-unstyled">
                         <li class="mt-0">
@@ -33,7 +34,7 @@
                         </li>
                       </ul>
                     </div>
-
+                    
                     <div class="col-sm-2  my-sm-0 mt-5">
                       <ul class="list-unstyled">
                         <li class="mt-0">
@@ -53,7 +54,7 @@
                         </li>
                       </ul>
                     </div>
-
+                    
                     <div class="col-sm-2  my-sm-0 mt-5">
                       <ul class="list-unstyled">
                         <li class="mt-0">
@@ -73,7 +74,7 @@
                         </li>
                       </ul>
                     </div>
-
+                    
                     <div class="col-sm-2  my-sm-0 mt-5">
                       <ul class="list-unstyled">
                         <li class="mt-0">
@@ -93,20 +94,29 @@
                         </li>
                       </ul>
                     </div>
-
-                </div>  
-           </div>
-       </div>
-  </footer>
-</template>
+                    
+                  </div>  
+                </div>
+              </div>
+            </div>
+            </footer>
+          </template>
 
 <script>
 export default {};
 </script>
 
 <style scoped>
+.footer{
+  width: 1200px;
+  margin: auto;
+}
+
+.col-sm-2 {
+  margin: auto;
+}
 .footer_img{
-  height: 130px;
+  height: 140px;
 }
 @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
 body {
