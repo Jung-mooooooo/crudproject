@@ -4,9 +4,11 @@
 <br>
 <br>
   <div align="center">
-      <router-link to="/admin/counsellingCenter">상담센터리스트</router-link> 
+    <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/counsellingCenter'">
+    상담센터리스트</button>
       &nbsp;&nbsp;
-      <router-link to="/admin/speechRecognitionHelper">음성인식도우미관리</router-link>
+    <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/speechRecognitionHelper'">
+    음성인식도우미관리</button>
   </div>  
 <br>
 <br> 
@@ -192,6 +194,39 @@ section.notice {
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.btn3 {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-blue{
+  background: #4285f4;
+color: #fff;
 }
 
 .btn-gray {

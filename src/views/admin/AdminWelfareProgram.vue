@@ -4,11 +4,14 @@
 <br>
 <br>
   <div align="center">
-      <router-link to="/admin/AdminWelfareFacility">복지시설</router-link> 
+    <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminWelfareFacility'">
+    복지시설</button>
       &nbsp;&nbsp;
-      <router-link to="/admin/AdminTouristSpot">힐링스팟</router-link>
+    <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminTouristSpot'">
+    힐링스팟</button>
       &nbsp;&nbsp;
-      <router-link to="/admin/AdminHobby">원데이클래스</router-link>
+    <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminHobby'">
+    원데이클래스</button>
   </div>
 <br>
 <br>
@@ -241,6 +244,40 @@ section.notice {
 background: #555;
 color: #fff;
 }
+
+.btn3 {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-blue{
+  background: #4285f4;
+color: #fff;
+}
+
 
 
 /* reset */
