@@ -8,34 +8,34 @@
   <div class="container">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title"><strong>공지사항</strong></h3>
+        <h3 class="card-title"><strong>FAQ</strong></h3>
         <form>
           
           <div class="form-group">
-            <label for="postsTitle"><h5>제목</h5></label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="postsTitle" 
-              v-model="title"
-              placeholder="글 제목을 입력해주세요."/>
-          </div>
-        <br>
-          <div class="form-group">
-            <label for="postsContent"><h5>본문</h5></label>
+            <label for="postsTitle"><h5>질문</h5></label>
             <textarea 
-              rows="10"
+              rows="3"
               class="form-control" 
               id="postsContent"
               v-model="content"
-              placeholder="본문내용을 입력해주세요." />
+              placeholder="" />
+          </div>
+        <br>
+          <div class="form-group">
+            <label for="postsContent"><h5>답변</h5></label>
+            <textarea 
+              rows="3"
+              class="form-control" 
+              id="postsContent"
+              v-model="content"
+              placeholder="" />
           </div>
         </form>
       </div>
     </div>
     <br>
         <center>
-            <button type="button" class="btn btn-primary" v-on:click="fnSave">저장</button>&nbsp;
+            <button type="button" class="btn btn-primary" v-on:click="fnSave">등록</button>&nbsp;
             <button type="button" class="btn btn-success" v-on:click="fnList">목록</button>                     
         </center>
     <br>
@@ -76,7 +76,7 @@ export default {
     fnList() {
       delete this.requestBody.idx
       this.$router.push({
-        path: './AdminNotice',
+        path: './AdminFAQ',
         query: this.requestBody
       })
     },

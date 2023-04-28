@@ -5,7 +5,7 @@ import member from "./member";
 import counseling from "./counseling";
 import test from "./test";
 import welfareProgram from "./welfareProgram";
-
+import cs from "./cs";
 import PageHome from "@/views/home/PageHome.vue";
 import PageHomeLogin from "@/views/home/PageHomeLogin.vue";                                                                                                                                                                                                                                                                                                                 
 
@@ -72,6 +72,7 @@ const router = createRouter({
     ...test,
     ...welfareProgram,
     ...common,
+    ...cs,
   ],
 });
 

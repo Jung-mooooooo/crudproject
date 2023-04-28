@@ -88,6 +88,11 @@ const admin = [{
             name: "AdminMemberManage",
             component: () => import("../views/admin/AdminMemberManage.vue"),
         },
+        {
+            path: "/admin/AdminFAQWrite",
+            name: "AdminFAQWrite",
+            component: () => import("../views/admin/AdminFAQWrite.vue"),
+        },
 
     ]
 }

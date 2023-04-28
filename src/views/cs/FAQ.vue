@@ -8,10 +8,9 @@
 </div>
 </div>
 <div class="accordion" id="accordionPanelsStayOpenExample">
-      <!-- <input id="qri" type=submit value="글쓰기" style="position: relative; left:-470px"> -->
-      <div class="common-buttons">
+      <!-- <div class="common-buttons">
         <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
-      </div>
+      </div> -->
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -23,7 +22,7 @@
       <div class="accordion-body">
         마이페이지로 이동하시어 내정보보기 -> 비밀번호 입력 후  어쩌구 저쩌구
       </div>
-    <div><button v-on:click="fnWrite">수정</button> &nbsp; <button v-on:click="fnDelete">삭제</button></div>
+    <!-- <div><button v-on:click="fnWrite">수정</button> &nbsp; <button v-on:click="fnDelete">삭제</button></div> -->
     </div>
   </div>
 

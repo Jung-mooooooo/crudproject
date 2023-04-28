@@ -5,41 +5,38 @@
 //   fnGetView를 마운트(연결 : javascript로 보면 window.onload)함.
 <template>
 
-  <div class="container">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title"><strong>공지사항</strong></h3>
-        <form>
-          
-          <div class="form-group">
-            <label for="postsTitle"><h5>제목</h5></label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="postsTitle" 
-              v-model="title"
-              placeholder="글 제목을 입력해주세요."/>
-          </div>
-        <br>
-          <div class="form-group">
-            <label for="postsContent"><h5>본문</h5></label>
-            <textarea 
-              rows="10"
-              class="form-control" 
-              id="postsContent"
-              v-model="content"
-              placeholder="본문내용을 입력해주세요." />
-          </div>
-        </form>
-      </div>
-    </div>
-    <br>
-        <center>
-            <button type="button" class="btn btn-primary" v-on:click="fnSave">저장</button>&nbsp;
-            <button type="button" class="btn btn-success" v-on:click="fnList">목록</button>                     
-        </center>
-    <br>
-  </div>
+    <!-- <div class="common-buttons">
+      <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnSave">저장</button>&nbsp;
+      <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
+    </div> -->
+  <br><br><br><br>
+          <table  style="padding-top:50px" align = center width=700 border=0 cellpadding=2 >
+                <tr>
+                <td height=20 align= center bgcolor=#ccc><strong><font color=white>QnA</font></strong></td>
+                </tr>
+                <tr>
+                <td bgcolor=white>
+                <table class = "table2">
+                  <th>
+                    <tr>제목</tr>
+                      <td><input type = text name = name size=30> </td>
+ 
+                    <tr>작성자</tr>
+                      <td><input type = text name = title size=30 placeholder="user01"></td>
+
+                    <tr>내용</tr>
+                      <td><textarea name = content cols=75 rows=3></textarea></td>
+                  </th>
+                </table>
+ 
+                        <center>
+                        <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnSave">작성</button>&nbsp;
+                         <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>                     
+                        </center>
+                </td>
+                </tr>
+        </table>
+
 </template>
 
 <script>
@@ -76,14 +73,14 @@ export default {
     fnList() {
       delete this.requestBody.idx
       this.$router.push({
-        path: './AdminNotice',
+        path: './QnA',
         query: this.requestBody
       })
     },
     fnView(idx) {
       this.requestBody.idx = idx
       this.$router.push({
-        path: './detail',
+        path: './QnAdetail',
         query: this.requestBody
       })
     },
@@ -124,10 +121,26 @@ export default {
 }
 </script>
 <style scoped>
-
-        .form-group label {
-            position: relative;
-            left: -610px;
-            top: 8px;
+      .table2{
+                border-collapse: separate;
+                border-spacing: 1px;
+                text-align: left;
+                line-height: 1.5;
+                border-top: 1px solid #ccc;
+                margin : 20px 10px;
         }
+        .table2 tr {
+                 width: 50px;
+                 padding: 10px;
+                font-weight: bold;
+                vertical-align: top;
+                border-bottom: 1px solid #ccc;
+        }
+        .table2 td {
+                 width: 100px;
+                 padding: 10px;
+                 vertical-align: top;
+                 border-bottom: 1px solid #ccc;
+        }
+        
 </style>
