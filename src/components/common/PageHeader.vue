@@ -166,15 +166,4 @@ a {
 .list li a {
   color: white;
 }
-
-/* .tap_box > li {
-  
-} */
-
-/* $('.list').on("click"),
-function() {
-  .list {
-    visibility: visible;
-  }
-} */
 </style>
