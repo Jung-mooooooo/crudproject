@@ -21,10 +21,7 @@
     </div>
 </template>
   
-<script>
-alert(navigator.userAgent);
-</script>
-
+    
 
 
 <style scoped>

@@ -152,6 +152,7 @@ li {
 a {
   text-decoration: none;
   color: black;
+  display: block;
 }
 
 .list {
@@ -186,4 +187,5 @@ a {
 .list li a {
   color: white;
 }
+
 </style>
