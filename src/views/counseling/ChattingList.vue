@@ -14,7 +14,7 @@
         <div></div>
         <button v-on:click="this.$router.push('/counseling/chatting')">
           수락</button
-        ><button>거절</button>
+        ><button v-on:click="this.$router.push('/')">거절</button>
       </li>
       <li>
         유저2
