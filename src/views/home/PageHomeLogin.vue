@@ -2,10 +2,14 @@
 <template>
   <div class="home">
     <div class="user_box">
-      <div class="emotion_box">
+      <div class="emotion_box" @click="popComment">
         <div class="emotion_text">오늘 나의 기분</div>
         <div class="emotions">😀 😍 🙂 😕</div>
         <div class="emotions">🙄 😥 😫 😠</div>
+        <div
+          class="Comment"
+          :style="{ visibility: isCommentVisible ? 'visible' : 'hidden' }"
+        ></div>
       </div>
       <div class="text_box">
         <div>내가 쓴 글</div>
@@ -381,6 +385,16 @@ export default {
   components: {
     // HelloWorld,
   },
+  data() {
+    return {
+      isCommentVisible: false,
+    };
+  },
+  methods: {
+    popComment() {
+      this.isCommentVisible = !this.isCommentVisible;
+    },
+  },
 };
 </script>
 <style scoped>
@@ -410,6 +424,15 @@ export default {
   font-size: 55px;
 }
 
+.emotion_box div:last-child {
+  border: 5px solid red;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: relative;
+  top: -163px;
+  left: 155px;
+}
 .text_box {
   border: 1px solid black;
   border-radius: 20px;
@@ -444,13 +467,19 @@ export default {
 }
 
 .user_box > .mypage {
-  border: 2px solid orange;
+  border: 3px solid orange;
   border-radius: 20px;
   height: 250px;
   width: 15%;
-  font-size: 40px;
+  font-size: 45px;
+  font-weight: bold;
   line-height: 250px;
-  color: orange;
+  color: rgb(255, 165, 0);
+}
+
+.user_box > .mypage:hover {
+  background: rgba(255, 165, 0, 0.9);
+  color: white;
 }
 
 img {
