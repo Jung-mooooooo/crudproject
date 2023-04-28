@@ -1,8 +1,6 @@
-// import { createRouter, createWebHistory } from "vue-router";
-
-import Counseling from "@/views/counseling/Counseling.vue";
 import Chatting from "@/views/counseling/Chatting.vue";
 import Chatbot from "@/views/counseling/Chatbot.vue";
+import ChattingList from "@/views/counseling/ChattingList.vue";
 
 const counseling = [
   {
@@ -20,13 +18,13 @@ const counseling = [
         name: "Chatbot",
         component: Chatbot,
       },
+      {
+        path: "/counseling/chattinglist",
+        name: "ChattingList",
+        component: ChattingList,
+      },
     ],
   },
 ];
-
-// const router = createRouter({
-//   history: createWebHistory(process.env.BASE_URL),
-//   routes,
-// });
 
 export default counseling;

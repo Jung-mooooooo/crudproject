@@ -12,10 +12,14 @@
             심리/고민 상담
             <ul class="list">
               <li>
-                <router-link to="/welfareProgram/welfareFacilityMap">상담센터 찾기</router-link>
+                <router-link to="/welfareProgram/welfareFacilityMap"
+                  >상담센터 찾기</router-link
+                >
               </li>
               <li>
-                <router-link to="/counseling/chatting">1대1 채팅</router-link>
+                <router-link to="/counseling/chattinglist"
+                  >1대1 채팅</router-link
+                >
               </li>
               <li>
                 <router-link to="/counseling/chatbot"
@@ -44,7 +48,9 @@
             복지 프로그램
             <ul class="list">
               <li>
-                <router-link to="/welfareProgram/touristSpot">힐링 관광 명소</router-link>
+                <router-link to="/welfareProgram/touristSpot"
+                  >힐링 관광 명소</router-link
+                >
               </li>
               <li>
                 <router-link to="/welfareProgram/welfareFacility"
@@ -52,7 +58,9 @@
                 >
               </li>
               <li>
-                <router-link to="/welfareProgram/hobby">원데이클래스</router-link>
+                <router-link to="/welfareProgram/hobby"
+                  >원데이클래스</router-link
+                >
               </li>
             </ul>
           </div>
@@ -61,14 +69,20 @@
           <div>
             고객센터
             <ul class="list">
-              <li><router-link to="/admin/AdminNotice">공지사항</router-link></li>
+              <li>
+                <router-link to="/admin/AdminNotice">공지사항</router-link>
+              </li>
               <li><router-link to="/admin/AdminFAQ">FAQ</router-link></li>
               <li><router-link to="/admin/AdminQnA">QNA</router-link></li>
             </ul>
           </div>
         </li>
-        <li class="s_tap"><router-link to="/member/login">로그인</router-link></li>
-        <li class="s_tap"><router-link to="/member/enroll">회원가입</router-link></li>
+        <li class="s_tap">
+          <router-link to="/member/login">로그인</router-link>
+        </li>
+        <li class="s_tap">
+          <router-link to="/member/enroll">회원가입</router-link>
+        </li>
       </div>
     </header>
   </div>
