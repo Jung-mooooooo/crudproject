@@ -19,7 +19,7 @@
                   <router-link to="/welfareProgram/welfareFacilityMap">상담센터 찾기</router-link>
                 </li>
                 <li>
-                  <router-link to="/counseling/chatting">1대1 채팅</router-link>
+                  <router-link to="/counseling/chattinglist">1대1 채팅</router-link>
               </li>
               <li>
                 <router-link to="/counseling/chatbot"
