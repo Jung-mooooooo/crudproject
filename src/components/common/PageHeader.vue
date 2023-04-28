@@ -183,22 +183,7 @@ a {
   }
 }
 
-/* .list li:hover {
-  visibility: visible;
-} */
-
 .list li a {
   color: white;
 }
-
-/* .tap_box > li {
-  
-} */
-
-/* $('.list').on("click"),
-function() {
-  .list {
-    visibility: visible;
-  }
-} */
 </style>
