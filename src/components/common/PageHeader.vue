@@ -163,10 +163,6 @@ a {
   }
 }
 
-/* .list li:hover {
-  visibility: visible;
-} */
-
 .list li a {
   color: white;
 }
