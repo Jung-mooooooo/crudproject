@@ -19,6 +19,14 @@
             <router-link style="text-decoration: none; color: black;" to="/member/findpw"> 비밀번호 찾기</router-link>
           </div>
           <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+          <div>
+            <br>
+            <button class="lologin"><img class="kakaoLogin" alt="kakaoLogin" src="@/assets/kakaologin.png"></button>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <button class="lologin"><img class="naverLogin" alt="naverLogin" src="@/assets/btnG.png"></button>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <button class="lologin"><img class="googleLogin" alt="googleLogin" src="@/assets/googlelogin.png"></button>
+          </div>
           <hr class="my-4">
           <small class="text-muted">Better then talk 😊</small>
         </form>
@@ -31,7 +39,19 @@ export default {
 }
   </script>
 
-<style>
-
+<style scoped>
+.kakaoLogin{
+  height: 62px;
+}
+.naverLogin{
+  height: 50px;
+}
+.googleLogin{
+  height: 57px;
+}
+.lologin{
+  border-width: 0px;
+  padding: 0px 0px;
+}
 
 </style>
