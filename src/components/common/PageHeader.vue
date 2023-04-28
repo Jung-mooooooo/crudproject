@@ -127,6 +127,7 @@ li {
 a {
   text-decoration: none;
   color: black;
+  display: block;
 }
 
 .list {
@@ -167,4 +168,6 @@ function() {
     visibility: visible;
   }
 } */
+
+
 </style>
