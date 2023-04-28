@@ -4,10 +4,12 @@
 <br>
 <br>
   <div align="center">
-      <router-link to="/admin/counsellingCenter">상담센터리스트</router-link> 
+    <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/counsellingCenter'">
+    상담센터리스트</button>
       &nbsp;&nbsp;
-      <router-link to="/admin/speechRecognitionHelper">음성인식도우미관리</router-link>
-  </div>
+    <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/speechRecognitionHelper'">
+    음성인식도우미관리</button>
+  </div> 
       
 <br>
 <br>
@@ -16,19 +18,20 @@
 <br>
   <h3>음성인식도우미관리 현황</h3>
   <div>
-    <div>오늘의 사용자수</div>
+    <div class="title">오늘의 사용자수</div>
 		<div>22명</div> 
   </div>
    <div>
-    <div>이번달 사용자수</div>
+    <div class="title">이번달 사용자수</div>
 		<div>33명</div> 
   </div>
    <div>
-    <div>월평균 사용자수</div>
+    <div class="title">월평균 사용자수</div>
 		<div>44명</div> 
   </div>
 </div>
 </div>
+<br>
 <br>
 <br>
 <table align="center" class="board-table">
@@ -62,27 +65,31 @@ img{
   width: 200px;
 }
 
+.title{
+  background: gold;
+}
+
 .admin_box {
   display: flex;
 }
 
 .counting_user {
-  width: 50%;
-  border: 1px solid black;
-  margin: auto;
+  width: 40%;
   height: 200px;
+  margin: auto;;
 }
 .counting_user > div {
   display: flex;
   margin: auto;
-  
+  justify-content: center;
+  height: 30%;  
 }
 
 .counting_user > div div {
 border: 1px solid black;
-width: 40%;
-margin: auto;
-height: 30%;
+width: 30%;
+height: 40px;
+border-radius: 10px;
 }
 
 .counting_emotion {
@@ -171,6 +178,39 @@ section.notice {
 
 .board-table tbody th p{
   display: none;
+}
+
+.btn3 {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-blue{
+  background: #4285f4;
+color: #fff;
 }
 </style>
 

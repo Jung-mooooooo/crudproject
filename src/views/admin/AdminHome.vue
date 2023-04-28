@@ -17,15 +17,15 @@
 <div class= "counting_user">
   <h3>접속자 현황</h3>
   <div>
-    <div>접속자수</div>
+    <div class="title">접속자수</div>
 		<div>22명</div> 
   </div>
    <div>
-    <div>월 접속자 수</div>
+    <div class="title">월 접속자 수</div>
 		<div>33명</div> 
   </div>
    <div>
-    <div>월 평균 접속자 수</div>
+    <div class="title">월 평균 접속자 수</div>
 		<div>44명</div> 
   </div>
 </div>
@@ -33,39 +33,34 @@
 <div class= "counting_emotion">
   <h3>감정 현황</h3>
   <div>
-    <div>답답해요</div>
+    <div class="title">답답해요</div>
 		<div>10%</div> 
-  </div>
-  <div>
-    <div>불안해요</div>
+    <div class="title">불안해요</div>
 		<div>20%</div> 
   </div>
   <div>
-    <div>걱정돼요</div>
-		<div>30%</div> 
-  </div>
-  <div>
-    <div>괴로워요</div>
+    <div class="title">걱정돼요</div>
+		<div>30%</div>
+    <div class="title">괴로워요</div>
 		<div>40%</div> 
   </div>
   <div>
-    <div>무서워요</div>
+    <div class="title">무서워요</div>
 		<div>50%</div> 
-  </div>
-  <div>
-    <div>무기력해요</div>
+    <div class="title">무기력해요</div>
 		<div>60%</div> 
   </div>
   <div>
-    <div>외로워요</div>
+    <div class="title">외로워요</div>
 		<div>70%</div> 
-  </div>
-  <div>
-    <div>심심해요</div>
+    <div class="title">심심해요</div>
 		<div>80%</div> 
   </div>
 </div>
 </div>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -121,44 +116,50 @@ img{
   width: 200px;
 }
 
+.title{
+  background: gold;
+}
+
 .admin_box {
   display: flex;
 }
 
 .counting_user {
-  width: 50%;
-  margin: auto;
+  width: 40%;
   height: 200px;
+  margin: auto;
 }
 .counting_user > div {
   display: flex;
   margin: auto;
-  
+  justify-content: center;
+  height: 30%;
 }
 
 .counting_user > div div {
 border: 1px solid black;
-width: 40%;
-margin: auto;
-height: 30%;
+width: 30%;
+height: 40px;
+border-radius: 10px;
 }
 
 .counting_emotion {
-  width: 50%;
+  width: 40%;
+  height: 200px;
   margin: auto;
-  height: 300px;
 }
 .counting_emotion > div {
   display: flex;
   margin: auto;
-  
+  justify-content: center;
+  height: 30%;
 }
 
 .counting_emotion > div div {
 border: 1px solid black;
-width: 40%;
-margin: auto;
-height: 30%;
+width: 30%;
+height: 40px;
+border-radius: 10px;
 }
 
 table {

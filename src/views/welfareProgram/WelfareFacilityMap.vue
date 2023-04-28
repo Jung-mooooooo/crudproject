@@ -23,84 +23,87 @@
 
   <div>
     <img alt="counselling" src="@/assets/counselling.png">
-</div>
-</template>
+  </div>
 
   <!-- <head>
     <meta charset="utf-8" />
     <title>Kakao 지도 시작하기</title>
   </head>
   <body>
-    <div id="map" style="width: 500px; height: 400px"></div>
-  </body>
+    <div id="map" style="width: 700px; height: 700px"></div>
+  </body> -->
+
+</template>
+
+ 
+
+//  <script>
+//  export default {
+//   mounted() {
+//     if (!window.kakao || !window.kakao.maps) {
+//       const script = document.createElement("script");
+//       script.src =
+//         "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1975648a88442d985c0473dc051a7483";
+//       script.addEventListener("load", () => {
+//         kakao.maps.load(this.initMap);
+//       });
+//       document.head.appendChild(script);
+//     } else {
+//       this.initMap();
+//     }
+//   },
 
 
- <script>
-export default {
-  mounted() {
-    if (!window.kakao || !window.kakao.maps) {
-      const script = document.createElement("script");
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1975648a88442d985c0473dc051a7483";
-      script.addEventListener("load", () => {
-        kakao.maps.load(this.initMap);
-      });
-      document.head.appendChild(script);
-    } else {
-      this.initMap();
-    }
-  },
+//   methods: {
+//     initMap() {
+//       const container = document.getElementById("map");
+//       const option = {
+//         center: new kakao.maps.LatLng(33.450701, 126.570667, 16),
+//         level: 5,
+//       };
+//       this.map = new kakao.maps.Map(container, option);
+//     },
 
+//     displayMarkers(positions) {
+//       if (this.markers.length > 0) {
+//         this.markers.forEach((item) => {
+//           item.setMap(null);
+//         });
+//       }
+//       const imgSrc = require("@/assets/btt.png");
+//       const imgSize = new kakao.maps.Size(24, 35);
+//       const markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize);
 
-  methods: {
-    initMap() {
-      const container = document.getElementById("map");
-      const option = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667, 16),
-        level: 5,
-      };
-      this.map = new kakao.maps.Map(container, option);
-    },
+//       positions.forEach((position) => {
+//         const marker = new kakao.maps.Marker({
+//           map: this.map,
+//           position: position.latlng,
+//           title: position.title,
+//           image: markerImage,
+//         });
+//         this.markers.push(marker);
+//       });
 
-    displayMarkers(positions) {
-      if (this.markers.length > 0) {
-        this.markers.forEach((item) => {
-          item.setMap(null);
-        });
-      }
-      const imgSrc = require("@/assets/btt.png");
-      const imgSize = new kakao.maps.Size(24, 35);
-      const markerImage = new kakao.maps.MarkerImage(imgSrc, imgSize);
-
-      positions.forEach((position) => {
-        const marker = new kakao.maps.Marker({
-          map: this.map,
-          position: position.latlng,
-          title: position.title,
-          image: markerImage,
-        });
-        this.markers.push(marker);
-      });
-
-      const bounds=positions.reduce(
-        (bounds,position) => bounds.extend(position.latlng),
-        new kakao.maps.LatLngBounds()
-      )
-      this.map.setBounds(bounds)
-    },
+//       const bounds=positions.reduce(
+//         (bounds,position) => bounds.extend(position.latlng),
+//         new kakao.maps.LatLngBounds()
+//       )
+//       this.map.setBounds(bounds)
+//     },
 
 
 
     
-  },
+//   },
 
-  data() {
-    return {
-      map: null,
-    };
-  },
-};
-</script> -->
+//   data() {
+//     return {
+//       map: null,
+//     };
+//   },
+// };
+
+// </script> 
 
 <style scoped>
 table {
