@@ -70,10 +70,10 @@
             고객센터
             <ul class="list">
               <li>
-                <router-link to="/admin/AdminNotice">공지사항</router-link>
+                <router-link to="/cs/Notice">공지사항</router-link>
               </li>
-              <li><router-link to="/admin/AdminFAQ">FAQ</router-link></li>
-              <li><router-link to="/admin/AdminQnA">QNA</router-link></li>
+              <li><router-link to="/cs/FAQ">FAQ</router-link></li>
+              <li><router-link to="/cs/QnA">QNA</router-link></li>
             </ul>
           </div>
         </li>
