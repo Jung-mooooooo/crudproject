@@ -12,25 +12,49 @@
   </div>   
 <br>
 <br> 
-  <table align="center" class="board-table">
-<thead>
-  <h3>상담센터 리스트</h3>
-	<tr>
-		<th scope="col" class="th-num">번호</th> 
-		<th scope="col" class="th-title">센터 이름</th> 
-		<th scope="col" class="th-title">주소</th>  
-    <th scope="col" class="th-title">전화번호</th>  
-	</tr>
-	</thead>
-<tbody>
-		<tr align="center">
-			<td align="center">1</td>
-			<td align="center">상담센터</td>
-      <td align="center">서울시 서대문구</td>
-			<td align="center">02-1234-5678</td>
-		</tr>
-	</tbody>
+<div align="center">
+  <table class="board-table">
+  <thead>
+    <tr>
+      <th scope="col" class="th-title">번호</th>
+      <th scope="col" class="th-title">시설명</th>
+      <th scope="col" class="th-title">소재지주소</th>
+      <th scope="col" class="th-title">전화번호</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-if="showInputRow">
+      <td><input type="text" v-model="newRow.wf_no" disabled style="width: 50px"/></td>
+      <td><input type="text" v-model="newRow.wf_name" style="width: 100px"/></td>
+      <td><input type="text" v-model="newRow.address" style="width: 200px"/></td>
+      <td><input type="text" v-model="newRow.phone" style="width: 100px"/></td>
+      <td>
+        <button type="button" class="btn btn-dark" @click="saveNewRow">완료</button>
+      </td>
+    </tr>
+
+    <tr v-for="(row, index) in rows" :key="row.wf_no">
+      <td>{{row.wf_no}}</td>
+      <td v-show="!editMode">{{row.wf_name}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].wf_name" style="width:100px"/></td>
+      <td v-show="!editMode">{{row.address}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].address" style="width:200px"/></td>
+      <td v-show="!editMode">{{row.phone}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].phone" style="width:100px"/></td>
+      <td v-if="showDeleteButtons">
+        <button type="button" class="btn btn-dark" @click="deleteRow(index)">삭제</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
+</div>
+
+<div align="center">
+  <button type="button" class="btn2 btn-gray" @click="toggleInputRow">추가</button> &nbsp;&nbsp;
+  <button type="button" class="btn2 btn-gray" @click="toggleEditMode">수정</button> &nbsp;&nbsp;
+  <button type="button" class="btn2 btn-gray" @click="toggleDeleteButtons">삭제</button> &nbsp;&nbsp;
+</div>
+
 <br>
 <br> 
 <button class="btn2 btn-gray">전체선택</button>
@@ -41,8 +65,71 @@
 &nbsp;&nbsp;
 <button class="btn2 btn-gray">삭제</button>
 
-
 </template>
+
+<script>
+export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  },
+  data() {
+  return {
+    showDeleteButtons: false,
+    showNewRow: false,
+    showInputRow: false,
+    newRow: {
+      wf_no: "",
+      wf_name: "",
+      address: "",
+      phone: ""
+    },
+    rows: [
+        { 
+          wf_no: 1,
+          wf_name: "노원구청소년상담복지센터",
+          address: "서울특별시 노원구 수락산로212-19 2층",
+          phone: "02-2091-1388"
+        },
+        { 
+          wf_no: 2,
+          wf_name: "마포구청소년상담복지센터",
+          address: "서울특별시 마포구 희우정로 77 마포한강아이파크 상가동",
+          phone: "02-6376-9900"
+        }
+    ],
+    editMode: false
+  };
+},
+  methods: {
+    toggleDeleteButtons() {
+        this.showDeleteButtons = !this.showDeleteButtons;
+    },
+    addNewRow() {
+        this.showNewRow = true;
+    },
+    saveNewRow() {
+        this.rows.unshift({...this.newRow, wf_no: this.rows[0].wf_no + 1});
+        this.showNewRow = false;
+        this.newRow = {
+        wf_no: "",
+        wf_name: "",
+        address: "",
+        phone: ""
+        };
+    },
+    deleteRow(index) {
+        this.rows.splice(index, 1);
+    },
+    toggleEditMode() {
+        this.editMode = !this.editMode;
+    },
+    toggleInputRow() {
+      this.showInputRow = !this.showInputRow;
+    }
+  }
+};
+</script>
 
 <style scoped>
 img{

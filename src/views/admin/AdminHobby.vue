@@ -29,28 +29,83 @@
 </div>
 <br> 
 <div align="center">
-<table align="center" class="board-table">
-<thead>
-  <h3>원데이클래스</h3>
-  <br>
-	<tr>
-		<th scope="col" class="th-num">번호</th> 
-		<th scope="col" class="th-title">시설명</th> 
-		<th scope="col" class="th-title">지역</th>  
-    <th scope="col" class="th-title">작성일자</th> 
-	</tr>
-	</thead>
-<tbody>
-		<tr align="center">
-			<td align="center">1</td>
-			<td align="center">탁구장</td>
-			<td align="center">서울</td>
-      <td align="center">20230501</td>
-		</tr>
-	</tbody>
+<br>
+<br>
+<table class="board-table">
+  <thead>
+    <tr>
+      <th scope="col" class="th-title">번호</th>
+      <th scope="col" class="th-title">시설명</th>
+      <th scope="col" class="th-title">카테고리</th>
+      <th scope="col" class="th-title">소재지주소</th>
+      <th scope="col" class="th-title">도로명주소</th>
+      <th scope="col" class="th-title">전화번호</th>
+      <th scope="col" class="th-title">위도</th>
+      <th scope="col" class="th-title">경도</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-if="showInputRow">
+      <td><input type="text" v-model="newRow.hobby_no" disabled style="width: 50px"/></td>
+      <td><input type="text" v-model="newRow.hobby_name" style="width: 100px"/></td>
+      <td><input type="text" v-model="newRow.hobby_category" style="width: 100px"/></td>
+      <td><input type="text" v-model="newRow.address" style="width: 200px"/></td>
+      <td><input type="text" v-model="newRow.address2" style="width: 200px"/></td>
+      <td><input type="text" v-model="newRow.phone" style="width: 100px"/></td>
+      <td><input type="text" v-model="newRow.latitude" style="width: 100px"/></td>
+      <td><input type="text" v-model="newRow.logitude" style="width: 100px"/></td>
+      <td>
+        <button type="button" class="btn btn-dark" @click="saveNewRow">완료</button>
+      </td>
+    </tr>
+
+    <tr v-for="(row, index) in rows" :key="row.hobby_no">
+      <td>{{row.hobby_no}}</td>
+      <td v-show="!editMode">{{row.hobby_name}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].hobby_name" style="width:100px"/></td>
+      <td v-show="!editMode">{{row.hobby_category}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].hobby_category" style="width:100px"/></td>
+      <td v-show="!editMode">{{row.address}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].address" style="width:200px"/></td>
+      <td v-show="!editMode">{{row.address2}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].address2" style="width:200px"/></td>
+      <td v-show="!editMode">{{row.phone}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].phone" style="width:100px"/></td>
+      <td v-show="!editMode">{{row.latitude}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].latitude" style="width:100px"/></td>
+      <td v-show="!editMode">{{row.logitude}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].logitude" style="width:100px"/></td>
+      <td v-if="showDeleteButtons">
+        <button type="button" class="btn btn-dark" @click="deleteRow(index)">삭제</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
-<br>
-<br>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div align="center">
+  <button type="button" class="btn2 btn-gray" @click="toggleInputRow">추가</button> &nbsp;&nbsp;
+  <button type="button" class="btn2 btn-gray" @click="toggleEditMode">수정</button> &nbsp;&nbsp;
+  <button type="button" class="btn2 btn-gray" @click="toggleDeleteButtons">삭제</button> &nbsp;&nbsp;
+</div>
+
 <button class="btn2 btn-gray">전체선택</button>
 &nbsp;&nbsp;
 <button class="btn2 btn-gray">선택해제</button>
@@ -62,6 +117,96 @@
 </div>
 
 </template>
+
+<script>
+export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  },
+  data() {
+  return {
+    showDeleteButtons: false,
+    showNewRow: false,
+    showInputRow: false,
+    newRow: {
+      hobby_no: "",
+      hobby_name: "",
+      hobby_category: "",
+      address: "",
+      address2: "",
+      phone: "",
+      latitude: "",
+      logitude: ""
+    },
+    rows: [
+        { 
+          hobby_no: 1,
+          hobby_name: "노원구청소년상담복지센터",
+          hobby_category: "상담시설",
+          address: "서울특별시 노원구 수락산로212-19 2층",
+          address2: "서울특별시,노원구,(01616)",
+          phone: "02-2091-1388",
+          latitude: "37.671445290918584",
+          logitude: "127.05482794126408"
+        },
+        { 
+          hobby_no: 2,
+          hobby_name: "마포구청소년상담복지센터",
+          hobby_category: "상담시설",
+          address: "서울특별시 마포구 희우정로 77 마포한강아이파크 상가동",
+          address2: "서울특별시,마포구,(04016)",
+          phone: "02-6376-9900",
+          latitude: "37.552742496379594",
+          logitude: "126.90243873309039" 
+        },
+        {  
+          hobby_no: 3,
+          hobby_name: "서울마음숲정신건강의학과의원",
+          hobby_category: "병원",
+          address: "서울특별시 서초구 서초중앙로24길 27 지파이브센트럴프라자 213호",
+          address2: "서울특별시 서초구",
+          phone: "02-2038-3067",
+          latitude: "37.4954383",
+          logitude: "127.0164436" 
+        }
+    ],
+    editMode: false
+  };
+},
+  methods: {
+    toggleDeleteButtons() {
+        this.showDeleteButtons = !this.showDeleteButtons;
+    },
+    addNewRow() {
+        this.showNewRow = true;
+    },
+    saveNewRow() {
+        this.rows.unshift({...this.newRow, hobby_no: this.rows[0].hobby_no + 1});
+        this.showNewRow = false;
+        this.newRow = {
+        hobby_no: "",
+        hobby_name: "",
+        hobby_category: "",
+        address: "",
+        address2: "",
+        phone: "",
+        latitude: "",
+        logitude: ""
+        };
+    },
+    deleteRow(index) {
+        this.rows.splice(index, 1);
+    },
+    toggleEditMode() {
+        this.editMode = !this.editMode;
+    },
+    toggleInputRow() {
+      this.showInputRow = !this.showInputRow;
+    }
+  }
+};
+</script>
 
 <style scoped>
 img{
