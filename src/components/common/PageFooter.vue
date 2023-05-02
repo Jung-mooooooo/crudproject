@@ -23,7 +23,7 @@
                           </router-link>
                         </li>
                         <li>
-                          <router-link style="text-decoration: none; color: #d4d4d4;" to="/counseling/chatting">
+                          <router-link style="text-decoration: none; color: #d4d4d4;" to="/counseling/chattinglist">
                             1:1 채팅
                           </router-link>
                         </li>
@@ -108,7 +108,7 @@ export default {};
 
 <style scoped>
 .footer{
-  width: 1200px;
+  width: 1300px;
   margin: auto;
 }
 
