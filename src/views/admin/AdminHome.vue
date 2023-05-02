@@ -33,27 +33,27 @@
 <div class= "counting_emotion">
   <h3>감정 현황</h3>
   <div>
-    <div class="title">답답해요</div>
+    <div class="title">슬프다</div>
 		<div>10%</div> 
-    <div class="title">불안해요</div>
+    <div class="title">불안하다</div>
 		<div>20%</div> 
   </div>
   <div>
-    <div class="title">걱정돼요</div>
+    <div class="title">무섭다</div>
 		<div>30%</div>
-    <div class="title">괴로워요</div>
+    <div class="title">외롭다</div>
 		<div>40%</div> 
   </div>
   <div>
-    <div class="title">무서워요</div>
+    <div class="title">무기력하다</div>
 		<div>50%</div> 
-    <div class="title">무기력해요</div>
+    <div class="title">화가나다</div>
 		<div>60%</div> 
   </div>
   <div>
-    <div class="title">외로워요</div>
+    <div class="title">행복하다</div>
 		<div>70%</div> 
-    <div class="title">심심해요</div>
+    <div class="title">신나다</div>
 		<div>80%</div> 
   </div>
 </div>
