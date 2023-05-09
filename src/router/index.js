@@ -7,7 +7,7 @@ import test from "./test";
 import welfareProgram from "./welfareProgram";
 import cs from "./cs";
 import PageHome from "@/views/home/PageHome.vue";
-import PageHomeLogin from "@/views/home/PageHomeLogin.vue";                                                                                                                                                                                                                                                                                                                 
+import PageHomeLogin from "@/views/home/PageHomeLogin.vue";
 
 // import BoardList from "@/views/board/BoardList.vue";
 // import BoardDetail from "@/views/board/BoardDetail.vue";
@@ -32,7 +32,7 @@ const routes = [
         component: () => import("../views/home/PageAbout.vue"),
       },
       {
-        path: "/login",
+        path: "/loginhome",
         name: "PageHomeLogin",
         component: PageHomeLogin,
       },

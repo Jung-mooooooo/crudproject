@@ -4,7 +4,7 @@
 <template>
   <div class="container">
     <header>
-      <router-link to="/login"
+      <router-link to="/loginhome"
         ><img class="home_img" alt="Vue homelogo" src="@/assets/home.jpg"
       /></router-link>
       <div class="tap_box">
