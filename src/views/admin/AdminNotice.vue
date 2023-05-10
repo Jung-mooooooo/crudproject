@@ -39,68 +39,7 @@
           <td>2023.04.27</td>
         </tr>
           
-       <tr class="KOTRA-fontsize-80">
-          <td>2</td>
-          <td v-on:click="fnView">공지사항2</td>
-          <td >admin</td>
-          <td>2023.04.27</td>
-                 </tr>
-          
-        <tr class="KOTRA-fontsize-80">
-         <td>3</td>
-          <td v-on:click="fnView">공지사항3</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr>
-          
-         <tr class="KOTRA-fontsize-80">
-         <td>4</td>
-          <td v-on:click="fnView">공지사항4</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr> 
-           
-        <tr class="KOTRA-fontsize-80">
-         <td>5</td>
-          <td v-on:click="fnView">공지사항5</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-         <td>6</td>
-          <td v-on:click="fnView">공지사항6</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-         <td>7</td>
-          <td v-on:click="fnView">공지사항7</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-         <td>8</td>
-          <td v-on:click="fnView">공지사항8</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-         <td>9</td>
-          <td v-on:click="fnView">공지사항9</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-         <td>10</td>
-          <td v-on:click="fnView">공지사항10</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr>
+       
 
         </tbody>
     </table>
