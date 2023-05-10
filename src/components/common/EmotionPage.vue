@@ -44,6 +44,14 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: "Emotion",
+  components: {
+    // HelloWorld,
+  },
+};
+</script>
 
 <style scoped>
 .container {
