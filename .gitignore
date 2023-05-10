@@ -197,5 +197,4 @@ pnpm-debug.log*
 # ------
 *.yml
 *.properties
-/src/main.js
-/vue.config.js
+*.js
