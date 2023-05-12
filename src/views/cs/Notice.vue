@@ -33,7 +33,7 @@
 
         <tr class="KOTRA-fontsize-80">
           <td>1</td>
-          <td v-on:click="fnView">공지사항1</td>
+          <td v-on:click="fnView">??</td>
           <td>admin</td>
           <td>2023.04.27</td>
         </tr>

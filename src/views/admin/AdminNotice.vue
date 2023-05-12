@@ -1,15 +1,14 @@
 
 <template>
-  <div class="board-list">
+
   <br><br>
   <h2>공지사항</h2>
   <br>  
   <div style="display: flex; justify-content : center;">
   <select v-model="search_key">
     <option value="">- 선택 -</option>
-    <option value="author">작성자</option>
-    <option value="title">제목</option>
-    <option value="contents">내용</option>
+    <option value="noticeTitle">제목</option>
+    <option value="noticeContent">내용</option>
   </select>
 
   &nbsp;
@@ -22,7 +21,7 @@
   <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
 </div>
 
-  </div>
+
   <table  class="rwd-table">
         <tbody>
         <tr>
@@ -32,20 +31,47 @@
           <th>등록일시</th>
         </tr>
 
-        <tr class="KOTRA-fontsize-80">
+        <!-- <tr class="KOTRA-fontsize-80">
           <td>1</td>
-          <td v-on:click="fnView">공지사항1</td>
+          <td v-on:click="fnView">왜안바껴?</td>
           <td>admin</td>
           <td>2023.04.27</td>
-        </tr>
-          
+        </tr> -->
+
+        <tr class="KOTRA-fontsize-80" v-for="(row, noticeNo) in list" :key="noticeNo">  
+        <td>{{ row.noticeNo }}</td>
+
+        <td><a v-on:click="fnView(`${row.noticeNo}`)">{{ row.noticeTitle }}</a></td>
+        <td>{{ row.adminCode }}</td>
+        <td>{{ row.createAt }}</td>
+       </tr>
+       <div class="pagination w3-bar w3-padding-16 w3-small" v-if="paging.total_list_cnt > 0">
+      <span class="pg">
+      <a href="javascript:;" @click="fnPage(1)" class="first w3-button w3-border">&lt;&lt;</a>
+      <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"
+         class="prev w3-button w3-border">&lt;</a>
+         <!-- template tag : for, if문같은 반복문과 조건문 사용 가능-->
+      <template v-for=" (n,index) in paginavigation()">
+          <template v-if="paging.page==n">
+              <strong class="w3-button w3-border w3-green" :key="index">{{ n }}</strong>
+          </template>
+          <template v-else>
+              <a class="w3-button w3-border" href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{ n }}</a>
+          </template>
+      </template>
+      <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"
+         @click="fnPage(`${paging.end_page+1}`)" class="next w3-button w3-border">&gt;</a>
+      <a href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)" class="last w3-button w3-border">&gt;&gt;</a>
+      </span>
+    </div>
+
        
 
         </tbody>
     </table>
   <br><br>
   
-  <nav aria-label="Page navigation example">
+  <!-- <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -60,7 +86,7 @@
     <li class="page-item"><a class="page-link" href="#">10</a></li>
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
-</nav>
+</nav> -->
  
 </template>
 
@@ -104,6 +130,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
   },
   mounted() { //일종의 연결, document readey()임. 저 파일이 보여질때 안의 메소드 실행
     this.fnGetList()
+    //console.log(fnGetList);
   },
   methods: {
     fnGetList() {  //안의 메소드인 fnGetList()는 파일이 열리면 안의 형태로 자료가 출력됨
@@ -117,13 +144,13 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       }
         //select, insert, update, delete는 $axios.메소드명 <= 에 따라 달라짐. get, post, pach, delete
         //해당 내용에 대한 service로의 연결 요청이다.
-      this.$axios.get(this.$serverUrl + "/board/list", {
+      this.$axios.get(this.$serverUrl + "/admin/AdminNotice", {
         params: this.requestBody,
         headers: {}
       }).then((res) => {      //.then(res) <= success callback임
 
        // this.list = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
-
+        console.log(res.data);
        if (res.data.result_code === "OK") {
           this.list = res.data.data
           this.paging = res.data.pagination
@@ -131,15 +158,17 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
         }
 
       }).catch((err) => {   //erorr callback
+        console.log(err);
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
       })
 
     },
-    fnView() { //글번호를 전달 후 router에 push. path: url, query: parameter
+    fnView(noticeNo) { //글번호를 전달 후 router에 push. path: url, query: parameter
       this.$router.push({
         path: './AdminNoticeDetail', //같은 폴더에 있다 = ./
+        query: this.requestBody
       })
     },
     fnWrite() {
@@ -193,9 +222,6 @@ table {
     background-color: white;
 }
 
-/*.rwd-table tr:nth-child(odd):not(:first-child) {*/
-/*    background-color: #ebf3f9;*/
-/*}*/
 
 .rwd-table th {
     display: none;
