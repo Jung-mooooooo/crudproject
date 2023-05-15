@@ -9,26 +9,28 @@
     <div class="emotion_text">요즘 당신의 기분이 궁금해요</div>
     <br /><br />
     <div class="emotion_text2">가장 가까운 단어를 선택해주세요</div>
-    
+
     <br /><br />
     <div class="container">
       <div class="eBox">
-        <div v-on:click="toGo">답답해요</div>
+        <!-- <div v-on:click="toGo">답답해요</div> -->
+        <div><router-link to="/emotion">답답해요</router-link></div>
+
         <div>불안해요</div>
         <div>걱정돼요</div>
-    </div>
-    <div class="eBox">
-      <div>괴로워요</div>
-      <div>무서워요</div>
-      <div>무기력해요</div>
-    </div>
-    <div class="eBox">
-      <div>외로워요</div>
-      <div>심심해요</div>
-      <div>화가나요</div>
+      </div>
+      <div class="eBox">
+        <div>괴로워요</div>
+        <div>무서워요</div>
+        <div>무기력해요</div>
+      </div>
+      <div class="eBox">
+        <div>외로워요</div>
+        <div>심심해요</div>
+        <div>화가나요</div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -49,7 +51,7 @@ export default {
 };
 </script>
 <style scoped>
-.home{
+.home {
   width: 1200px;
   margin: auto;
   max-width: 100%;
@@ -107,8 +109,14 @@ img {
   color: rgba(244, 182, 57, 0.8);
 }
 
-.eBox div:hover {
+.eBox div:hover,
+a:hover {
   background: #ffe4af;
   color: white;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(244, 182, 57, 0.8);
 }
 </style>

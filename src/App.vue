@@ -20,7 +20,7 @@ export default {
   //   fnMain(){
   //     this.$route.push({
   //       path: './'
-        
+
   //     });
   //   }
   // }
