@@ -9,9 +9,6 @@ import cs from "./cs";
 import PageHome from "@/views/home/PageHome.vue";
 import PageHomeLogin from "@/views/home/PageHomeLogin.vue";
 
-// import BoardList from "@/views/board/BoardList.vue";
-// import BoardDetail from "@/views/board/BoardDetail.vue";
-// import BoardWrite from "@/views/board/BoardWrite.vue";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
