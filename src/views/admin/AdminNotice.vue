@@ -31,20 +31,13 @@
           <th>등록일시</th>
         </tr>
 
-        <!-- <tr class="KOTRA-fontsize-80">
-          <td>1</td>
-          <td v-on:click="fnView">왜안바껴?</td>
-          <td>admin</td>
-          <td>2023.04.27</td>
-        </tr> -->
-
         <tr class="KOTRA-fontsize-80" v-for="(row, noticeNo) in list" :key="noticeNo">  
         <td>{{ row.noticeNo }}</td>
-
         <td><a v-on:click="fnView(`${row.noticeNo}`)">{{ row.noticeTitle }}</a></td>
         <td>{{ row.adminCode }}</td>
-        <td>{{ row.createAt }}</td>
+        <td>{{ row.createAt ? row.createAt | formatDate : '' }}</td>
        </tr>
+
        <div class="pagination w3-bar w3-padding-16 w3-small" v-if="paging.total_list_cnt > 0">
       <span class="pg">
       <a href="javascript:;" @click="fnPage(1)" class="first w3-button w3-border">&lt;&lt;</a>
@@ -91,7 +84,12 @@
 </template>
 
 <script>
+import axios from "axios"
+axios.defaults.withCredentials = true;
+import AdminNotice from '@/views/admin/AdminNotice.vue'
 export default {    //export : 내보내기 -> 외부에서 사용할 수 있게 설정(그 설정에서 사용하는 data)
+  name: 'AdminNotice',
+  components: {AdminNotice},
   data() { //변수생성
     return {    //단순 list view인 경우, idx없이 넘어감.
       requestBody: {}, //리스트 페이지 데이터전송
@@ -128,10 +126,27 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       }
     }
   },
+
+
+
   mounted() { //일종의 연결, document readey()임. 저 파일이 보여질때 안의 메소드 실행
     this.fnGetList()
-    //console.log(fnGetList);
+
   },
+
+  filters: {
+    formatDate(value) {
+      const date = new Date(value);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+      return formattedDate;
+    },
+  },
+  
   methods: {
     fnGetList() {  //안의 메소드인 fnGetList()는 파일이 열리면 안의 형태로 자료가 출력됨
       //spring boot에서 전송받은 데이터 출력 처리
@@ -144,21 +159,24 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       }
         //select, insert, update, delete는 $axios.메소드명 <= 에 따라 달라짐. get, post, pach, delete
         //해당 내용에 대한 service로의 연결 요청이다.
-      this.$axios.get(this.$serverUrl + "/admin/AdminNotice", {
-        params: this.requestBody,
+      this.$axios.get("/admin/AdminNotice", {
+        
+        params: this.requestBody.data,
         headers: {}
+        
       }).then((res) => {      //.then(res) <= success callback임
 
        // this.list = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
-        console.log(res.data);
-       if (res.data.result_code === "OK") {
+        //console.log(res);
+       if (res.data.resultCode === "OK") {
           this.list = res.data.data
           this.paging = res.data.pagination
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
         }
 
       }).catch((err) => {   //erorr callback
-        console.log(err);
+        //console.log(err);
+        //console.log(res.data);
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
         }
@@ -184,6 +202,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       this.fnGetList()
     },
   }
+  
 }
 </script>
 <style scoped>
