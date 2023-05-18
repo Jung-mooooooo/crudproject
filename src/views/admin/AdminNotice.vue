@@ -2,8 +2,9 @@
 <template>
 
   <br><br>
-  <h2>공지사항</h2>
-  <br>  
+  <h2><b>공지사항</b></h2>
+  <br>
+  
   <div style="display: flex; justify-content : center;">
   <select v-model="search_key">
     <option value="">- 선택 -</option>
@@ -17,10 +18,13 @@
   <button @click="fnPage()">검색</button>
 </div>
 
-<div class="common-buttons">
-  <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
-</div>
+  <!-- <div class="btn btn-outline-primary" style="text-align: right; width: 78%;">
+    <button type="button" v-on:click="fnWrite">등록</button>
+  </div>  -->
 
+  <div class="common-buttons">
+        <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
+  </div>
 
   <table  class="rwd-table">
         <tbody>
@@ -29,58 +33,46 @@
           <th>제목</th>
           <th>작성자</th>
           <th>등록일시</th>
+          <th>조회수</th>
         </tr>
 
         <tr class="KOTRA-fontsize-80" v-for="(row, noticeNo) in list" :key="noticeNo">  
         <td>{{ row.noticeNo }}</td>
         <td><a v-on:click="fnView(`${row.noticeNo}`)">{{ row.noticeTitle }}</a></td>
-        <td>{{ row.adminCode }}</td>
-        <td>{{ row.createAt ? row.createAt | formatDate : '' }}</td>
+        <!-- <td>{{ row.adminCode }}</td> -->
+        <td>관리자</td>
+        <td>{{ formatDate(row.createAt)}}</td>
+        <td>{{ row.noticeReadCount }}</td>
        </tr>
-
-       <div class="pagination w3-bar w3-padding-16 w3-small" v-if="paging.total_list_cnt > 0">
-      <span class="pg">
-      <a href="javascript:;" @click="fnPage(1)" class="first w3-button w3-border">&lt;&lt;</a>
-      <a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"
-         class="prev w3-button w3-border">&lt;</a>
-         <!-- template tag : for, if문같은 반복문과 조건문 사용 가능-->
-      <template v-for=" (n,index) in paginavigation()">
-          <template v-if="paging.page==n">
-              <strong class="w3-button w3-border w3-green" :key="index">{{ n }}</strong>
-          </template>
-          <template v-else>
-              <a class="w3-button w3-border" href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{ n }}</a>
-          </template>
-      </template>
-      <a href="javascript:;" v-if="paging.total_page_cnt > paging.end_page"
-         @click="fnPage(`${paging.end_page+1}`)" class="next w3-button w3-border">&gt;</a>
-      <a href="javascript:;" @click="fnPage(`${paging.total_page_cnt}`)" class="last w3-button w3-border">&gt;&gt;</a>
-      </span>
-    </div>
-
-       
-
-        </tbody>
+      </tbody>
     </table>
-  <br><br>
-  
-  <!-- <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">5</a></li>
-    <li class="page-item"><a class="page-link" href="#">6</a></li>
-    <li class="page-item"><a class="page-link" href="#">7</a></li>
-    <li class="page-item"><a class="page-link" href="#">8</a></li>
-    <li class="page-item"><a class="page-link" href="#">9</a></li>
-    <li class="page-item"><a class="page-link" href="#">10</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav> -->
- 
+    <br><br>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" :class="{ disabled: paging.page === 1 }">
+        <a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === 1 }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.page - 1)">&lt;</a>
+      </li>
+      <li v-if="paging.totalBlockCnt > 10" class="page-item">
+        <a class="page-link" href="javascript:;">...</a>
+      </li>
+      <li v-for="n in paginavigation()" :class="{ active: paging.page === n }" :key="n" class="page-item">
+        <a class="page-link" href="javascript:;" @click="fnPage(n)">{{ n }}</a>
+      </li>
+      <li v-if="paging.totalBlockCnt > 10 && paging.page < paging.totalBlockCnt" class="page-item">
+        <a class="page-link" href="javascript:;">...</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.page + 1)">&gt;</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.totalPageCnt)">&gt;&gt;</a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
@@ -97,16 +89,16 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       no: '', //게시판 숫자처리
       paging: {
         block: 0,
-        end_page: 0,
-        next_block: 0,
+        endPage: 0,
+        nextBlock: 0,
         page: 0,
-        page_size: 0,
-        prev_block: 0,
-        start_index: 0,
-        start_page: 0,
-        total_block_cnt: 0,
-        total_list_cnt: 0,
-        total_page_cnt: 0,
+        pageSize: 0,
+        prevBlock: 0,
+        startIndex: 0,
+        startPage: 0,
+        totalBlockCnt: 0,
+        totalListCnt: 0,
+        totalPageCnt: 0,
       }, //페이징 데이터
       //페이지 데이터 처리하는 삼항연산자 
       //현재쿼리에 현재페이지값 존재시 =>첫번째 아니면 1,
@@ -119,32 +111,17 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       //pageinavigation = 콜백함수
       paginavigation: function () { //페이징 처리 for문 커스텀
         let pageNumber = [] //;
-        let start_page = this.paging.start_page;
-        let end_page = this.paging.end_page;
-        for (let i = start_page; i <= end_page; i++) pageNumber.push(i);
+        let startPage = this.paging.startPage;
+        let endPage = this.paging.endPage;
+        for (let i = startPage; i <= endPage; i++) pageNumber.push(i);
         return pageNumber;
       }
     }
   },
 
-
-
   mounted() { //일종의 연결, document readey()임. 저 파일이 보여질때 안의 메소드 실행
     this.fnGetList()
 
-  },
-
-  filters: {
-    formatDate(value) {
-      const date = new Date(value);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      const hours = String(date.getHours()).padStart(2, "0");
-      const minutes = String(date.getMinutes()).padStart(2, "0");
-      const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-      return formattedDate;
-    },
   },
   
   methods: {
@@ -161,7 +138,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
         //해당 내용에 대한 service로의 연결 요청이다.
       this.$axios.get("/admin/AdminNotice", {
         
-        params: this.requestBody.data,
+        params: this.requestBody,
         headers: {}
         
       }).then((res) => {      //.then(res) <= success callback임
@@ -171,7 +148,10 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
        if (res.data.resultCode === "OK") {
           this.list = res.data.data
           this.paging = res.data.pagination
-          this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
+          this.no = this.paging.totalListCnt - ((this.paging.page - 1) * this.paging.pageSize)
+          console.log("토탈 : "+this.paging.totalListCnt);
+          console.log("페이지 : "+this.paging.page);
+          console.log("페이지사이즈 : "+this.paging.pageSize);
         }
 
       }).catch((err) => {   //erorr callback
@@ -189,6 +169,17 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
         query: this.requestBody
       })
     },
+    formatDate: function(datetime) {
+          let date = new Date(datetime);
+          let year = date.getFullYear();
+          let month = ('0' + (date.getMonth()+1)).slice(-2); // Months are zero based
+          let day = ('0' + date.getDate()).slice(-2);
+          let hh = date.getHours();
+          let mi = date.getMinutes();
+          let ss = date.getSeconds();
+          return `${year}년 ${month}월 ${day}일 ${hh}:${mi}:${ss}`;
+      },
+
     fnWrite() {
       this.$router.push({
         path: './AdminNoticeWrite'
@@ -301,7 +292,7 @@ table {
 }
 @media screen and (min-width: 600px) {
     .rwd-table tr:hover:not(:first-child) {
-        background-color: rgba(131, 244, 180, 0.3);
+        background-color: rgba(232, 243, 248, 0.989);
         /*background-color: #83F4B4;과 동일 opacity*/
     }
     .rwd-table td:before {
@@ -340,8 +331,8 @@ table {
   width: 1000px!important;
 }
 
-.common-buttons{
+/* .common-buttons{
   position: relative;
-  left: 120px;
-}
+  left: 8px;
+} */
 </style>
