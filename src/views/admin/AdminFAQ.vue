@@ -8,7 +8,6 @@
 </div>
 </div>
 <div class="accordion" id="accordionPanelsStayOpenExample">
-      <!-- <input id="qri" type=submit value="글쓰기" style="position: relative; left:-470px"> -->
       <div class="common-buttons">
         <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
       </div>
