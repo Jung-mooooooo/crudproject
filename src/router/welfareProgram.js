@@ -31,6 +31,16 @@ const welfareProgram = [{
             component: () => import("../views/welfareProgram/WelfareFacilityMap.vue"),
           },
           {
+            path: "/welfareProgram/counsellingCenterMap",
+            name: "CounsellingCenterMap",
+            component: () => import("../views/welfareProgram/CounsellingCenterMap.vue"),
+          },
+          {
+            path: "/welfareProgram/hospitalMap",
+            name: "HospitalMap",
+            component: () => import("../views/welfareProgram/HospitalMap.vue"),
+          },
+          {
             path: "/welfareProgram/touristSpotMap",
             name: "TouristSpotMap",
             component: () => import("../views/welfareProgram/TouristSpotMap.vue"),
