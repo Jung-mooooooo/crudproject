@@ -97,48 +97,6 @@
 </template>
 
 <script>
-// export default {};
-// export default {};
-//   import { reactive, toRefs } from '@vue/reactivity'
-//   import axios from 'axios'
-//   import { useRouter } from 'vue-router';
-
-//   export default{
-//       name: 'MemberLogin',
-//       // @click="handleLogin"
-//       setup () {
-//     const router = useRouter();
-
-//     const state = reactive({
-//         userId:'',
-//         userPw:'',
-//     });
-//     const handleLogin = async() => {
-//         const url = `/member/login`;
-//         // const headers = {"Content-Type":"application/json"};
-//         const body = {
-//             user_id : state.userId,
-//             user_pw : state.userPw,
-//             // role    : 'CUSTOMER'
-//         }
-//         const {data} = await axios.post(url, body);
-//         console.log(data);
-
-//         if(data.status == 200){
-//             sessionStorage.setItem("token", data.result);
-//             router.push({path:'/'});
-//         }
-//       };
-
-//         return {
-//         state,
-//         ...toRefs(state),
-//         handleLogin
-//     }
-
-//   }
-// };
-
 import axios from "axios";
 
 export default {
@@ -149,25 +107,8 @@ export default {
       loginError: false,
       userId: "",
       userPw: "",
-      // error: false
     };
   },
-  //     methods: {
-  //       login() {
-  //       let apiUrl = "/member/login";
-  //       this.form = {
-  //       user_id: this.userId,
-  //       user_pw: this.userPw,
-  //     };
-
-  //     axios
-  //       .post(apiUrl, this.form)
-  //       .then((res) => console.log(res))
-  //       .catch((error) => console.log(error));
-  //     }
-  //   }
-  // };
-
   methods: {
     login() {
       console.log("this.userId " + this.userId);
@@ -179,10 +120,11 @@ export default {
           user_pw: this.userPw,
         })
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           if (res.status == 200) {
             console.log(res)
-            this.loginSuccess = true;
+            this.loginSuccess = true
+            this.$router.push({name: 'PageHomeLogin'})
           }
         })
 
@@ -194,7 +136,6 @@ export default {
   },
 };
 
-// @submit.prevent="login()"
 </script>
 
 <style scoped>
@@ -215,51 +156,3 @@ export default {
   padding: 0px 0px;
 }
 </style>
-
-
-
-<!-- <template>
-  <form @submit.prevent="fireSignin">
-    <table>
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" v-model="user_id"></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" v-model="user_pw"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><button type="submit">로그인</button></td>
-			</tr>
-		</table>
-  </form>
-</template>
-
-<script>
-import { ref } from 'vue'
-
-export default {
-  name: 'SigninForm',
-  emits: ['sign-in'],
-  setup(props, context) {
-    //컴포넌트 데이터 정의
-    const user_id = ref('')
-    const user_pw = ref('')
-
-    //입력한 사용자 아이디와 비밀번호와 함께 상위 컴포넌트에 sign-in 이벤트를 발생시킨다.
-    const fireSignin = () => {
-      context.emit('sign-in', {
-        user_id: user_id.value,
-        user_pw: user_pw.value 
-      })
-    }
-
-    return {
-      user_id,
-      user_pw,
-      fireSignin,
-    }
-  },
-}
-</script> -->
