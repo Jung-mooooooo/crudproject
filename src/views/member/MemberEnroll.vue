@@ -24,6 +24,7 @@
 
         <div class="col-sm-10">
           <div class="input-group has-validation">
+          
             <input
               v-model="userName"
               type="text"
@@ -31,6 +32,7 @@
               id="userName"
               name="userName"
             />
+          
           </div>
           <p class="errorBox">{{ validate.valid_userName }}</p>
         </div>
@@ -279,14 +281,14 @@ export default {
     },
 
     //패스워드 확인 메소드
-    userPwCk() {
-      if (this.userPw !== this.userPwCk) {
-        this.error_pwch = "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
-        document.getElementById("pwch").focus();
-      } else {
-        this.error_pwch = "";
-      }
-    },
+    // userPwCk() {
+    //   if (this.userPw !== this.userPwCk) {
+    //     this.error_pwch = "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
+    //     document.getElementById("pwch").focus();
+    //   } else {
+    //     this.error_pwch = "";
+    //   }
+    // },
 
     // userIdValidate() {
     //   this.isVisibleId = true;
