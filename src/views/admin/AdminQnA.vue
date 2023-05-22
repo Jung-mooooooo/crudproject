@@ -8,8 +8,8 @@
   <div style="display: flex; justify-content : center;">
   <select v-model="search_key">
     <option value="">- 선택 -</option>
+    <option value="userCode">작성자</option>
     <option value="qnaTitle">제목</option>
-    <option value="qnaContent">내용</option>
   </select>
 
   &nbsp;
@@ -45,7 +45,8 @@
     </table>
     <br><br>
 
-  <nav aria-label="Page navigation example">
+
+    <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item" :class="{ disabled: paging.page === 1 }">
         <a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a>
@@ -70,6 +71,7 @@
       </li>
     </ul>
   </nav>
+
 </template>
 
 <script>

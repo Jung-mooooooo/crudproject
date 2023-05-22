@@ -8,9 +8,9 @@
 </div>
 </div>
 <div class="accordion" id="accordionPanelsStayOpenExample">
-      <!-- <div class="common-buttons">
+  <!-- <div class="common-buttons">
         <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
-      </div> -->
+  </div> -->
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
