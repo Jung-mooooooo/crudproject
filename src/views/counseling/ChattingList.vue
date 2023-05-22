@@ -8,71 +8,90 @@
     </div>
     <div class="chat_list_header">랜덤채팅 가능 유저 목록</div>
     <br />
-    <div class="chat_list_body">
-      <li>
-        유저1
-        <div></div>
-        <button v-on:click="this.$router.push('/counseling/chatting')">
-          수락</button
-        ><button v-on:click="this.$router.push('/')">거절</button>
-      </li>
-      <li>
-        유저2
-        <div></div>
-        <button v-on:click="this.$router.push('/counseling/chatting')">
-          수락</button
-        ><button>거절</button>
-      </li>
-      <li>
-        유저3
-        <div></div>
-        <button v-on:click="this.$router.push('/counseling/chatting')">
-          수락</button
-        ><button>거절</button>
-      </li>
-      <li>
-        유저4
-        <div></div>
-        <button v-on:click="this.$router.push('/counseling/chatting')">
-          수락</button
-        ><button>거절</button>
-      </li>
-      <li>
-        유저5
-        <div></div>
-        <button v-on:click="this.$router.push('/counseling/chatting')">
-          수락</button
-        ><button>거절</button>
-      </li>
-      <li>
-        유저6
-        <div class="n"></div>
-        <button>수락</button><button>거절</button>
-      </li>
-      <li>
-        유저7
-        <div class="n"></div>
-        <button>수락</button><button>거절</button>
-      </li>
-      <li>
-        유저8
-        <div class="n"></div>
-        <button>수락</button><button>거절</button>
-      </li>
-      <li>
-        유저9
-        <div class="n"></div>
-        <button>수락</button><button>거절</button>
-      </li>
-      <li>
-        유저n
-        <div class="n"></div>
-        <button>수락</button><button>거절</button>
-      </li>
-    </div>
+    <table class="chat_list_body" border="2">
+      <tr>
+        <th>유저이름</th>
+        <th>채팅요청</th>
+      </tr>
+
+      <!-- <tr v-if="!user || (Array.isArray(users) && users.length === 0)">
+        <td>현재 채팅 가능한 회원이 없습니다.</td>
+      </tr> -->
+
+      <!-- <tr v-else v-for="user in users" :key="user.userName"> -->
+      <tr>
+        <td align="center">user01</td>
+        <td align="center"><button type="button">요청</button></td>
+      </tr>
+      <tr>
+        <td align="center">user02</td>
+        <td align="center"><button type="button">요청</button></td>
+      </tr>
+      <tr>
+        <td align="center">user03</td>
+        <td align="center"><button type="button">요청</button></td>
+      </tr>
+    </table>
   </div>
 </template>
-<script></script>
+<script>
+export default {
+  name: "ChattingList",
+  data() {
+    return {
+      userCode: "",
+    };
+  },
+  created() {
+    this.chatUserSave();
+  },
+  mounted() {},
+  beforeRouteLeave(to, from, next) {
+    if (this.canLeaveSite) next();
+    else if (confirm("채팅 대기실에서 나가시겠습니까?")) {
+      next();
+      //리스트에서 삭제?
+      this.chatUserDel();
+    }
+  },
+  methods: {
+    chatUserSave() {
+      let apiUrl = "/chatUser";
+      this.from = {
+        //토큰에서 받아온 usercode를 저장하기.
+        user_code: this.userCode,
+      };
+      this.$axios
+        .post(apiUrl, this.form)
+        .then((res) => {
+          this.user = res.data;
+        })
+        .catch((err) => console.log(err));
+    },
+    chatUserDel() {
+      this.$axios
+        .delete("/delete/" + this.userCode, {})
+        .then(() => {
+          console.log("유저리스트에서 삭제");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  // component: {},
+  // data() {
+  //   return {
+  //     isreqVisible: false,
+  //   };
+  // },
+  // methods: {
+  //   reqChat() {
+  //     this.isreqVisible = !this.isreqVisible;
+  //   },
+  // },
+};
+</script>
 <style scoped>
 h1 {
   margin: auto;
@@ -141,14 +160,15 @@ h1 {
   color: white;
 }
 .chat_list_body {
+  position: relative;
+  top: 30px;
   margin: auto;
   width: 500px;
-  height: 500px;
+  /* height: 500px; */
   border: 2px solid #3a99db;
-  border-radius: 20px;
 }
 
-.chat_list_body li {
+/* .chat_list_body li {
   display: flex;
   justify-content: space-around;
   height: 50px;
@@ -172,7 +192,7 @@ h1 {
 .chat_list_body li div:not(.n) {
   border: 2px solid orange;
   background: orange;
-}
+} */
 
 button {
   width: 100px;
@@ -184,10 +204,8 @@ button {
   font-size: 25px;
   font-weight: bold;
   line-height: 40px;
-  position: relative;
-  top: 5px;
 }
-
+/* 
 li > :nth-child(n + 2) {
   position: relative;
   left: 50px;
@@ -196,9 +214,16 @@ li > :nth-child(n + 2) {
 li > :nth-child(n + 3) {
   position: relative;
   left: 10px;
+} */
+
+th,
+td {
+  width: 250px;
+  border: 2px solid #3a99db;
+  height: 50px;
 }
 
-.chat_list_body li:last-child {
+/* .chat_list_body li:last-child {
   border-bottom: none;
-}
+} */
 </style>

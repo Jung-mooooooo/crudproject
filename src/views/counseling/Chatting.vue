@@ -5,20 +5,24 @@
   <br />
   <div class="chating_box">
     <div>
-      <div class="chat_header">000 님과 1대 1 채팅</div>
+      <div class="chat_header">{{}} 님과 1대 1 채팅</div>
       <div class="chat_body">
         <div class="user u1">
-          <div class="name">00 님</div>
-          <div class="text">안녕하세요?</div>
+          <div class="name">
+            {{ userName1 }}
+          </div>
+          <div class="text">
+            {{ content1 }}
+          </div>
         </div>
         <div class="user u2">
-          <div class="text">반가워요!</div>
-          <div class="name">ㅁㅁ 님</div>
+          <div class="text">{{ content2 }}</div>
+          <div class="name">{{ userName2 }}</div>
         </div>
       </div>
       <div class="send_msg">
-        <div>메세지를 입력해주세요.</div>
-        <button>보내기</button>
+        <input v-model="content" type="text" />
+        <button type="button">보내기</button>
       </div>
     </div>
 
@@ -80,7 +84,8 @@ export default {
   margin: auto;
   display: flex;
   justify-content: center;
-  width: 90%;
+  width: 1800px;
+  height: 800px;
 }
 
 .chating_box > div {
@@ -88,7 +93,7 @@ export default {
 }
 
 .chating_box > div:first-child {
-  width: 80%;
+  width: 1200px;
   position: relative;
   right: -100px;
 }
@@ -98,7 +103,7 @@ export default {
 }
 
 .todayEmotion_header {
-  width: 50%;
+  width: 300px;
   height: 60px;
   border: 1px solid #3a99db;
   background: #3a99db;
@@ -109,13 +114,15 @@ export default {
   text-align: center;
   line-height: 60px;
   position: relative;
-  top: -5px;
+  top: -100px;
   margin: auto;
 }
 
 .todayEmotion_body {
+  position: relative;
+  top: -95px;
   margin: auto;
-  width: 50%;
+  width: 300px;
   height: 120px;
   border: 2px solid #3a99db;
   font-size: 80px;
@@ -126,7 +133,7 @@ export default {
 }
 
 .chating_box > div:last-child {
-  width: 20%;
+  width: 300px;
   height: 580px;
   position: relative;
   right: 180px;
@@ -135,7 +142,7 @@ export default {
 .chat_list_header {
   height: 50px;
   position: relative;
-  top: -10px;
+  top: -90px;
   border: 1px solid #3a99db;
   background: #3a99db;
   border-radius: 10px;
@@ -145,7 +152,9 @@ export default {
   color: white;
 }
 .chat_list_body {
-  height: 250px;
+  height: 500px;
+  position: relative;
+  top: -80px;
   border: 2px solid #3a99db;
   /* background: #3a99db; */
   border-radius: 20px;
@@ -193,7 +202,7 @@ export default {
 }
 
 .chat_header {
-  width: 50%;
+  width: 800px;
   height: 60px;
   border: 1px solid #3a99db;
   background: #3a99db;
@@ -207,7 +216,7 @@ export default {
 .chat_body {
   position: relative;
   top: 10px;
-  width: 50%;
+  width: 800px;
   height: 500px;
   margin: auto;
   border: 2px solid #3a99db;
@@ -258,30 +267,35 @@ export default {
   position: relative;
   top: 15px;
   margin: auto;
-  width: 50%;
-  height: 60px;
-  border: 2px solid #3a99db;
+  width: 800px;
+  /* height: 60px;
+  border: 2px solid #3a99db; */
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
 }
 
-.send_msg > div {
+.send_msg > input {
   position: relative;
+  width: 80%;
+  border: 2px solid #3a99db;
+  border-radius: 15px;
   left: 30px;
   line-height: 60px;
   font-size: 35px;
   color: gray;
 }
 
-.send_msg button {
+.send_msg > button {
   position: relative;
-  right: 30px;
   top: 4px;
   border: 2px solid #3a99db;
   background: #3a99db;
   width: 15%;
   border-radius: 8px;
   height: 50px;
+  color: white;
+  font-size: 25px;
+  line-height: 50px;
 }
 </style>

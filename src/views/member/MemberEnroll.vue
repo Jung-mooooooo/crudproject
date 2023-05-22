@@ -24,7 +24,6 @@
 
         <div class="col-sm-10">
           <div class="input-group has-validation">
-          
             <input
               v-model="userName"
               type="text"
@@ -32,7 +31,6 @@
               id="userName"
               required
             />
-          
           </div>
           <p class="errorBox">{{ validate.valid_userName }}</p>
         </div>
@@ -323,7 +321,6 @@ export default {
         .catch((error) => console.log(error));
     },
 
-
     // checkAll() {
     //   if(!checkId(form.userId.value)){
     //     return false;
@@ -341,14 +338,13 @@ export default {
         this.error_pw =
           "비밀번호는 4~8자리수여야 합니다. 영문자, 숫자, 특수문자를 1개 이상 포함해야 합니다.";
         console.log(this.userPw);
-        return false;
+        // return false;
       } else {
         this.error_pw = "";
         console.log(this.userPw);
-        return true;
+        // return true;
       }
     },
-
 
     //패스워드 확인 메소드
     userPwCk() {
@@ -360,13 +356,13 @@ export default {
         console.log(pw2.value);
         this.error_pwch = "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
         pw2.focus();
-        return false;
+        // return false;
       } else {
         console.log(pw.value);
         console.log(pw2.value);
         this.error_pwch = "";
         p.focus();
-        return true;
+        // return true;
       }
     },
 
@@ -377,11 +373,11 @@ export default {
       if (!validatePhone.test(this.phone) || !this.phone) {
         this.error_phone = "올바른 형식의 핸드폰 번호여야 합니다.[-제외]";
         console.log(this.phone);
-        return false;
+        // return false;
       } else {
         this.error_phone = "";
         console.log(this.phone);
-        return true;
+        // return true;
       }
     },
 
@@ -401,11 +397,11 @@ export default {
           console.log(res.data);
           phoneCode = res.data;
           p.focus(); //성공시,
-          return true;
+          // return true;
         })
         .catch(function (err) {
           console.log(err);
-          return false;
+          // return false;
         });
     },
 
@@ -417,12 +413,12 @@ export default {
         console.log("핸드폰 전송온 : " + phoneCode);
         this.error_phoneck = "인증코드가 일치하지 않습니다. 다시 입력해주세요.";
         userCode.focus();
-        return false;
+        // return false;
       } else {
         console.log(userCode.value);
         console.log(phoneCode);
         this.error_phoneck = "";
-        return true;
+        // return true;
       }
     },
 
@@ -432,11 +428,11 @@ export default {
       if (!validateEmail.test(this.email) || !this.email) {
         this.error_email = "올바른 형식의 이메일 주소여야 합니다.";
         console.log(this.email);
-        return false;
+        // return false;
       } else {
         this.error_email = "";
         console.log(this.email);
-        return true;
+        // return true;
       }
     },
 
@@ -456,11 +452,11 @@ export default {
           console.log(res.data);
           emailCode = res.data;
           e.focus();
-          return true;
+          // return true;
         })
         .catch(function (err) {
           console.log(err);
-          return false;
+          // return false;
         });
     },
     //이메일 인증코드 체크
@@ -471,12 +467,12 @@ export default {
         console.log("메일로 전송온 : " + emailCode);
         this.error_emailck = "인증코드가 일치하지 않습니다. 다시 입력해주세요.";
         userCode.focus();
-        return false;
+        // return false;
       } else {
         console.log(userCode.value);
         console.log(emailCode);
         this.error_emailck = "";
-        return true;
+        // return true;
       }
     },
   },

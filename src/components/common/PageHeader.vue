@@ -23,7 +23,7 @@
               </li>
               <li>
                 <router-link to="/counseling/chatbot"
-                >챗봇 상담하기</router-link
+                  >챗봇 상담하기</router-link
                 >
               </li>
             </ul>
@@ -150,18 +150,16 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.container {
   /* max-width: 100%;
   width: 1300px;
   margin-left: auto;
   margin-right: auto; */
-  
 }
 header {
   display: flex;
   max-width: 100%;
   width: 1500px;
-
 }
 
 .home_img {
@@ -203,7 +201,6 @@ a {
   margin: auto;
   position: relative;
   top: -55px;
-
 }
 
 .list li {
@@ -231,5 +228,4 @@ a {
 .list li a {
   color: white;
 }
-
 </style>
