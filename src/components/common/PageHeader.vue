@@ -77,32 +77,76 @@
             </ul>
           </div>
         </li>
-        <li class="s_tap">
-          <router-link to="/member/login">로그인</router-link>
-        </li>
-        <li class="s_tap">
-          <router-link to="/member/enroll">회원가입</router-link>
-        </li>
+        <div v-if="!$store.state.token">
+          <li class="s_tap">
+            <router-link to="/member/login">로그인</router-link>
+          </li>
+          <li class="s_tap">
+            <router-link to="/member/enroll">회원가입</router-link>
+          </li>
+        </div>
+        <div v-else>
+          <li class="s_tap">
+            <button type="button" @click="logout()">로그아웃</button>
+          </li>
+        </div>
       </div>
     </header>
   </div>
   <hr />
 </template>
 <script>
+import store from "@/store";
+import router from "@/router/index";
+
 export default {
   methods: {
-    // toMbti() {
-    //   location.href =
-    //     "https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC";
-    // },
-    // toStress() {
-    //   location.href = "https://www.wonju.go.kr/health/contents.do?key=2409&";
-    // },
-    // toDepression() {
-    //   location.href = "https://www.wonju.go.kr/health/contents.do?key=1694&";
-    // },
-  },
-};
+    logout(){
+      store.commit('setToken', null);
+      sessionStorage.removeItem('accessToken');
+      sessionStorage.clear();
+      localStorage.clear();
+      alert('로그아웃 하셨습니다.');
+      router.push({path: '/'})
+    }
+  }
+}
+
+
+
+
+// export default {
+//   data(){
+//     return{
+//       aa: "",
+//     }
+//   },
+//   watch: {
+//     '$route'() {
+//         this.getlocation();
+//     }
+//   },
+//   mounted(){
+//     this.getlocation();
+//   },
+//   methods: {
+//     getlocation(){
+//       if(localStorage.getItem("token") !== 'undefined' ){
+//         this.aa = 0;
+//       }else{ 
+//         this.aa = 1;
+//       }
+//     },
+
+//     removeItem(){
+//       localStorage.clear();
+//       // this.$router.go(0);
+//       this.$router.push({
+//         name: "PageHome"
+//       });
+//     },
+//   },
+// };
 </script>
 
 <style scoped>
