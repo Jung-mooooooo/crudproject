@@ -1,141 +1,162 @@
 <template>
-<br>
-<div class="char">
-<h2><b>&nbsp;자주하는질문</b></h2>
-<br>
-
-<div>
-</div>
-</div>
-<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="char">
+    <h2><b>&nbsp;자주하는질문</b></h2>
+    <br>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
       <div class="common-buttons">
         <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
       </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-        <h5><b>Q. 회원탈퇴는 어떻게 해야 하나요?</b></h5>
-      </button>
-   
-    </h2>
-    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-      <div class="accordion-body">
-        마이페이지로 이동하시어 내정보보기 -> 비밀번호 입력 후  어쩌구 저쩌구
-      </div>
-    <div><button v-on:click="fnWrite">수정</button> &nbsp; <button v-on:click="fnDelete">삭제</button></div>
-    </div>
-  </div>
-
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-        <h5><b>Q. 힐링스팟은 어떤 방식으로 제공되는 건가요?</b></h5>
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-      <div class="accordion-body">
+      <div class="accordion-item" v-for="(item, index) in list" :key="index">
+        <h2 class="accordion-header" :id="'faqHeading' + index">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="'#faqCollapse' + index" aria-expanded="true" :aria-controls="'faqCollapse' + index">
+            <h5><b>{{ item.faqTitle }}</b></h5>
+          </button>
+        </h2>
+        <div :id="'faqCollapse' + index" class="accordion-collapse collapse" :class="{ show: index === 0 }" :aria-labelledby="'faqHeading' + index">
+          <div class="accordion-body">
+            {{ item.faqContent }}
+          </div>
+          <div>
+            <button @click="fnEdit(item)">수정</button>
+            <button @click="fnDelete(item)">삭제</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-         <h5><b>Q. 심도깊은 심리상담을 받고싶을 때는 어떻게 해야 하나요?</b></h5>
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-      <div class="accordion-body">
-      </div>
-    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" :class="{ disabled: paging.page === 1 }">
+          <a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a>
+        </li>
+        <li class="page-item" :class="{ disabled: paging.page === 1 }">
+          <a class="page-link" href="javascript:;" @click="fnPage(paging.page - 1)">&lt;</a>
+        </li>
+        <li v-if="paging.totalBlockCnt > 10" class="page-item">
+          <a class="page-link" href="javascript:;">...</a>
+        </li>
+        <li v-for="n in paginavigation()" :class="{ active: paging.page === n }" :key="n" class="page-item">
+          <a class="page-link" href="javascript:;" @click="fnPage(n)">{{ n }}</a>
+        </li>
+        <li v-if="paging.totalBlockCnt > 10 && paging.page < paging.totalBlockCnt" class="page-item">
+          <a class="page-link" href="javascript:;">...</a>
+        </li>
+        <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+          <a class="page-link" href="javascript:;" @click="fnPage(paging.page + 1)">&gt;</a>
+        </li>
+        <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+          <a class="page-link" href="javascript:;" @click="fnPage(paging.totalPageCnt)">&gt;&gt;</a>
+        </li>
+      </ul>
+    </nav>
   </div>
-
-    <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingfour">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsefour" aria-expanded="false" aria-controls="panelsStayOpen-collapsefour">
-         <h5><b>Q. 자기분석 테스트는 어떻게 진행되는 건가요?</b></h5>
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapsefour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingfour">
-      <div class="accordion-body">
-      </div>
-    </div>
-  </div>
-
-    <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingfive">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsefive" aria-expanded="false" aria-controls="panelsStayOpen-collapsefive">
-         <h5><b>Q. 복지프로그램은 어떻게 진행되는 건가요?</b></h5>
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapsefive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingfive">
-      <div class="accordion-body">
-      </div>
-    </div>
-  </div>
-
-    <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingsix">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsesix" aria-expanded="false" aria-controls="panelsStayOpen-collapsesix">
-         <h5><b>Q. 채팅기능은 어떻게 이용하는 건가요?</b></h5>
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapsesix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingsix">
-      <div class="accordion-body">
-      </div>
-    </div>
-  </div>
-
-    <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingseven">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseseven" aria-expanded="false" aria-controls="panelsStayOpen-collapseseven">
-         <h5><b>Q. 불량유저 신고는 어디로 해야 하나요?</b></h5>
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseseven" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingseven">
-      <div class="accordion-body">
-      </div>
-    </div>
-  </div>
-</div>
-
 </template>
 
 <script>
-
+import dayjs from 'dayjs';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
+import AdminFAQ from '@/views/admin/AdminFAQ.vue';
 export default {
-   methods: {
-        fnWrite() {
-      this.$router.push({
-        path: './AdminFAQWrite'
-      })
+  name: 'AdminFAQ',
+  components: { AdminFAQ, dayjs },
+  data() {
+    return {
+      requestBody: {},
+      list: [],
+      no: '',
+      paging: {
+        block: 0,
+        endPage: 0,
+        nextBlock: 0,
+        page: 0,
+        pageSize: 0,
+        prevBlock: 0,
+        startIndex: 0,
+        startPage: 0,
+        totalBlockCnt: 0,
+        totalListCnt: 0,
+        totalPageCnt: 0,
+      },
+      page: this.$route.query.page ? this.$route.query.page : 1,
+      size: this.$route.query.size ? this.$route.query.size : 10,
+      search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_value: this.$route.query.sv ? this.$route.query.sv : '',
+    };
+  },
+
+  mounted() {
+    this.fnGetList();
+  },
+
+  methods: {
+    fnGetList() {
+      this.requestBody = {
+        keyword: this.keyword,
+        page: this.page,
+        size: this.size,
+        sk: this.search_key,
+        sv: this.search_value,
+      };
+
+      axios
+        .get('/admin/AdminFAQ', {
+          params: this.requestBody,
+          headers: {},
+        })
+        .then((res) => {
+          if (res.data.resultCode === 'OK') {
+            this.list = res.data.data;
+            this.paging = res.data.pagination;
+            this.no = this.paging.totalListCnt - (this.paging.page - 1) * this.paging.pageSize;
+          }
+        })
+        .catch((err) => {
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.');
+          }
+        });
     },
-   }
-}
+
+    formatDate: function (datetime) {
+      return dayjs(datetime).format('YYYY년 MM월 DD일 HH:mm:ss');
+    },
+
+    fnWrite() {
+      this.$router.push({
+        path: './AdminFAQWrite',
+      });
+    },
+
+    fnPage(n) {
+      if (this.page !== n) {
+        this.page = n;
+      }
+
+      this.fnGetList();
+    },
+  },
+
+  filters: {
+    formatDate: function (datetime) {
+      return dayjs(datetime).format('YYYY년 MM월 DD일 HH:mm:ss');
+    },
+  },
+};
 </script>
 
-
-
-
 <style scoped>
-/* .accordion-button {
-    width: 200px!important;
-} */
-
-.accordion{
+.accordion {
   margin: 0 auto;
-  width: 1000px!important;
-
+  width: 1000px !important;
 }
 
-.char{
-  
+.char {
   text-align: center;
 }
 
-.common-buttons{
+.common-buttons {
   position: relative;
   left: 8px;
 }
-
 </style>

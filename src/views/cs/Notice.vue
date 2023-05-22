@@ -31,7 +31,6 @@
         <tr class="KOTRA-fontsize-80" v-for="(row, noticeNo) in list" :key="noticeNo">  
         <td>{{ row.noticeNo }}</td>
         <td><a v-on:click="fnView(`${row.noticeNo}`)">{{ row.noticeTitle }}</a></td>
-        <!-- <td>{{ row.adminCode }}</td> -->
         <td>관리자</td>
         <td>{{ formatDate(row.createAt)}}</td>
         <td>{{ row.noticeReadCount }}</td>
@@ -70,10 +69,10 @@
 <script>
 import axios from "axios"
 axios.defaults.withCredentials = true;
-import AdminNotice from '@/views/admin/AdminNotice.vue'
+import Notice from '@/views/cs/Notice.vue'
 export default {    //export : 내보내기 -> 외부에서 사용할 수 있게 설정(그 설정에서 사용하는 data)
-  name: 'AdminNotice',
-  components: {AdminNotice},
+  name: 'Notice',
+  components: {Notice},
   data() { //변수생성
     return {    //단순 list view인 경우, idx없이 넘어감.
       requestBody: {}, //리스트 페이지 데이터전송
@@ -128,7 +127,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       }
         //select, insert, update, delete는 $axios.메소드명 <= 에 따라 달라짐. get, post, pach, delete
         //해당 내용에 대한 service로의 연결 요청이다.
-      this.$axios.get("/admin/AdminNotice", {
+      this.$axios.get("/cs/Notice", {
         
         params: this.requestBody,
         headers: {}
@@ -157,7 +156,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
     },
     fnView(noticeNo) { //글번호를 전달 후 router에 push. path: url, query: parameter
       this.$router.push({
-        path: './AdminNoticeDetail', //같은 폴더에 있다 = ./
+        path: './NoticeDetail', //같은 폴더에 있다 = ./
         query: this.requestBody
       })
     },
@@ -174,7 +173,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
 
     fnWrite() {
       this.$router.push({
-        path: './AdminNoticeWrite'
+        path: './NoticeWrite'
       })
     },
     fnPage(n) {

@@ -18,10 +18,6 @@
   <button @click="fnPage()">검색</button>
 </div>
 
-  <!-- <div class="btn btn-outline-primary" style="text-align: right; width: 78%;">
-    <button type="button" v-on:click="fnWrite">등록</button>
-  </div>  -->
-
   <div class="common-buttons">
         <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
   </div>
@@ -41,8 +37,8 @@
         <td><a v-on:click="fnView(`${row.noticeNo}`)">{{ row.noticeTitle }}</a></td>
         <!-- <td>{{ row.adminCode }}</td> -->
         <td>관리자</td>
-        <td>{{ formatDate(row.createAt)}}</td>
-        <td>{{ row.noticeReadCount }}</td>
+        <td>{{formatDate(row.createAt)}}</td>
+        <td>{{row.noticeReadCount}}</td>
        </tr>
       </tbody>
     </table>
@@ -73,15 +69,18 @@
       </li>
     </ul>
   </nav>
+
+
 </template>
 
 <script>
-import axios from "axios"
-axios.defaults.withCredentials = true;
-import AdminNotice from '@/views/admin/AdminNotice.vue'
+  import dayjs from 'dayjs';
+  import axios from "axios"
+  axios.defaults.withCredentials = true;
+  import AdminNotice from '@/views/admin/AdminNotice.vue'
 export default {    //export : 내보내기 -> 외부에서 사용할 수 있게 설정(그 설정에서 사용하는 data)
-  name: 'AdminNotice',
-  components: {AdminNotice},
+    name: 'AdminNotice',
+    components: {AdminNotice, dayjs},
   data() { //변수생성
     return {    //단순 list view인 경우, idx없이 넘어감.
       requestBody: {}, //리스트 페이지 데이터전송
@@ -121,7 +120,6 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
 
   mounted() { //일종의 연결, document readey()임. 저 파일이 보여질때 안의 메소드 실행
     this.fnGetList()
-
   },
   
   methods: {
@@ -137,7 +135,6 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
         //select, insert, update, delete는 $axios.메소드명 <= 에 따라 달라짐. get, post, pach, delete
         //해당 내용에 대한 service로의 연결 요청이다.
       this.$axios.get("/admin/AdminNotice", {
-        
         params: this.requestBody,
         headers: {}
         
@@ -146,9 +143,10 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
        // this.list = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
         //console.log(res);
        if (res.data.resultCode === "OK") {
-          this.list = res.data.data
-          this.paging = res.data.pagination
-          this.no = this.paging.totalListCnt - ((this.paging.page - 1) * this.paging.pageSize)
+          this.list = res.data.data;
+          this.paging = res.data.pagination;
+          this.no = this.paging.totalListCnt - ((this.paging.page - 1) * this.paging.pageSize);
+          console.log("list : "+this.list);
           console.log("토탈 : "+this.paging.totalListCnt);
           console.log("페이지 : "+this.paging.page);
           console.log("페이지사이즈 : "+this.paging.pageSize);
@@ -164,20 +162,14 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
 
     },
     fnView(noticeNo) { //글번호를 전달 후 router에 push. path: url, query: parameter
+      this.requestBody.noticeNo = noticeNo
       this.$router.push({
         path: './AdminNoticeDetail', //같은 폴더에 있다 = ./
         query: this.requestBody
       })
     },
     formatDate: function(datetime) {
-          let date = new Date(datetime);
-          let year = date.getFullYear();
-          let month = ('0' + (date.getMonth()+1)).slice(-2); // Months are zero based
-          let day = ('0' + date.getDate()).slice(-2);
-          let hh = date.getHours();
-          let mi = date.getMinutes();
-          let ss = date.getSeconds();
-          return `${year}년 ${month}월 ${day}일 ${hh}:${mi}:${ss}`;
+          return dayjs(datetime).format('YYYY년 MM월 DD일 HH:mm:ss');
       },
 
     fnWrite() {
@@ -192,7 +184,13 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
 
       this.fnGetList()
     },
-  }
+    
+  },
+  filters: {
+      formatDate: function (datetime) {
+        return dayjs(datetime).format('YYYY년 MM월 DD일 HH:mm:ss');
+      }
+    }
   
 }
 </script>
