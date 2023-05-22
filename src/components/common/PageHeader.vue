@@ -4,26 +4,34 @@
   <div class="container">
     <header>
       <div class="tap_box">
-          <ul>
-            <div class="logoimg">
-              <router-link to="/">
-                <img class="home_img" alt="Vue homelogo" src="@/assets/home.jpg"/>
-              </router-link>
-            </div>
-          </ul>
-          <li>
-            <div>
-              심리/고민 상담
-              <ul class="list">
-                <li>
-                  <router-link to="/welfareProgram/welfareFacilityMap">상담센터 찾기</router-link>
-                </li>
-                <li>
-                  <router-link to="/counseling/chattinglist">1대1 채팅</router-link>
+        <ul>
+          <div class="logoimg">
+            <router-link to="/">
+              <img
+                class="home_img"
+                alt="Vue homelogo"
+                src="@/assets/home.jpg"
+              />
+            </router-link>
+          </div>
+        </ul>
+        <li>
+          <div>
+            심리/고민 상담
+            <ul class="list">
+              <li>
+                <router-link to="/welfareProgram/welfareFacilityMap"
+                  >상담센터 찾기</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/counseling/chattinglist"
+                  >1대1 채팅</router-link
+                >
               </li>
               <li>
                 <router-link to="/counseling/chatbot"
-                >챗봇 상담하기</router-link
+                  >챗봇 상담하기</router-link
                 >
               </li>
             </ul>
@@ -106,18 +114,16 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.container {
   /* max-width: 100%;
   width: 1300px;
   margin-left: auto;
   margin-right: auto; */
-  
 }
 header {
   display: flex;
   max-width: 100%;
   width: 1500px;
-
 }
 
 .home_img {
@@ -159,7 +165,6 @@ a {
   margin: auto;
   position: relative;
   top: -55px;
-
 }
 
 .list li {
@@ -187,5 +192,4 @@ a {
 .list li a {
   color: white;
 }
-
 </style>

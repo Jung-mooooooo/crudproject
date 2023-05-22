@@ -1,171 +1,175 @@
 <!-- PageAbout.vue -->
 <template>
-    <div class="col-md-7 col-lg-8">
-      <div class="d-flex gap-2 justify-content-center py-5">
-    <button class="btn btn-light rounded-pill px-3" type="button" 
-    onclick="location.href='/member/myinfo'" style="font-size: 40px;">
-      내정보보기
-    </button>
-    <button
-      class="btn btn-light rounded-pill px-3" onclick="location.href='/mypage/popupU'"
-      type="button"
-      style="font-size: 40px;"
-    >
-      내정보수정
-    </button>
-    <button
-      class="btn btn-light rounded-pill px-3"
-      onclick="location.href='/mypage/popupD'"
-      type="button"
-      style="font-size: 40px;"
-    >
-      회원탈퇴
-    </button>
-  </div>
-        <form class="needs-validation" novalidate="">
-          <div class="row g-3">
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                <span class="input-group-text">&nbsp; 이 &nbsp; &nbsp; 름 &nbsp;</span>
-              </div>
-            </div>
-
-            <div class="col-sm-10">
-                <div class="input-group has-validation">
-                    <input type="text" class="form-control" id="userNeme" value="홍길동">
-                </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                <span class="input-group-text">&nbsp; 아 이 디 &nbsp;</span>
-              </div>
-            </div>
-
-            <div class="col-sm-10">
-              <div class="input-group has-validation">
-                    <input type="text" class="form-control" id="userId" value="test01">
-              </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                <span class="input-group-text">&nbsp; 비밀번호 &nbsp;</span>
-              </div>
-            </div>
-
-            <div class="col-sm-10">
-              <div class="input-group has-validation">
-                <input type="password" class="form-control" id="userpw" value="test01">
-              </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                <span class="input-group-text">&nbsp; 생년월일 &nbsp;</span>
-              </div>
-            </div>
-
-            <div class="col-sm-3">
-              <div class="input-group has-validation">  
-                <span class="input-group-text"> 년 </span>
-                <input type="text" class="form-control" id="useryear" value="1995">
-              </div>
-            </div>
-
-            <div class="col-sm-3">
-              <div class="input-group has-validation">
-                <span class="input-group-text"> 월 </span>
-                <input type="text" class="form-control" id="usermonth" value="05">
-              </div>
-            </div>
-
-            <div class="col-sm-3">
-              <div class="input-group has-validation">
-                <span class="input-group-text"> 일 </span>
-                <input type="text" class="form-control" id="userday" value="05">
-              </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                <span class="input-group-text">핸드폰번호</span>
-              </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                <input type="text" class="form-control" id="userphone1" value="010">
-              </div>
-            </div>
-
-            <div class="col-sm-1">
-              <span>-</span>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="userphone2" value="1234">
-              </div>
-            </div>
-
-            <div class="col-sm-1">
-              <span>-</span>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="userphone3" value="5678">
-              </div>
-            </div>
-
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                
-              </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                <span class="input-group-text">&nbsp; 이 메 일 &nbsp;</span>
-              </div>
-            </div>
-
-            <div class="col-sm-10">
-              <div class="input-group has-validation">
-                <input type="email" class="form-control" id="userphone4" placeholder="이메일을 입력해주세요." value="test01@org.kr">
-              </div>
-            </div>
-
-            <div class="col-sm-2">
-              <div class="input-group has-validation">  
-                
-              </div>
-            </div>
-
+  <div class="col-md-7 col-lg-8">
+    <div class="d-flex gap-2 justify-content-center py-5">
+      <button
+        class="btn btn-light rounded-pill px-3"
+        type="button"
+        onclick="location.href='/member/myinfo'"
+        style="font-size: 40px"
+      >
+        내정보보기
+      </button>
+      <button
+        class="btn btn-light rounded-pill px-3"
+        onclick="location.href='/mypage/popupU'"
+        type="button"
+        style="font-size: 40px"
+      >
+        내정보수정
+      </button>
+      <button
+        class="btn btn-light rounded-pill px-3"
+        onclick="location.href='/mypage/popupD'"
+        type="button"
+        style="font-size: 40px"
+      >
+        회원탈퇴
+      </button>
+    </div>
+    <form class="needs-validation" novalidate="">
+      <div class="row g-3">
+        <div class="col-sm-2">
+          <div class="input-group has-validation">
+            <span class="input-group-text">&nbsp; 아 이 디 &nbsp;</span>
           </div>
-          <br>
-          
-          <div>
-            <button class="btn btn-primary1" type="button" onclick="window.history.back()" style="font-weight: 600; background-color: #ffc000; border: solid #ffc000">이 &nbsp; &nbsp; 전</button>
+        </div>
+
+        <div class="col-sm-10">
+          <div class="input-group has-validation">
+            <input
+              type="text"
+              class="form-control"
+              :value="member.userId"
+              readonly
+            />
           </div>
-          <hr class="my-4">
-        </form>
+        </div>
+        <div class="col-sm-2">
+          <div class="input-group has-validation">
+            <span class="input-group-text"
+              >&nbsp; 이 &nbsp; &nbsp; 름 &nbsp;</span
+            >
+          </div>
+        </div>
+
+        <div class="col-sm-10">
+          <div class="input-group has-validation">
+            <input
+              type="text"
+              class="form-control"
+              :value="member.userName"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="input-group has-validation">
+            <span class="input-group-text">핸드폰번호</span>
+          </div>
+        </div>
+
+        <div class="col-sm-8">
+          <div class="input-group has-validation">
+            <input
+              type="text"
+              class="form-control"
+              :value="member.phone"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="input-group has-validation"></div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="input-group has-validation">
+            <span class="input-group-text">&nbsp; 이 메 일 &nbsp;</span>
+          </div>
+        </div>
+
+        <div class="col-sm-10">
+          <div class="input-group has-validation">
+            <input
+              type="email"
+              class="form-control"
+              :value="member.email"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="input-group has-validation"></div>
+        </div>
       </div>
+      <br />
+
+      <div>
+        <button
+          class="btn btn-primary1"
+          type="button"
+          onclick="window.history.back()"
+          style="
+            font-weight: 600;
+            background-color: #ffc000;
+            border: solid #ffc000;
+          "
+        >
+          이 &nbsp; &nbsp; 전
+        </button>
+      </div>
+      <hr class="my-4" />
+    </form>
+  </div>
 </template>
-  
 
-  <script>
-    export default {
-
-    }
-  </script>
+<script>
+export default {
+  name: "MemberMyinfo",
+  data() {
+    return {
+      requestBody: this.$route.query,
+      member: {},
+    };
+  },
+  methods: {
+    infoView() {
+      let userCode = localStorage.getItem("userCode");
+      this.$axios
+        .get("/member/" + userCode, {
+          params: this.requestBody,
+        })
+        .then((res) => {
+          this.member.userId = res.data.userId;
+          this.member.userName = res.data.userName;
+          this.member.phone = res.data.phone;
+          this.member.email = res.data.email;
+        })
+        .catch((err) => {
+          alert("회원정보 조회에 실패하였습니다.");
+        });
+    },
+  },
+  // props: {
+  //   //회원 정보
+  //   member: {
+  //     type: Object,
+  //     required: true,
+  //   },
+  // },
+  // setup(props) {
+  //   const userId = props.member.userId;
+  // },
+};
+</script>
 
 <style scoped>
-.col-md-7{
-    margin: 0 auto;
+.col-md-7 {
+  margin: 0 auto;
 }
 
 .pop_box {
@@ -215,5 +219,4 @@ hr {
   top: 20px;
   background: #3a99db;
 }
-
 </style>
