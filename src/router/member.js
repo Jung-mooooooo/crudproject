@@ -15,6 +15,7 @@ const member = [{
     path: '/',
     name: 'memberLayout',
     component: () => import('../components/layouts/DefaultLayout.vue'),
+   
     children: [
         {
             path: "/member/login",
