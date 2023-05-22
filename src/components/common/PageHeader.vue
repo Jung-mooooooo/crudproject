@@ -16,7 +16,7 @@
               심리/고민 상담
               <ul class="list">
                 <li>
-                  <router-link to="/welfareProgram/welfareFacilityMap">상담센터 찾기</router-link>
+                  <router-link to="/welfareProgram/counsellingCenterMap">상담센터 찾기</router-link>
                 </li>
                 <li>
                   <router-link to="/counseling/chattinglist">1대1 채팅</router-link>
@@ -54,12 +54,12 @@
               </li>
               <li>
                 <router-link to="/welfareProgram/welfareFacility"
-                  >사회복지시설 연계</router-link
+                  >사회복지시설</router-link
                 >
               </li>
               <li>
                 <router-link to="/welfareProgram/hobby"
-                  >원데이클래스</router-link
+                  >취미활동</router-link
                 >
               </li>
             </ul>

@@ -1,6 +1,6 @@
 <template>
   <body>
-    <h1>병원</h1>
+    <h1>힐링스팟</h1>
     <br />
     <br />
   <div class="box">
@@ -9,7 +9,7 @@
       <!-- 검색 필드 추가 -->
         <select v-model="search_key">
           <option value="">- 선택 -</option>
-          <option value="wfName">시설명</option>
+          <option value="tsName">시설명</option>
           <option value="address2">주소</option>
         </select>
         &nbsp;
@@ -26,9 +26,9 @@
             <th>전화번호</th>
           </tr>
         
-          <tr class="KOTRA-fontsize-80" v-for="(row, wfNo) in list" :key="wfNo">
-            <td>{{ row.wfNo }}</td>
-            <td>{{ row.wfName }}</td>
+          <tr v-for="(row, tsNo) in list" :key="tsNo">
+            <td>{{ row.tsNo }}</td>
+            <td>{{ row.tsName }}</td>
             <td>{{ row.address2 }}</td>
             <td>{{ row.phone }}</td>
           </tr>
@@ -124,12 +124,8 @@ export default {
       const script = document.createElement("script")
       script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1975648a88442d985c0473dc051a7483&libraries=services,clusterer,drawing";
       script.onload = () => kakao.maps.load(this.initMap);
-      // script.onload = () => kakao.mpas.event(this.addListener);
       document.head.appendChild(script)
       
-      //this.placesSearchCB();
-      //this.displayMarker();
-      //this.addListener();
       this.makeOverListener();
       this.makeOutListener();
       
@@ -146,7 +142,7 @@ export default {
         size: this.size,
       };
 
-      this.$axios.get("/hospital/list", {
+      this.$axios.get("/touristspot/sealist", {
           params: this.requestBody,
           headers: {},
         })
@@ -185,15 +181,9 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-// // 장소 검색 객체를 생성합니다
-// var ps = new kakao.maps.services.Places(); 
-
-// // 키워드로 장소를 검색합니다
-// ps.keywordSearch('search_key', placesSearchCB); 
-
 var positions = [
   {
-    wfName: this.wfName,
+    tsName: this.tsName,
     latlng: new kakao.maps.LatLng(this.latitude, this.longitude),
     address2: this.address2,
     phone: this.phone
@@ -212,14 +202,14 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
     var marker = new kakao.maps.Marker({
       map: map, // 마커를 표시할 지도
       position: new kakao.maps.LatLng(position.latitude, position.longitude), // 마커의 위치
-      title: position.wfName,
+      title: position.tsName,
       image: markerImage
     });
 
     // 인포윈도우를 생성합니다
     var infowindow = new kakao.maps.InfoWindow({
     position : position.latlng, 
-    content : position.wfName 
+    content : position.tsName 
 });
 
     marker.setMap(map);

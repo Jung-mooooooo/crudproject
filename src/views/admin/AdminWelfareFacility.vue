@@ -3,69 +3,71 @@
 <br>
 <br>
 <br>
+<h3>복지프로그램</h3>
+<br>
+<br>
   <div align="center">
     <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminWelfareFacility'">
     복지시설</button>
       &nbsp;&nbsp;
     <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminTouristSpot'">
-    힐링스팟</button>
+    힐링관광명소</button>
       &nbsp;&nbsp;
     <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminHobby'">
-    원데이클래스</button>
+    취미활동</button>
   </div>
 <br>
 <br>
-<div id="board-search">
-    <div class="container">
-        <div class="search-window">
-            <div class="search-wrap">	
-                <label for="search" class="blind"></label>
-                    <input id="search" type="search" name="keyword" placeholder="검색어를 입력하세요.">
-                    <button type="submit" class="btn btn-dark">검색</button> 
-                <br>
-            </div>
-        </div>
-    </div>
+<!-- 검색 필드 추가 -->
+<div style="display: flex; justify-content : center;">
+        <select v-model="search_key">
+          <option value="">- 선택 -</option>
+          <option value="wfName">시설명</option>
+          <option value="address2">주소</option>
+        </select>
+        &nbsp;
+        <input type="text" v-model="search_value" @keyup.enter="fnPage()" />
+        &nbsp;
+        <button class="btn2 btn-gray" @click="fnPage()">검색</button>
 </div>
   
 <br>
 <div align="center">
-<br>
-<br>
-<table class="board-table">
-  <thead>
-    <tr>
-      <th scope="col" class="th-title">번호</th>
-      <th scope="col" class="th-title">시설명</th>
-      <th scope="col" class="th-title">카테고리</th>
-      <th scope="col" class="th-title">소재지주소</th>
-      <th scope="col" class="th-title">도로명주소</th>
-      <th scope="col" class="th-title">전화번호</th>
-      <th scope="col" class="th-title">위도</th>
-      <th scope="col" class="th-title">경도</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-if="showInputRow">
-      <td><input type="text" v-model="newRow.wf_no" disabled style="width: 50px"/></td>
-      <td><input type="text" v-model="newRow.wf_name" style="width: 100px"/></td>
-      <td><input type="text" v-model="newRow.wf_category" style="width: 100px"/></td>
+<table align="center" class="board-table">
+<thead>
+  <br>
+	<tr>
+		<th scope="col" class="th-num">번호</th> 
+		<th scope="col" class="th-title">시설명</th> 
+		<th scope="col" class="th-title">카테고리</th>
+    <th scope="col" class="th-title">소재지주소</th>
+    <th scope="col" class="th-title">도로명주소</th>    
+    <th scope="col" class="th-title">전화번호</th>
+    <th scope="col" class="th-title">위도</th> 
+    <th scope="col" class="th-title">경도</th>  
+	</tr>
+</thead>
+<tbody>
+		<tr v-if="showInputRow">
+      <td><input type="text" v-model="newRow.wfNo" disabled style="width: 50px"/></td>
+      <td><input type="text" v-model="newRow.wfName" style="width: 100px"/></td>
+      <td><input type="text" v-model="newRow.wfCat" style="width: 100px"/></td>
       <td><input type="text" v-model="newRow.address" style="width: 200px"/></td>
       <td><input type="text" v-model="newRow.address2" style="width: 200px"/></td>
       <td><input type="text" v-model="newRow.phone" style="width: 100px"/></td>
       <td><input type="text" v-model="newRow.latitude" style="width: 100px"/></td>
-      <td><input type="text" v-model="newRow.logitude" style="width: 100px"/></td>
+      <td><input type="text" v-model="newRow.longitude" style="width: 100px"/></td>
       <td>
         <button type="button" class="btn btn-dark" @click="saveNewRow">완료</button>
       </td>
     </tr>
 
-    <tr v-for="(row, index) in rows" :key="row.wf_no">
-      <td>{{row.wf_no}}</td>
-      <td v-show="!editMode">{{row.wf_name}}</td>
-      <td v-show="editMode"><input type="text" v-model="rows[index].wf_name" style="width:100px"/></td>
-      <td v-show="!editMode">{{row.wf_category}}</td>
-      <td v-show="editMode"><input type="text" v-model="rows[index].wf_category" style="width:100px"/></td>
+    <tr v-for="(row, index) in rows" :key="row.wfNo">
+      <td>{{row.wfNo}}</td>
+      <td v-show="!editMode">{{row.wfName}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].wfName" style="width:100px"/></td>
+      <td v-show="!editMode">{{row.wfCat}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].wfCat" style="width:100px"/></td>
       <td v-show="!editMode">{{row.address}}</td>
       <td v-show="editMode"><input type="text" v-model="rows[index].address" style="width:200px"/></td>
       <td v-show="!editMode">{{row.address2}}</td>
@@ -74,32 +76,43 @@
       <td v-show="editMode"><input type="text" v-model="rows[index].phone" style="width:100px"/></td>
       <td v-show="!editMode">{{row.latitude}}</td>
       <td v-show="editMode"><input type="text" v-model="rows[index].latitude" style="width:100px"/></td>
-      <td v-show="!editMode">{{row.logitude}}</td>
-      <td v-show="editMode"><input type="text" v-model="rows[index].logitude" style="width:100px"/></td>
+      <td v-show="!editMode">{{row.longitude}}</td>
+      <td v-show="editMode"><input type="text" v-model="rows[index].longitude" style="width:100px"/></td>
       <td v-if="showDeleteButtons">
         <button type="button" class="btn btn-dark" @click="deleteRow(index)">삭제</button>
       </td>
     </tr>
-  </tbody>
+	</tbody>
 </table>
+<br>
 
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+    <ul class="pagination">
+      <li class="page-item" :class="{ disabled: paging.page === 1 }">
+        <a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === 1 }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.page - 1)">&lt;</a>
+      </li>
+      <li v-if="paging.totalBlockCnt > 10" class="page-item">
+        <a class="page-link" href="javascript:;">...</a>
+      </li>
+      <li v-for="n in paginavigation()" :class="{ active: paging.page === n }" :key="n" class="page-item">
+        <a class="page-link" href="javascript:;" @click="fnPage(n)">{{ n }}</a>
+      </li>
+      <li v-if="paging.totalBlockCnt > 10 && paging.page < paging.totalBlockCnt" class="page-item">
+        <a class="page-link" href="javascript:;">...</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.page + 1)">&gt;</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.totalPageCnt)">&gt;&gt;</a>
+      </li>
+    </ul>
+  </nav>
+<br>
+<br>
 
 <div align="center">
   <button type="button" class="btn2 btn-gray" @click="toggleInputRow">추가</button> &nbsp;&nbsp;
@@ -107,112 +120,155 @@
   <button type="button" class="btn2 btn-gray" @click="toggleDeleteButtons">삭제</button> &nbsp;&nbsp;
 </div>
 
-<button class="btn2 btn-gray">전체선택</button>
-&nbsp;&nbsp;
-<button class="btn2 btn-gray">선택해제</button>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button class="btn2 btn-gray">확인</button>
-&nbsp;&nbsp;
-<button class="btn2 btn-gray">삭제</button>
 
 </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-  data() {
-  return {
-    showDeleteButtons: false,
-    showNewRow: false,
-    showInputRow: false,
-    newRow: {
-      wf_no: "",
-      wf_name: "",
-      wf_category: "",
-      address: "",
-      address2: "",
-      phone: "",
-      latitude: "",
-      logitude: ""
-    },
-    rows: [
-        { 
-          wf_no: 1,
-          wf_name: "노원구청소년상담복지센터",
-          wf_category: "상담시설",
-          address: "서울특별시 노원구 수락산로212-19 2층",
-          address2: "서울특별시,노원구,(01616)",
-          phone: "02-2091-1388",
-          latitude: "37.671445290918584",
-          logitude: "127.05482794126408"
-        },
-        { 
-          wf_no: 2,
-          wf_name: "마포구청소년상담복지센터",
-          wf_category: "상담시설",
-          address: "서울특별시 마포구 희우정로 77 마포한강아이파크 상가동",
-          address2: "서울특별시,마포구,(04016)",
-          phone: "02-6376-9900",
-          latitude: "37.552742496379594",
-          logitude: "126.90243873309039" 
-        },
-        {  
-          wf_no: 3,
-          wf_name: "서울마음숲정신건강의학과의원",
-          wf_category: "병원",
-          address: "서울특별시 서초구 서초중앙로24길 27 지파이브센트럴프라자 213호",
-          address2: "서울특별시 서초구",
-          phone: "02-2038-3067",
-          latitude: "37.4954383",
-          logitude: "127.0164436" 
-        }
-    ],
-    editMode: false
+  export default {
+    data() { //변수생성
+      return {
+        showDeleteButtons: false,
+        showNewRow: false,
+        showInputRow: false,
+        newRow: {
+          wfNo: "",
+          wfName: "",
+          wfCat: "",
+          address: "",
+          address2: "",
+          phone: "",
+          latitude: "",
+          longitude: ""
+      },
+      originalRows: [],
+      rows: [],
+      editMode: false,
+      requestBody: {}, //리스트 페이지 데이터전송
+      list: {}, //리스트 데이터
+      no: '', //게시판 숫자처리
+      paging: {
+          block: 0,
+          endPage: 0,
+          nextBlock: 0,
+          page: 0,
+          pageSize: 0,
+          prevBlock: 0,
+          startIndex: 0,
+          startPage: 0,
+          totalBlockCnt: 0,
+          totalListCnt: 0,
+          totalPageCnt: 0,
+      }, //페이징 데이터
+      page: this.$route.query.page ? this.$route.query.page : 1,
+      size: this.$route.query.size ? this.$route.query.size : 10,
+      //keyword: this.$route.query.keyword,
+      search_key: this.$route.query.sk ? this.$route.query.sk : '',
+      search_value: this.$route.query.sv ? this.$route.query.sv : '',
+
+      paginavigation: function () { //페이징 처리 for문 커스텀
+          let pageNumber = [] //;
+          let startPage = this.paging.startPage;
+          let endPage = this.paging.endPage;
+          for (let i = startPage; i <= endPage; i++) pageNumber.push(i);
+          return pageNumber;
+      }
   };
 },
-  methods: {
-    toggleDeleteButtons() {
+    mounted() {
+      this.fetchWelfareFacility();
+    },
+    methods: {
+      fetchWelfareFacility() {
+        //스프링 부트에서 전송받은 데이터 출력 처리
+        this.requestBody = { // 데이터 전송
+              sk: this.search_key,
+              sv: this.search_value,
+              page: this.page,
+              size: this.size
+        }
+
+        this.$axios.get('/welfarefacility/welfarefacilitylist', {
+            params: this.requestBody,
+            headers: {}
+        }).then((res) => {
+
+            if (res.data.resultCode === "OK") {
+                this.rows = res.data.data
+                this.paging = res.data.pagination
+                this.no = this.paging.totalListCnt - ((this.paging.page - 1) * this.paging.pageSize)
+            }
+        }).catch( error => {
+            console.error(error);
+        })
+      },
+      toggleDeleteButtons() {
         this.showDeleteButtons = !this.showDeleteButtons;
     },
-    addNewRow() {
-        this.showNewRow = true;
-    },
     saveNewRow() {
-        this.rows.unshift({...this.newRow, wf_no: this.rows[0].wf_no + 1});
+        this.rows.unshift({...this.newRow, wfNo: this.rows[0].wfNo + 1});
         this.showNewRow = false;
+        let apiUrl = '/welfarefacility'
+        this.form = {
+            "wfNo": this.newRow.wfNo,
+            "wfName": this.newRow.wfName,
+            "wfCat": this.newRow.wfCat,
+            "address": this.newRow.address,
+            "address2": this.newRow.address2,
+            "phone": this.newRow.phone,
+            "latitude": this.newRow.latitude,
+            "longitude": this.newRow.longitude
+        }
+
+        this.$axios.post(apiUrl, this.form)
+
         this.newRow = {
-        wf_no: "",
-        wf_name: "",
-        wf_category: "",
+        wfNo: "",
+        wfName: "",
+        wfCat: "",
         address: "",
         address2: "",
         phone: "",
         latitude: "",
-        logitude: ""
+        longitude: ""
         };
     },
     deleteRow(index) {
-        this.rows.splice(index, 1);
+        let wfNo = this.rows[index].wfNo;
+        this.$axios.delete('/welfarefacility/' + wfNo)
+            .then(() => {
+                this.rows.splice(index, 1);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     },
     toggleEditMode() {
         this.editMode = !this.editMode;
+        if (this.editMode) {
+            // 편집 모드로 진입할 때 원본 데이터를 저장합니다.
+            this.originalRows = JSON.parse(JSON.stringify(this.rows));
+        } else {
+            // 편집 모드에서 나올 때 변경된 데이터를 this.form에 설정하고, 서버로 보냅니다.
+            this.form = JSON.parse(JSON.stringify(this.rows));
+            this.$axios.patch('/welfarefacility', this.form)
+        }
+
     },
     toggleInputRow() {
       this.showInputRow = !this.showInputRow;
+    },
+    fnPage(n) {
+      if (this.page !== n) {
+        this.page = n;
+      }
+      this.fetchWelfareFacility();
+    }
     }
   }
-};
-</script>
+  </script>
 
 <style scoped>
-img{
-  width: 200px;
-}
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -231,43 +287,18 @@ section.notice {
   text-align: center;
 }
 
-#board-search .search-window {
-  padding: 15px 0;
-  background-color: #f9f7f9;
-}
-#board-search .search-window .search-wrap {
-  position: relative;
-/*   padding-right: 124px; */
-  margin: 0 auto;
-  width: 80%;
-  max-width: 564px;
-}
-#board-search .search-window .search-wrap input {
-  height: 40px;
-  width: 100%;
-  font-size: 14px;
-  padding: 7px 14px;
-  border: 1px solid #ccc;
-}
-#board-search .search-window .search-wrap input:focus {
-  border-color: #333;
-  outline: 0;
-  border-width: 1px;
-}
-#board-search .search-window .search-wrap .btn {
-  position: absolute;
-  right: 0;
-  top: 2;
-  bottom: 0;
-  width: 70px;
-  height: 40px;
-  padding: 0;
-  font-size: 16px;
-}
+.pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+.pagination .page-item {
+    margin: 0 5px;
+  }
 
 .board-table {
   font-size: 13px;
-  width: 50%;
+  width: 90%;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
