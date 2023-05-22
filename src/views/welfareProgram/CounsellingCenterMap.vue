@@ -1,6 +1,6 @@
 <template>
   <body>
-    <h1>상담시설/병원</h1>
+    <h1>상담센터</h1>
     <br />
     <br />
   <div class="box">

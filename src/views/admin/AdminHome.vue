@@ -16,27 +16,40 @@
 <div class="admin_box">      
 <div class= "counting_user">
   <h3>접속자 현황</h3>
-  <div>
-    <div class="title">접속자수</div>
-		<div>22명</div> 
+  <form action="visitSearch.do">
+  <div style="display: flex;">
+    <div style="width: 30%;">기간</div>
+    <c:set var="now" value="<%=new java.util.Date()%>"/>
+    <c:set var="sys"><fmt:formatDate value="${now}" pattern="yyyy"/></c:set>
+    <input style="width: 60%; text-align: center;" type="month" value="년 / 월"/>
+ </div>
+ </form>
+ <br>
+ <div id="visit_count">
+  <div id="today">
+    <div class="title">접속자 수</div>
+    <div id="todayVisitors"></div>
   </div>
-   <div>
+  <div id="month">
     <div class="title">월 접속자 수</div>
-		<div>33명</div> 
+    <div id="monthVisitors"></div>
   </div>
-   <div>
+    <div id="year">
     <div class="title">월 평균 접속자 수</div>
-		<div>44명</div> 
+    <div id="avgVisitors"></div>
   </div>
-</div>
+  </div>
+  </div> 
+
    
 <div class= "counting_emotion">
   <h3>감정 현황</h3>
+  <div v-for="(item, emotionNo) in items" :key="{emotionNo}">
   <div>
     <div class="title">슬프다</div>
-		<div>10%</div> 
+		<div v-if="item.emotionCat = sad">{{item.ratioPercentage}}</div> 
     <div class="title">불안하다</div>
-		<div>20%</div> 
+		<div v-if="item.emotionCat = anxious">{{item.ratioPercentage}}</div> 
   </div>
   <div>
     <div class="title">무섭다</div>
@@ -55,6 +68,7 @@
 		<div>70%</div> 
     <div class="title">신나다</div>
 		<div>80%</div> 
+  </div>
   </div>
 </div>
 </div>
@@ -111,10 +125,50 @@
 
 </template>
 
-<style scoped>
-img{
-  width: 200px;
+<script>
+export default {
+  data() { //변수생성
+      return {}
+  },
+  mounted() {
+      this.logCountList();
+    },
+  methods: {
+    logCountList(){
+      setInterval(function(){
+        $.ajax({
+          url: "",
+          type: "post",
+          dataType: "json",
+          success: function(jsonData){
+            console.log("jsonData sending");
+
+            $('#todayVisitors').html(jsonData.visitorsT + ' 명');
+            $('#monthVisitors').html(jsonData.visitorsM + ' 명');
+            $('#avgVisitors').html(jsonData.visitorsAvg + ' 명');
+            $('#postCount').html(jsonData.postCount + ' 개');
+          },
+          error: function(request, status, errorData){
+              console.log("error code : " + request.status
+                          + "\nMessage : " + request.responseText
+                          + "\nError : " + errorData);
+          }
+        });
+      }, 1000);
+    }
+  }
 }
+</script>
+
+
+<style scoped>
+/* #todayVisitors, #monthVisitors, #avgVisitors {
+	width: 300px;
+	font-size: xx-large;
+	margin: auto;
+	justify-content: center;
+	color: black;
+} */
 
 .title{
   background: gold;

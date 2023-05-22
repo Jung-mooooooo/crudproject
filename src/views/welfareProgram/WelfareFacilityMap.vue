@@ -59,25 +59,6 @@
       </li>
     </ul>
   </nav>
-
-  <!-- <div class="pagination w3-bar w3-padding-16 w3-small" v-if="paging.totalListCnt > 0">
-      <span class="pg">
-      <a href="javascript:;" @click="fnPage(1)" class="first w3-button w3-border">&lt;&lt;</a>
-      <a href="javascript:;" v-if="paging.startPage > 30" @click="fnPage(`${paging.startPage-1}`)"
-         class="prev w3-button w3-border">&lt;</a>
-      <template v-for=" (n,index) in paginavigation()">
-          <template v-if="pagingPage==n">
-              <strong class="w3-button w3-border w3-green" :key="index">{{ n }}</strong>
-          </template>
-          <template v-else>
-              <a class="w3-button w3-border" href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{ n }}</a>
-          </template>
-      </template>
-      <a href="javascript:;" v-if="paging.totalPageCnt > paging.endPage"
-         @click="fnPage(`${paging.endPage+1}`)" class="next w3-button w3-border">&gt;</a>
-      <a href="javascript:;" @click="fnPage(`${paging.totalPageCnt}`)" class="last w3-button w3-border">&gt;&gt;</a>
-      </span>
-    </div> -->
   
   </div>
 
@@ -182,9 +163,9 @@ export default {
     },
     fnPage(n) {
       if (this.page !== n) {
-        this.page = n
+        this.page = n;
       }
-      this.fnGetList()
+      this.fnGetList();
       this.initMap();
     },
   initMap(){

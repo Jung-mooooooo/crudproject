@@ -1,18 +1,17 @@
 <template>
   <br />
-  <h1>원데이클래스</h1>
+  <h1>취미활동</h1>
   <br />
   <h3>원하는 탭을 선택하여 주세요</h3>
   <br /><br />
   <div class="spot_box">
     <div class="spots">
-      <div>언어</div>
-      <div>음악</div>
+      <button @click="$router.push('/welfareProgram/ArtMap')">미술</button>
+      <button @click="$router.push('/welfareProgram/MusicMap')">음악</button>
     </div>
-    <div class="spot">운동</div>
     <div class="spots">
-      <div>미용</div>
-      <div>사진/영상</div>
+      <button @click="$router.push('/welfareProgram/DanceMap')">무용</button>
+      <button @click="$router.push('/welfareProgram/LanguageMap')">언어</button>
     </div>
   </div>
   <br /><br /><br />
@@ -27,7 +26,7 @@ h1 {
 }
 .spot_box {
   width: 70%;
-  height: 900px;
+  height: 700px;
   margin: auto;
 }
 
@@ -36,23 +35,22 @@ h1 {
   justify-content: space-around;
 }
 
-.spots > div,
-.spot {
+.spots > button {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  margin: auto;
+  margin: 30px auto;
   line-height: 300px;
   font-size: 60px;
   font-weight: bold;
 }
 
-.spot_box div:first-child div:first-child {
+.spot_box div:first-child button:first-child {
   color: green;
   border: 5px solid green;
 }
 
-.spot_box div:first-child div:first-child:hover {
+.spot_box div:first-child button:first-child:hover {
   background: rgba(0, 128, 0, 0.9);
   color: white;
   border: none;
@@ -61,12 +59,12 @@ h1 {
   top: -20px;
 }
 
-.spot_box div:first-child div:last-child {
+.spot_box div:first-child button:last-child {
   color: rgba(31, 191, 191, 0.9);
   border: 5px solid rgba(31, 191, 191, 0.9);
 }
 
-.spot_box div:first-child div:last-child:hover {
+.spot_box div:first-child button:last-child:hover {
   background: rgba(31, 191, 191, 0.9);
   color: white;
   border: none;
@@ -74,25 +72,13 @@ h1 {
   left: 30px;
   top: -20px;
 }
-.spot {
-  color: rgba(17, 75, 191, 0.9);
-  border: 5px solid rgba(17, 75, 191, 0.9);
-}
 
-.spot:hover {
-  background: rgba(17, 75, 191, 0.9);
-  color: white;
-  border: none;
-  position: relative;
-  top: -20px;
-}
-
-.spot_box div:last-child div:first-child {
+.spot_box div:last-child button:first-child {
   color: rgb(255, 0, 0);
   border: 5px solid red;
 }
 
-.spot_box div:last-child div:first-child:hover {
+.spot_box div:last-child button:first-child:hover {
   background: rgba(255, 0, 0, 0.9);
   color: white;
   border: none;
@@ -101,12 +87,12 @@ h1 {
   top: -20px;
 }
 
-.spot_box div:last-child div:last-child {
+.spot_box div:last-child button:last-child {
   color: orange;
   border: 5px solid orange;
 }
 
-.spot_box div:last-child div:last-child:hover {
+.spot_box div:last-child button:last-child:hover {
   background: rgba(255, 165, 0, 0.9);
   color: white;
   border: none;

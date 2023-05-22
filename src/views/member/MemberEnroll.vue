@@ -298,9 +298,9 @@ export default {
       let errorcheck = document.getElementsByClassName("errorBox");
       let apiUrl = "/enroll";
       this.form = {
-        user_id: this.userId,
-        user_pw: this.userPw,
-        user_name: this.userName,
+        userId: this.userId,
+        userPw: this.userPw,
+        userName: this.userName,
         phone: this.phone,
         email: this.email,
       };
