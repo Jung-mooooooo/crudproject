@@ -18,17 +18,18 @@
   <button @click="fnPage()">검색</button>
 </div>
 
-  <div class="common-buttons">
+<br>
+
+  <!-- <div class="common-buttons">
         <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
-  </div>
+  </div> -->
 
   <table  class="rwd-table">
         <tbody>
         <tr>
           <th>No</th>
           <th>제목</th>
-          <th>작성자1</th>
-          <th>작성자2</th>
+          <th>작성자</th>
           <th>등록일시</th>
           <th>조회수</th>
         </tr>
@@ -36,8 +37,7 @@
         <tr class="KOTRA-fontsize-80" v-for="(row, qnaNo) in list" :key="qnaNo">  
         <td>{{ row.qnaNo }}</td>
         <td><a v-on:click="fnView(`${row.qnaNo}`)">{{ row.qnaTitle }}</a></td>
-        <td>{{ row.adminCode }}</td>
-        <td>{{ row.userCode }}</td>
+        <td>{{ row.userId }}</td>
         <td>{{ formatDate(row.createAt)}}</td>
         <td>{{ row.qnaReadCount }}</td>
        </tr>
@@ -163,6 +163,8 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
 
     },
     fnView(qnaNo) { //글번호를 전달 후 router에 push. path: url, query: parameter
+      console.log("fnView : "+qnaNo);
+      this.requestBody.qnaNo = qnaNo;
       this.$router.push({
         path: './AdminQnADetail', //같은 폴더에 있다 = ./
         query: this.requestBody

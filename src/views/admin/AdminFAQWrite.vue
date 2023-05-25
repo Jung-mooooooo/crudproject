@@ -1,107 +1,119 @@
-//  > views/board/BoardWrite.vue 파일을 생성함.
-//   현재 화면에 접근했을때, 넘어온 idx가 있으면 서버를 조회해서 
-//   글을 수정할 수 있게(UPDATE) 하고, 
-//   idx가 없으면 신규로 글을 작성할 수 있게(CREATE)	=> if, else로 
-//   fnGetView를 마운트(연결 : javascript로 보면 window.onload)함.
 <template>
 
   <div class="container">
     <div class="card">
       <div class="card-body">
         <h3 class="card-title"><strong>FAQ</strong></h3>
+        <br>
         <form>
-          
+
+          <select v-model="faqCat">
+            <option value="">- 카테고리 선택 -</option>
+            <option value="심리/고민상담">심리/고민상담</option>
+            <option value="자기분석 테스트">자기분석 테스트</option>
+            <option value="복지프로그램">복지프로그램</option>
+            <option value="고객센터">고객센터</option>
+          </select>
+          <br>
+
           <div class="form-group">
-            <label for="postsTitle"><h5>질문</h5></label>
+            <label for="faqTitle"><h5>질문</h5></label>
             <textarea 
               rows="3"
               class="form-control" 
-              id="postsContent"
-              v-model="content"
-              placeholder="" />
+              id="faqTitle"
+              v-model="faqTitle"
+              placeholder="질문을 입력해주세요"></textarea>
           </div>
         <br>
           <div class="form-group">
-            <label for="postsContent"><h5>답변</h5></label>
+            <label for="faqContent"><h5>답변</h5></label>
             <textarea 
               rows="3"
               class="form-control" 
-              id="postsContent"
-              v-model="content"
-              placeholder="" />
+              id="faqContent"
+              v-model="faqContent"
+              placeholder="답변을 입력해주세요"></textarea>
           </div>
         </form>
       </div>
     </div>
     <br>
-        <center>
-            <button type="button" class="btn btn-primary" v-on:click="fnSave">등록</button>&nbsp;
-            <button type="button" class="btn btn-success" v-on:click="fnList">목록</button>                     
-        </center>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" @click="fnSave">저장</button> &nbsp;
+      <button type="button" class="btn btn-success" @click="fnList">목록</button>
+    </div>
     <br>
   </div>
 </template>
 
 <script>
+  import dayjs from 'dayjs';
+  import axios from "axios"
+  axios.defaults.withCredentials = true;
+  import AdminFAQWrite from '@/views/admin/AdminFAQWrite.vue'
 export default {
+  name: 'AdminFAQWrite',
+      //components: {AdminFAQ, dayjs},
+  components: {AdminFAQWrite},
   data() { //변수생성
     return {
       requestBody: this.$route.query,
-      idx: this.$route.query.idx,
-
-      title: '',
-      author: '',
-      contents: '',
-      created_at: ''
+      faqNo: this.$route.query.faqNo,
+      faqTitle: this.$route.query.faqTitle,
+      adminCode: '4',
+      faqContent: this.$route.query.faqContent,
+      createAt: '',
+      faqCat: ''
     }
   },
   mounted() {
-    this.fnGetView()
+    console.log("faqNo : "+this.faqNo);
+    console.log("faqTitle : "+this.faqTitle);
+    console.log("faqContent : "+this.faqContent);
+    // this.fnGetView()
   },
   methods: {
-    fnGetView() {
-      if (this.idx !== undefined) {     //idx 존재시, update
-        this.$axios.get(this.$serverUrl + '/board/' + this.idx, {
-          params: this.requestBody
-        }).then((res) => {
-          this.title = res.data.title
-          this.author = res.data.author
-          this.contents = res.data.contents
-          this.created_at = res.data.created_at
-        }).catch((err) => {
-          console.log(err)
+    fnGetView()  {
+      console.log("작성뷰의 fnGetView메서드");
+      axios.get("/admin/AdminNoticeDetail/" + this.noticeNo,{
+        params: this.requestBody
+      }).then((res) => {
+          this.noticeTitle = res.data.noticeTitle;
+          this.noticeContent = res.data.noticeContent;
         })
-      }
+        .catch((err) => {
+          console.log(err);
+        });
     },
     fnList() {
-      delete this.requestBody.idx
-      this.$router.push({
-        path: './AdminFAQ',
+      delete this.requestBody.faqNo
+      this.$router.replace({
+        path: '/admin/AdminFAQ',
         query: this.requestBody
       })
     },
-    fnView(idx) {
-      this.requestBody.idx = idx
-      this.$router.push({
-        path: './detail',
-        query: this.requestBody
-      })
+    fnView(faqNo) {
+      this.requestBody.faqNo = faqNo
+      this.$router.go(-1)
     },
     fnSave() {
-      let apiUrl = this.$serverUrl + '/board'
+      let apiUrl = "/admin/AdminFAQWrite/"
       this.form = {     //form data 생성하여 사용.
-        "idx": this.idx,    //v-model 형태로
-        "title": this.title,
-        "contents": this.contents,
-        "author": this.author
+        "faqNo": this.faqNo,    //v-model 형태로
+        "adminCode": this.adminCode,
+        "faqTitle": this.faqTitle,
+        "faqContent": this.faqContent,
+        "faqCat": this.faqCat,
       }
-
-      if (this.idx === undefined) { //idx 없으면,
+      console.log("this.faqNo1 : " + this.faqNo);
+      console.log("this.faqCat1 : " + this.faqCat);
+      if (this.faqNo === undefined) { //idx 없으면,
         //INSERT
         this.$axios.post(apiUrl, this.form) //form을 post방식으로 전송
         .then((res) => {
           alert('글이 저장되었습니다.')
-          this.fnView(res.data.idx)
+          this.fnView(res.data.faqNo)
         }).catch((err) => {
           if (err.message.indexOf('Network Error') > -1) {
             alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
@@ -109,10 +121,11 @@ export default {
         })
       } else {  //idx 존재시,
         //UPDATE
+        console.log("this.faqCat1_1 : " + this.form.faqCat);
         this.$axios.patch(apiUrl, this.form)    //form을 patch방식으로 전송
         .then((res) => {
-          alert('글이 저장되었습니다.')
-          this.fnView(res.data.idx)
+          alert('글이 수정되었습니다.')
+          this.fnView(this.$route.query.faqNo)
         }).catch((err) => {
           if (err.message.indexOf('Network Error') > -1) {
             alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

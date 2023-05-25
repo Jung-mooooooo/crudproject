@@ -18,9 +18,10 @@
   <button @click="fnPage()">검색</button>
 </div>
 
-  <div class="common-buttons">
-        <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
-  </div>
+<div class="common-buttons" style="text-align: left; position: relative; left: 1365px;">
+  <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
+</div>
+
 
   <table  class="rwd-table">
         <tbody>
@@ -120,6 +121,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
 
   mounted() { //일종의 연결, document readey()임. 저 파일이 보여질때 안의 메소드 실행
     this.fnGetList()
+    console.log("this.fnGetList() : " + this.fnGetList());
   },
   
   methods: {
@@ -146,7 +148,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
           this.list = res.data.data;
           this.paging = res.data.pagination;
           this.no = this.paging.totalListCnt - ((this.paging.page - 1) * this.paging.pageSize);
-          console.log("list : "+this.list);
+          console.log("공지사항 list : "+this.list);
           console.log("토탈 : "+this.paging.totalListCnt);
           console.log("페이지 : "+this.paging.page);
           console.log("페이지사이즈 : "+this.paging.pageSize);

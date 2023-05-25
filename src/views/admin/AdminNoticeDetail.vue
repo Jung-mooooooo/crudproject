@@ -48,12 +48,10 @@ export default {
       axios.get("/admin/AdminNoticeDetail/" + this.noticeNo, {
         params: this.requestBody
       }).then((res) => {
-
         this.noticeNo = res.data.noticeNo
         this.noticeTitle = res.data.noticeTitle
         this.noticeContent = res.data.noticeContent
         this.createAt = dayjs(res.data.createAt).format('YYYY년 MM월 DD일 HH:mm:ss');
-        console.log('this.createAt: ', this.createAt);
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
@@ -69,14 +67,18 @@ export default {
       })
     },
     fnUpdate() {
+      console.log("디테일뷰의 this.requestBody.noticeNo : " + this.requestBody.noticeNo);
+      this.requestBody.noticeTitle = this.noticeTitle;
+      this.requestBody.noticeContent = this.noticeContent;
       this.$router.push({
         path: './AdminNoticeWrite',
-        query: this.requestBody
+        query: this.requestBody 
       })
+      console.log("디테일뷰의 this.requestBody.noticeNo : " + this.requestBody.noticeNo);
     },
     fnDelete() {
       if (!confirm("삭제하시겠습니까?")) return;
-      axios.delete(`/admin/AdminNoticeDetail/${this.noticeNo}`, {
+      axios.delete(`/admin/AdminNoticeDelete/${this.noticeNo}`, {
         params: this.requestBody
       }).then(() => {
         alert('삭제되었습니다.');
