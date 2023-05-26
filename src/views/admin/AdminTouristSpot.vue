@@ -6,7 +6,7 @@
 <h3>힐링관광명소</h3>
 <br>
 <br>
-  <div align="center">
+  <!-- <div align="center">
     <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminWelfareFacility'">
     복지시설</button>
       &nbsp;&nbsp;
@@ -15,7 +15,7 @@
       &nbsp;&nbsp;
     <button class="btn3 btn-blue" type="button" onclick="location.href='/admin/AdminHobby'">
     취미활동</button>
-  </div>
+  </div> -->
 <br>
 <br>
 <!-- 검색 필드 추가 -->

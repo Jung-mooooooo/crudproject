@@ -4,29 +4,38 @@
 <template>
   <div class="container">
     <header>
+      <div class="tap_box">
+          <ul>
+            <div class="logoimg">
       <router-link to="/">
 	<img class="home_img" alt="Vue homelogo" src="@/assets/home.jpg"/>
       </router-link>
-      <div class="tap_box">
-        <li>
+      </div>
+          </ul>
+          <li>
           <router-link to="/admin/AdminMemberManage">
-	회원관리
+	        회원관리
           </router-link>
         </li>
         <li>
-	게시물관리
+            <div>
+              게시물관리
             <ul class="list">
-              <li><router-link to="/admin/counselling">심리/고민상담</router-link></li>
-              <li><router-link to="/admin/welfareProgram">복지프로그램</router-link></li>
+              <li><router-link to="/admin/AdminWelfareFacility">복지시설</router-link></li>
+              <li><router-link to="/admin/AdminTouristSpot">힐링관광명소</router-link></li>
+              <li><router-link to="/admin/AdminHobby">취미활동</router-link></li>
             </ul>
+            </div>
         </li>
         <li>
-        고객센터
+          <div>
+            고객센터
             <ul class="list">
               <li><router-link to="/admin/AdminNotice">공지사항</router-link></li>
               <li><router-link to="/admin/AdminFAQ">FAQ</router-link></li>
               <li><router-link to="/admin/AdminQnA">QNA</router-link></li>
             </ul>
+          </div>
         </li>
         <li class="s_tap"><router-link to="/">로그인</router-link></li>
         <li class="s_tap"><router-link to="/">회원가입</router-link></li>
@@ -37,35 +46,25 @@
   <hr />
 </template>
 
-<script>
-export default {
-  methods: {
-    toMbti() {
-      location.href =
-        "https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC";
-    },
-
-    toStress() {
-      location.href = "https://www.wonju.go.kr/health/contents.do?key=2409&";
-    },
-
-    toDepression() {
-      location.href = "https://www.wonju.go.kr/health/contents.do?key=1694&";
-    },
-  },
-};
-</script>
 
 <style scoped>
+.container {
+  /* max-width: 100%;
+  width: 1300px;
+  margin-left: auto;
+  margin-right: auto; */
+}
 header {
   display: flex;
+  max-width: 100%;
+  width: 1500px;
 }
 
 .home_img {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   position: relative;
-  left: -200px;
+  left: -80px;
 }
 .tap_box {
   display: flex;
@@ -80,7 +79,8 @@ li {
   border-radius: 10px;
   border: 1px solid black;
   margin: 10px;
-  font-size: x-large;
+  font-size: 15pt;
+  font-weight: 600;
 }
 .s_tap {
   width: 120px;
@@ -92,20 +92,35 @@ li {
 a {
   text-decoration: none;
   color: black;
+  display: block;
 }
 
 .list {
   margin: auto;
+  position: relative;
+  top: -55px;
 }
 
 .list li {
-  visibility: visible;
+  width: 150px;
+  visibility: hidden;
   height: 40px;
   line-height: 40px;
   position: relative;
   left: -40px;
   border: 1px solid rgba(128, 128, 128, 0.3);
   background: rgba(128, 128, 128, 0.3);
+}
+
+.tap_box li {
+  position: relative;
+  top: 55px;
+}
+
+.tap_box li div:hover {
+  .list li {
+    visibility: visible;
+  }
 }
 
 .list li a {

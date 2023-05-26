@@ -36,7 +36,7 @@
           class="form-control"
           id="floatingInput"
           placeholder="I D"
-          v-model="userId"
+          v-model="memberId"
         />
         <label for="floatingInput">I D</label>
       </div>
@@ -46,7 +46,7 @@
           class="form-control"
           id="floatingPassword"
           placeholder="Password"
-          v-model="userPw"
+          v-model="memberPw"
         />
         <label for="floatingPassword">Password</label>
       </div>
@@ -150,10 +150,10 @@ export default {
       name: "MemberLogin",
       loginSuccess: false,
       loginError: false,
+      memberId: "",
+      memberPw: "",
       userId: "",
       userPw: "",
-      user_id: "",
-      user_pw: "",
       requestBody: {}
       
     };
@@ -165,13 +165,19 @@ export default {
       });
     },
     loginok(){
-      if(this.user_id !== undefined){
-        this.$axios.get("/member/myinfo/" + this.user_id)
+      if(this.userId !== undefined){
+        this.$axios.get("/member/myinfo/" + this.userId)
         .then((res) => {
           store.commit('setToken', res.data)
           store.commit('setUserCode', res.data)
           sessionStorage.setItem('accessToken', res.data);
+          // console.log(JSON.parse(res.data));
+          // console.log(JSON.parse(this.sessionStorage));
+          // console.log(JSON.parse(this.localStorage));
+
+          
           window.alert('로그인 하였습니다.');
+
           console.log(this.store);
           console.log(this.sessionStorage);
           console.log(store.commit('setToken', res.data));
@@ -193,13 +199,13 @@ export default {
       }
     },
     login() {
-      console.log("this.userId " + this.userId);
-      console.log("this.userPw " + this.userPw);
+      console.log("this.userId " + this.memberId);
+      console.log("this.userPw " + this.memberPw);
       let apiUrl = "/member/login/";
       axios
         .post(apiUrl, {
-          user_id: this.userId,
-          user_pw: this.userPw,
+          userId: this.memberId,
+          userPw: this.memberPw,
         },
         {
           headers: {
@@ -221,8 +227,9 @@ export default {
             console.log(localStorage);
             console.log(sessionStorage);
             // this.$router.push({name: 'PageHomeLogin'})
-            this.user_id = this.userId
+            this.userId = this.memberId
             this.loginok();
+
           }
         })
 
@@ -231,7 +238,7 @@ export default {
           err.loginError = true;
           window.alert('로그인에 실패하였습니다.')
         });
-    },
+    }
   },
 };
 </script>
