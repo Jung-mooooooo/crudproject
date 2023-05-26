@@ -1,18 +1,20 @@
 <template>
   <div class="d-flex gap-2 justify-content-center py-5">
-    <button class="btn btn-light rounded-pill px-3" type="button" onclick="location.href='/member/myinfo'">
+    <button class="btn btn-light rounded-pill px-3" 
+    type="button" 
+    v-on:click="this.$router.push('/member/myinfo')">
       내정보보기
     </button>
     <button
       class="btn btn-light rounded-pill px-3"
-      v-on:click="popUPdate"
+      v-on:click="this.$router.push('/mypage/popupU')"
       type="button"
     >
       내정보수정
     </button>
     <button
       class="btn btn-light rounded-pill px-3"
-      v-on:click="popDelete"
+      v-on:click="this.$router.push('/mypage/popupD')"
       type="button"
     >
       회원탈퇴

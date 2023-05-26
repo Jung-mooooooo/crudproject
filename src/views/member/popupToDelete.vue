@@ -1,54 +1,115 @@
 <template>
   <div class="d-flex gap-2 justify-content-center py-5">
-    <button class="btn btn-light rounded-pill px-3" type="button" onclick="location.href='/member/myinfo'">
+    <button class="btn btn-light rounded-pill px-3" 
+    type="button" 
+    v-on:click="this.$router.push('/member/myinfo')">
       내정보보기
     </button>
     <button
       class="btn btn-light rounded-pill px-3"
-      v-on:click="popUPdate"
+      v-on:click="this.$router.push('/mypage/popupU')"
       type="button"
     >
       내정보수정
     </button>
     <button
       class="btn btn-light rounded-pill px-3"
-      v-on:click="popDelete"
+      v-on:click="this.$router.push('/mypage/popupD')"
       type="button"
     >
       회원탈퇴
     </button>
   </div>
-  <div class="pop_box">
-    <div>정말 탈퇴하시겠습니까?<br />000님 비밀번호를 입력해주세요</div>
-    <br />
-    <hr />
-    <br />
-    <form action="">
-      <div><input type="password" /></div>
-      <div><input type="button" value="확인" onclick="location.href='/'"/></div>
-    </form>
-  </div>
+  <form @submit.prevent="pwck()">
+    <div class="pop_box">
+      <div>정말 탈퇴하시겠습니까?<br />000님 비밀번호를 입력해주세요</div>
+      <br />
+      <hr />
+      <br />
+        <div><input type="password" v-model="memberPw"/></div>
+        <div><button type="submit">확 인</button></div>
+    </div>
+  </form>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-
+import axios from "axios";
 export default {
-  name: "PopDelete",
-  components: {
-    // HelloWorld,
-  },
-  methods: {
-    popUPdate() {
-      location.href = "/mypage/popupU";
+    data(){
+      return {
+        memberPw: "",
+        userPw: "",
+      }
     },
+    methods: {
+      home(){
+        this.$router.push({
+          path: '/'
+        });
+      },
+      userins(){
+        console.log("여긴왔니? userins")
+        axios
+        .post("/member/quit/", {
+          userCode: sessionStorage.getItem("userCode"),
+          userId: sessionStorage.getItem("userId"),
+          userPw: sessionStorage.getItem("userPw"),
+          userName: sessionStorage.getItem("userName"),
+          phone: sessionStorage.getItem("phone"),
+          email: sessionStorage.getItem("email"),
+          auth: sessionStorage.getItem("auth"),
+          permit: sessionStorage.getItem("permit"),
+          kakaoId: sessionStorage.getItem("kakaoId"),
+          naverId: sessionStorage.getItem("naverId"),
+          googleId: sessionStorage.getItem("googleId"),
 
-    popDelete() {
-      location.href = "/mypage/popupD";
-    },
-  },
-};
+        })
+        .then((res) => {
+          console.log(res);
+          window.alert("탈퇴 성공");
+          this.home();
+        })
+        .catch((err) => {
+          console.log(err)
+          window.alert("탈퇴 실패")
+        });
+      },
+      pwck(){
+        console.log("여긴왔니? pwck");
+        console.log("this.userPw " + this.memberPw);
+        var apiUrl = "/mypage/popupD/";
+        axios
+        .post(apiUrl, {
+          userPw: this.memberPw,
+          userId: sessionStorage.getItem("userId"),
+          userCode: sessionStorage.getItem("userCode"),
+          userName: sessionStorage.getItem("userName"),
+          phone: sessionStorage.getItem("phone"),
+          email: sessionStorage.getItem("email"),
+          auth: sessionStorage.getItem("auth"),
+          permit: sessionStorage.getItem("permit"),
+          kakaoId: sessionStorage.getItem("kakaoId"),
+          naverId: sessionStorage.getItem("naverId"),
+          googleId: sessionStorage.getItem("googleId"),
+        })
+        .then((res) => {
+          if(res.status == 200){
+          console.log(res)
+          window.alert("비밀번호 확인 성공");
+          this.userins();
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+          window.alert("비밀번호가 틀렸습니다.")
+        });
+        
+      },
+    }
+
+}
 </script>
 
 <style scoped>
