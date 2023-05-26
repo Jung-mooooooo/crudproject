@@ -1,54 +1,74 @@
 <template>
   <div class="d-flex gap-2 justify-content-center py-5">
-    <button class="btn btn-light rounded-pill px-3" type="button" onclick="location.href='/member/myinfo'">
+    <button class="btn btn-light rounded-pill px-3" 
+    type="button" 
+    v-on:click="this.$router.push('/member/myinfo')">
       내정보보기
     </button>
     <button
       class="btn btn-light rounded-pill px-3"
-      v-on:click="popUPdate"
+      v-on:click="this.$router.push('/mypage/popupU')"
       type="button"
     >
       내정보수정
     </button>
     <button
       class="btn btn-light rounded-pill px-3"
-      v-on:click="popDelete"
+      v-on:click="this.$router.push('/mypage/popupD')"
       type="button"
     >
       회원탈퇴
     </button>
   </div>
+  <form @submit.prevent="pwck()">
   <div class="pop_box">
     <div>내정보수정을 위해<br />000님 비밀번호를 입력해주세요</div>
     <br />
     <hr />
     <br />
-    <form action="">
-      <div><input type="password" /></div>
-      <div><input type="button" value="확인" onclick="location.href='/member/update'" /></div>
-    </form>
+        <div><input type="password" v-model="memberPw"/></div>
+        <div><button type="submit">확 인</button></div>
   </div>
+</form>
 </template>
 
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
-
+import axios from "axios";
 export default {
-  name: "PopUpdate",
-  components: {
-    // HelloWorld,
-  },
-  methods: {
-    popUPdate() {
-      location.href = "/mypage/popupU";
+    data(){
+      return {
+
+      }
+    },
+    methods: {
+      memberupdate(){
+        this.$router.push({
+          path: '/member/update'
+        });
+      },
+      pwck(){
+        var apiUrl = "/mypage/popupU/";
+        axios
+          .post(apiUrl, {
+            userPw: this.memberPw,
+            userId: sessionStorage.getItem("userId"),
+          })
+          .then((res) => {
+            console.log(res)
+            window.alert("비밀번호 확인 성공")
+
+            this.memberupdate();
+          })
+          .catch((err) => {
+            console.log(err)
+            window.alert("비밀번호가 틀렸습니다.")
+          })
+      },
     },
 
-    popDelete() {
-      location.href = "/mypage/popupD";
-    },
-  },
-};
+}
 </script>
 
 <style scoped>

@@ -5,14 +5,16 @@
       <button
         class="btn btn-light rounded-pill px-3"
         type="button"
-        onclick="location.href='/member/myinfo'"
         style="font-size: 40px"
-      >
+        v-on:click="this.$router.push('/member/myinfo')"
+        >
+        <!-- @click="infoView" -->
+        <!-- onclick="location.href='/member/myinfo'" -->
         내정보보기
       </button>
       <button
         class="btn btn-light rounded-pill px-3"
-        onclick="location.href='/mypage/popupU'"
+        v-on:click="this.$router.push('/mypage/popupU')"
         type="button"
         style="font-size: 40px"
       >
@@ -20,7 +22,7 @@
       </button>
       <button
         class="btn btn-light rounded-pill px-3"
-        onclick="location.href='/mypage/popupD'"
+        v-on:click="this.$router.push('/mypage/popupD')"
         type="button"
         style="font-size: 40px"
       >
@@ -136,11 +138,14 @@ export default {
       member: {},
     };
   },
+  mounted(){
+    this.infoView()
+  },
   methods: {
     infoView() {
-      let userCode = localStorage.getItem("userCode");
+      // let userCode = sessionStorage.getItem("userCode");
       this.$axios
-        .get("/member/" + userCode, {
+        .get("/member/myinfo/" + sessionStorage.getItem("userCode"), {
           params: this.requestBody,
         })
         .then((res) => {
@@ -148,8 +153,11 @@ export default {
           this.member.userName = res.data.userName;
           this.member.phone = res.data.phone;
           this.member.email = res.data.email;
+
+
         })
         .catch((err) => {
+          console.log(err)
           alert("회원정보 조회에 실패하였습니다.");
         });
     },

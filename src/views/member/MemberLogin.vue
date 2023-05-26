@@ -4,28 +4,6 @@
     <img alt="LoginLogo" src="@/assets/loginlogo.png" />
   </div>
   <div class="col-md-10 mx-auto col-lg-5">
-    <div class="protected" v-if="loginSuccess">
-      <h1>
-        <b-badge variant="success"
-          >보안 사이트에 대한 액세스가 허용되었습니다</b-badge
-        >
-      </h1>
-      <h5>로그인 성공!</h5>
-    </div>
-    <div class="unprotected" v-else-if="loginError">
-      <h1>
-        <b-badge variant="danger"
-          >이 페이지에 대한 접근 권한이 없습니다.</b-badge
-        >
-      </h1>
-      <h5>로그인 실패!</h5>
-    </div>
-    <div class="unprotected" v-else>
-      <h1>
-        <b-badge variant="info">로그인해주세요</b-badge>
-      </h1>
-      <h5>로그인 하지 않았습니다. 로그인을 해주세요</h5>
-    </div>
     <form
       class="p-4 p-md-5 border rounded-3 bg-light"
       @submit.prevent="login()"
@@ -36,7 +14,7 @@
           class="form-control"
           id="floatingInput"
           placeholder="I D"
-          v-model="userId"
+          v-model="memberId"
         />
         <label for="floatingInput">I D</label>
       </div>
@@ -46,7 +24,7 @@
           class="form-control"
           id="floatingPassword"
           placeholder="Password"
-          v-model="userPw"
+          v-model="memberPw"
         />
         <label for="floatingPassword">Password</label>
       </div>
@@ -148,12 +126,10 @@ export default {
   data() {
     return {
       name: "MemberLogin",
-      loginSuccess: false,
-      loginError: false,
+      memberId: "",
+      memberPw: "",
       userId: "",
       userPw: "",
-      user_id: "",
-      user_pw: "",
       requestBody: {}
       
     };
@@ -165,12 +141,30 @@ export default {
       });
     },
     loginok(){
-      if(this.user_id !== undefined){
-        this.$axios.get("/member/myinfo/" + this.user_id)
+      if(this.userId !== undefined){
+        this.$axios.get("/member/info/" + this.userId)
         .then((res) => {
+          console.log(res.data);
+          this.requestBody = res.data
           store.commit('setToken', res.data)
           store.commit('setUserCode', res.data)
           sessionStorage.setItem('accessToken', res.data);
+          sessionStorage.setItem("userCode", this.requestBody.userCode)
+          sessionStorage.setItem("userId", this.requestBody.userId)
+          sessionStorage.setItem("userName", this.requestBody.userName)
+          sessionStorage.setItem("phone", this.requestBody.phone)
+          sessionStorage.setItem("email", this.requestBody.email)
+          sessionStorage.setItem("userPw", this.requestBody.userPw)
+          sessionStorage.setItem("auth", this.requestBody.auth)
+          sessionStorage.setItem("permit", this.requestBody.permit)
+          sessionStorage.setItem("kakaoId", this.requestBody.kakaoId)
+          sessionStorage.setItem("naverId", this.requestBody.naverId)
+          sessionStorage.setItem("googleId", this.requestBody.googleId)
+          console.log(this.$store.getters.userCode);
+          console.log(sessionStorage.getItem("userCode"))
+           // console.log(JSON.parse(res.data));
+          // console.log(JSON.parse(this.sessionStorage));
+          // console.log(JSON.parse(this.localStorage));
           window.alert('로그인 하였습니다.');
           console.log(this.store);
           console.log(this.sessionStorage);
@@ -193,13 +187,13 @@ export default {
       }
     },
     login() {
-      console.log("this.userId " + this.userId);
-      console.log("this.userPw " + this.userPw);
+      console.log("this.userId " + this.memberId);
+      console.log("this.userPw " + this.memberPw);
       let apiUrl = "/member/login/";
       axios
         .post(apiUrl, {
-          user_id: this.userId,
-          user_pw: this.userPw,
+          userId: this.memberId,
+          userPw: this.memberPw,
         },
         {
           headers: {
@@ -212,7 +206,6 @@ export default {
           // console.log(res)
           if (res.status == 200) {
             console.log(res)
-            this.loginSuccess = true
             // store.commit('setToken', res.data)
             // sessionStorage.setItem('accessToken', res.data);
             // window.alert('로그인 하였습니다.');
@@ -221,14 +214,13 @@ export default {
             console.log(localStorage);
             console.log(sessionStorage);
             // this.$router.push({name: 'PageHomeLogin'})
-            this.user_id = this.userId
+            this.userId = this.memberId
             this.loginok();
           }
         })
 
         .catch((err) => {
           console.log(err)
-          err.loginError = true;
           window.alert('로그인에 실패하였습니다.')
         });
     },

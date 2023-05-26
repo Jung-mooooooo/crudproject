@@ -1,4 +1,4 @@
-// Vue PageHeader = new Vuew(); => 이런식으로 객체 생성되는 개념.
+<!-- // Vue PageHeader = new Vuew(); => 이런식으로 객체 생성되는 개념.
 
 <!-- PageHeader.vue -->
 <template>
@@ -160,4 +160,4 @@ function() {
     visibility: visible;
   }
 } */
-</style>
+</style> -->

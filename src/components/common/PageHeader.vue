@@ -5,8 +5,13 @@
     <header>
       <div class="tap_box">
           <ul>
-            <div class="logoimg">
+            <div class="logoimg" v-if="!$store.state.token">
               <router-link to="/">
+                <img class="home_img" alt="Vue homelogo" src="@/assets/home.jpg"/>
+              </router-link>
+            </div>
+            <div class="logoimg" v-else>
+              <router-link to="/loginhome">
                 <img class="home_img" alt="Vue homelogo" src="@/assets/home.jpg"/>
               </router-link>
             </div>
