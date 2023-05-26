@@ -198,6 +198,7 @@ export default {
             'Content-Type': 'application/json',
             Authorization: 'token',
           }
+        }
         )
         .then((res) => {
           // console.log(res)
