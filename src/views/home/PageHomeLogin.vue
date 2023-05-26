@@ -2,15 +2,29 @@
 <template>
   <div class="home">
     <div class="user_box">
-      <div class="emotion_box" @click="popComment">
-        <div class="emotion_text">오늘 나의 기분</div>
-        <div class="emotions">😀 😍 🙂 😕</div>
-        <div class="emotions">🙄 😥 😫 😠</div>
-        <div
-          class="Comment"
-          :style="{ visibility: isCommentVisible ? 'visible' : 'hidden' }"
-        ></div>
-      </div>
+      <div class="emotion_box">
+    <div class="emotion_text">오늘 나의 기분</div>
+    <div class="emotions">
+      <button @click="selectEmotion('neutral')">🙂</button>
+    </div>
+    <div class="emotions">
+      <button @click="selectEmotion('angry')">😡</button>
+      <button @click="selectEmotion('anxious')">😔</button>
+      <button @click="selectEmotion('excited')">😆</button>
+      <button @click="selectEmotion('happy')">😍</button>
+    </div>
+    <div class="emotions">
+      <button @click="selectEmotion('lonely')">🤕</button>
+      <button @click="selectEmotion('sad')">😥</button>
+      <button @click="selectEmotion('scary')">😨</button>
+      <button @click="selectEmotion('tired')">🥱</button>
+    </div>
+    <!-- <div
+      class="Comment"
+      :style="{ visibility: isCommentVisible ? 'visible' : 'hidden' }"
+    ></div> -->
+  </div>
+
       <div class="text_box">
         <div>내가 쓴 글</div>
         <div>
@@ -377,24 +391,53 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "PageHome",
-  components: {
-    // HelloWorld,
-  },
   data() {
     return {
       isCommentVisible: false,
     };
   },
   methods: {
-    popComment() {
-      this.isCommentVisible = !this.isCommentVisible;
+    // popComment() {
+    //   this.isCommentVisible = !this.isCommentVisible;
+    // },
+    selectEmotion(emotion) {
+      //this.popComment();
+      this.saveEmotionToTable(emotion);
     },
-  },
+    saveEmotionToTable(emotion) {
+      let apiUrl = '/home/emotion'
+        this.form = {
+
+        }
+
+        this.$axios.post(apiUrl, this.form)
+
+      // const userCode = 1; // Replace with actual user code
+      // const data = {
+      //   userCode: this.userCode,
+      //   emotion: this.emotion,
+      // };
+      // fetch("/home/emotion", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // })
+      //   .then((response) => response.json())
+      //   .then((result) => {
+
+      //     console.log(result);
+      //   })
+      //   .catch((error) => {
+
+      //     console.error(error);
+      //   });
+    },
+     },
 };
 </script>
 <style scoped>
@@ -420,7 +463,7 @@ export default {
   font-size: 50px;
 }
 
-.emotion_box .emotions {
+.emotion_box #emotions {
   font-size: 55px;
 }
 

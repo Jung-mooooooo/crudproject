@@ -166,6 +166,7 @@ export default {
           // console.log(JSON.parse(this.sessionStorage));
           // console.log(JSON.parse(this.localStorage));
           window.alert('로그인 하였습니다.');
+
           console.log(this.store);
           console.log(this.sessionStorage);
           console.log(store.commit('setToken', res.data));
@@ -216,6 +217,7 @@ export default {
             // this.$router.push({name: 'PageHomeLogin'})
             this.userId = this.memberId
             this.loginok();
+
           }
         })
 
@@ -223,7 +225,7 @@ export default {
           console.log(err)
           window.alert('로그인에 실패하였습니다.')
         });
-    },
+    }
   },
 };
 </script>
