@@ -35,42 +35,55 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+import store from "@/store";
+let userCode = sessionStorage.getItem("userCode");
+let userName = sessionStorage.getItem("userName");
 export default {
   name: "ChattingList",
   data() {
     return {
       userCode: "",
+      userName: "",
     };
   },
   created() {
     this.chatUserSave();
   },
-  mounted() {},
+  mounted() {
+    this.chatUserList();
+  },
   beforeRouteLeave(to, from, next) {
     if (this.canLeaveSite) next();
     else if (confirm("채팅 대기실에서 나가시겠습니까?")) {
       next();
+      console.log("나갔니?");
       //리스트에서 삭제?
       this.chatUserDel();
     }
   },
   methods: {
     chatUserSave() {
-      let apiUrl = "/chatUser";
-      this.from = {
+      let apiUrl = "/chatuser";
+      this.form = {
         //토큰에서 받아온 usercode를 저장하기.
-        user_code: this.userCode,
+        userCode: sessionStorage.getItem("userCode"),
+        userName: sessionStorage.getItem("userName"),
       };
-      this.$axios
+
+      axios
         .post(apiUrl, this.form)
         .then((res) => {
           this.user = res.data;
+          console.log(this.user);
         })
         .catch((err) => console.log(err));
     },
     chatUserDel() {
-      this.$axios
-        .delete("/delete/" + this.userCode, {})
+      let apiUrl = "/chatuser/delete/" + sessionStorage.getItem("userCode");
+      alert(sessionStorage.getItem("userCode"));
+      axios
+        .delete(apiUrl, {})
         .then(() => {
           console.log("유저리스트에서 삭제");
         })
@@ -78,18 +91,14 @@ export default {
           console.log(err);
         });
     },
+    chatUserList() {
+      let apiUrl = "/chatuser";
+      axios
+        .get(apiUrl)
+        .then((res) => {})
+        .catch((err) => console.log(err));
+    },
   },
-  // component: {},
-  // data() {
-  //   return {
-  //     isreqVisible: false,
-  //   };
-  // },
-  // methods: {
-  //   reqChat() {
-  //     this.isreqVisible = !this.isreqVisible;
-  //   },
-  // },
 };
 </script>
 <style scoped>

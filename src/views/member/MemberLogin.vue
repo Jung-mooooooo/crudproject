@@ -87,7 +87,7 @@ import store from "@/store";
 //     };
 //   },
 //   methods: {
-    
+
 //     login() {
 //       let apiUrl = "/member/login";
 //       // const loginForm = {
@@ -118,10 +118,6 @@ import store from "@/store";
 //   }
 // }
 
-
-
-
-
 export default {
   data() {
     return {
@@ -130,14 +126,13 @@ export default {
       memberPw: "",
       userId: "",
       userPw: "",
-      requestBody: {}
-      
+      requestBody: {},
     };
   },
   methods: {
-    changepage(){
+    changepage() {
       this.$router.push({
-        path: '/loginhome'
+        path: "/loginhome",
       });
     },
     loginok(){
@@ -148,6 +143,8 @@ export default {
           this.requestBody = res.data
           store.commit('setToken', res.data)
           store.commit('setUserCode', res.data)
+          localStorage.setItem("userCode", this.requestBody.userCode);
+          localStorage.setItem("userName", this.requestBody.userName);
           sessionStorage.setItem('accessToken', res.data);
           sessionStorage.setItem("userCode", this.requestBody.userCode)
           sessionStorage.setItem("userId", this.requestBody.userId)
@@ -201,7 +198,6 @@ export default {
             'Content-Type': 'application/json',
             Authorization: 'token',
           }
-        }
         )
         .then((res) => {
           // console.log(res)
@@ -210,8 +206,8 @@ export default {
             // store.commit('setToken', res.data)
             // sessionStorage.setItem('accessToken', res.data);
             // window.alert('로그인 하였습니다.');
-            localStorage.setItem('token', res.data.token);
-            sessionStorage.setItem('token', res.data.token);
+            localStorage.setItem("token", res.data.token);
+            sessionStorage.setItem("token", res.data.token);
             console.log(localStorage);
             console.log(sessionStorage);
             // this.$router.push({name: 'PageHomeLogin'})
