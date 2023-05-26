@@ -2,15 +2,27 @@
 <template>
   <div class="home">
     <div class="user_box">
-      <div class="emotion_box" @click="popComment">
+      <div class="emotion_box">
         <div class="emotion_text">오늘 나의 기분</div>
-        <div class="emotions">😀 😍 🙂 😕</div>
-        <div class="emotions">🙄 😥 😫 😠</div>
-        <div
-          class="Comment"
-          :style="{ visibility: isCommentVisible ? 'visible' : 'hidden' }"
-        ></div>
+        <div class="emotions">
+          <!-- <span @click="selectEmotion('neutral')">🙂</span> -->
+          <span @click="selectEmotion(1)">😡</span>
+          <span @click="selectEmotion(2)">😔</span>
+          <span @click="selectEmotion(3)">😆</span>
+          <span @click="selectEmotion(4)">😍</span>
+        </div>
+        <div class="emotions">
+          <span @click="selectEmotion(5)">🤕</span>
+          <span @click="selectEmotion(6)">😥</span>
+          <span @click="selectEmotion(7)">😨</span>
+          <span @click="selectEmotion(8)">🥱</span>
+        </div>
+        <!-- <div
+      class="Comment"
+      :style="{ visibility: isCommentVisible ? 'visible' : 'hidden' }"
+    ></div> -->
       </div>
+
       <div class="text_box">
         <div>내가 쓴 글</div>
         <div>
@@ -38,29 +50,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">상담센터 찾기</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>Earth</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>3d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -75,29 +64,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">1대1 채팅</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>Pakistan</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>4d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -112,29 +78,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">챗봇(베베)</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>California</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>5d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -155,29 +98,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">MBTI</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>Earth</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>3d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -192,29 +112,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">스트레스 검사</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>Pakistan</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>4d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -229,29 +126,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">우울증 검사</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>California</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>5d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -272,29 +146,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">힐링 관광명소</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>Earth</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>3d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -309,29 +160,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">사회복지시설</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>Pakistan</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>4d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -346,29 +174,6 @@
             class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1"
           >
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">원데이클래스</h3>
-            <!-- <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img
-                  src="https://github.com/twbs.png"
-                  alt="Bootstrap"
-                  width="32"
-                  height="32"
-                  class="rounded-circle border border-white"
-                />
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill"></use>
-                </svg>
-                <small>California</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3"></use>
-                </svg>
-                <small>5d</small>
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -377,22 +182,59 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
-
+import axios from "axios";
 export default {
-  name: "PageHome",
-  components: {
-    // HelloWorld,
-  },
+  name: "PageHomeLogin",
   data() {
     return {
       isCommentVisible: false,
+      emotionCat: "",
+      userCode: "",
     };
   },
   methods: {
-    popComment() {
-      this.isCommentVisible = !this.isCommentVisible;
+    // popComment() {
+    //   this.isCommentVisible = !this.isCommentVisible;
+    // },
+
+    selectEmotion(emo) {
+      let apiUrl = "/emotion";
+      let emotionCat = null;
+      if (emo == 1) {
+        emotionCat = "angry";
+      } else if (emo == 2) {
+        emotionCat = "anxious";
+      } else if (emo == 3) {
+        emotionCat = "excited";
+      } else if (emo == 4) {
+        emotionCat = "happy";
+      } else if (emo == 5) {
+        emotionCat = "lonely";
+      } else if (emo == 6) {
+        emotionCat = "sad";
+      } else if (emo == 7) {
+        emotionCat = "scary";
+      } else if (emo == 8) {
+        emotionCat = "tired";
+      } else {
+        emotionCat = "neutral";
+      }
+      console.log(emo);
+
+      this.form = {
+        emotionCat: emotionCat,
+        userCode: sessionStorage.getItem("userCode"),
+      };
+
+      axios
+        .patch(apiUrl, this.form)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+
+      //this.popComment();
+      // this.saveEmotionToTable(emotion);
     },
   },
 };
@@ -400,31 +242,38 @@ export default {
 <style scoped>
 .user_box {
   margin: auto;
-  width: 75%;
+  width: 2000px;
   border: 2px solid black;
   border-radius: 35px;
-  height: 300px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
 .user_box > div {
-  width: 35%;
+  width: 700px;
+  height: 450px;
 }
 
 .emotion_box {
   border: 1px solid black;
   border-radius: 20px;
-  height: 80%;
-  font-size: 50px;
+  height: 400px;
+  font-size: 92px;
 }
 
-.emotion_box .emotions {
-  font-size: 55px;
+.emotion_box.emotions > span {
+  display: inline-flex;
+  justify-content: space-between;
 }
 
-.emotion_box div:last-child {
+span {
+  margin: 20px;
+  font-size: 110px;
+}
+
+/* .emotion_box div:last-child {
   border: 5px solid red;
   width: 70px;
   height: 70px;
@@ -432,17 +281,16 @@ export default {
   position: relative;
   top: -163px;
   left: 155px;
-}
+} */
 .text_box {
   border: 1px solid black;
   border-radius: 20px;
-  height: 80%;
-  font-size: 50px;
+  font-size: 90px;
 }
 
 .text_box div:first-child {
   position: relative;
-  top: 20px;
+  top: 30px;
 }
 
 .text_box div:last-child {
@@ -452,14 +300,14 @@ export default {
 }
 
 .text_box div:last-child div {
-  width: 30%;
+  width: 300px;
   height: 100px;
   margin: auto;
-  line-height: 100px;
+  line-height: 150px;
 }
 
 .text_box div:last-child div:first-child {
-  font-size: 70px;
+  font-size: 100px;
   color: orange;
   position: relative;
   right: -20%;
@@ -467,13 +315,13 @@ export default {
 }
 
 .user_box > .mypage {
-  border: 3px solid orange;
+  border: 5px solid orange;
   border-radius: 20px;
-  height: 250px;
-  width: 15%;
-  font-size: 45px;
+  height: 350px;
+  width: 350px;
+  font-size: 80px;
   font-weight: bold;
-  line-height: 250px;
+  line-height: 300px;
   color: rgb(255, 165, 0);
 }
 

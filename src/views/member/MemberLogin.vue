@@ -36,7 +36,7 @@
           class="form-control"
           id="floatingInput"
           placeholder="I D"
-          v-model="userId"
+          v-model="memberId"
         />
         <label for="floatingInput">I D</label>
       </div>
@@ -46,7 +46,7 @@
           class="form-control"
           id="floatingPassword"
           placeholder="Password"
-          v-model="userPw"
+          v-model="memberPw"
         />
         <label for="floatingPassword">Password</label>
       </div>
@@ -109,7 +109,7 @@ import store from "@/store";
 //     };
 //   },
 //   methods: {
-    
+
 //     login() {
 //       let apiUrl = "/member/login";
 //       // const loginForm = {
@@ -140,96 +140,105 @@ import store from "@/store";
 //   }
 // }
 
-
-
-
-
 export default {
   data() {
     return {
       name: "MemberLogin",
       loginSuccess: false,
       loginError: false,
+      memberId: "",
+      memberPw: "",
       userId: "",
       userPw: "",
-      user_id: "",
-      user_pw: "",
-      requestBody: {}
-      
+      requestBody: {},
     };
   },
   methods: {
-    changepage(){
+    changepage() {
       this.$router.push({
-        path: '/loginhome'
+        path: "/loginhome",
       });
     },
-    loginok(){
-      if(this.user_id !== undefined){
-        this.$axios.get("/member/myinfo/" + this.user_id)
-        .then((res) => {
-          store.commit('setToken', res.data)
-          store.commit('setUserCode', res.data)
-          sessionStorage.setItem('accessToken', res.data);
-          window.alert('로그인 하였습니다.');
-          console.log(this.store);
-          console.log(this.sessionStorage);
-          console.log(store.commit('setToken', res.data));
-          // this.requestBody = res.data
-          // if(this.userPw == this.requestBody.user_pw && this.userId == this.requestBody.user_id){
-          // console.log(this.requestBody)
-          // localStorage.setItem('userCode', this.requestBody.userCode)
-          // localStorage.setItem('auth', this.requestBody.auth)
-          this.changepage();
-        // }else if(this.userPw != this.requestBody.user_pw || this.userId != this.requestBody.user_id){
-        //   alert("아이디와 비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-          // this.$router.go(0);
-          console.log(res);
-        // }
-        })
-        .catch((err) => {
-          console.log(err)
-        });
+    loginok() {
+      if (this.userId !== undefined) {
+        this.$axios
+          .get("/member/myinfo/" + this.userId)
+          .then((res) => {
+            this.requestBody = res.data;
+            store.commit("setToken", res.data);
+            store.commit("setUserCode", res.data);
+            localStorage.setItem("userCode", this.requestBody.userCode);
+            localStorage.setItem("userName", this.requestBody.userName);
+            sessionStorage.setItem("accessToken", res.data);
+            sessionStorage.setItem("userCode", this.requestBody.userCode);
+            sessionStorage.setItem("userName", this.requestBody.userName);
+            console.log("usercode" + sessionStorage.getItem("userCode"));
+            console.log("username" + sessionStorage.getItem("userName"));
+
+            // console.log(JSON.parse(res.data));
+            // console.log(JSON.parse(this.sessionStorage));
+            // console.log(JSON.parse(this.localStorage));
+            window.alert("로그인 하였습니다.");
+            console.log(this.store);
+            console.log(this.sessionStorage);
+            console.log(store.commit("setToken", res.data));
+            // this.requestBody = res.data
+            // if(this.userPw == this.requestBody.user_pw && this.userId == this.requestBody.user_id){
+            // console.log(this.requestBody)
+            // localStorage.setItem('userCode', this.requestBody.userCode)
+            // localStorage.setItem('auth', this.requestBody.auth)
+            this.changepage();
+            // }else if(this.userPw != this.requestBody.user_pw || this.userId != this.requestBody.user_id){
+            //   alert("아이디와 비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+            // this.$router.go(0);
+            console.log(res);
+            // }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
     login() {
-      console.log("this.userId " + this.userId);
-      console.log("this.userPw " + this.userPw);
+      console.log("this.userId " + this.memberId);
+      console.log("this.userPw " + this.memberPw);
       let apiUrl = "/member/login/";
       axios
-        .post(apiUrl, {
-          user_id: this.userId,
-          user_pw: this.userPw,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'token',
+        .post(
+          apiUrl,
+          {
+            userId: this.memberId,
+            userPw: this.memberPw,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "token",
+            },
           }
-        }
         )
         .then((res) => {
           // console.log(res)
           if (res.status == 200) {
-            console.log(res)
-            this.loginSuccess = true
+            console.log(res);
+            this.loginSuccess = true;
             // store.commit('setToken', res.data)
             // sessionStorage.setItem('accessToken', res.data);
             // window.alert('로그인 하였습니다.');
-            localStorage.setItem('token', res.data.token);
-            sessionStorage.setItem('token', res.data.token);
+            localStorage.setItem("token", res.data.token);
+            sessionStorage.setItem("token", res.data.token);
             console.log(localStorage);
             console.log(sessionStorage);
             // this.$router.push({name: 'PageHomeLogin'})
-            this.user_id = this.userId
+            this.userId = this.memberId;
             this.loginok();
           }
         })
 
         .catch((err) => {
-          console.log(err)
+          console.log(err);
           err.loginError = true;
-          window.alert('로그인에 실패하였습니다.')
+          window.alert("로그인에 실패하였습니다.");
         });
     },
   },

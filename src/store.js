@@ -2,33 +2,28 @@
 import { createStore } from "vuex";
 
 export default createStore({
-    state: {
-        token: null,
-        userCode: ""
+  state: {
+    token: null,
+    userCode: "",
+    userName: "",
+  },
+  mutations: {
+    setToken(state, token) {
+      state.token = token;
     },
-    mutations: {
-        setToken(state, token) {
-            state.token = token;
-        },
-        setUserCode(state, userCode) {
-            state.userCode = userCode;
-        }
+    setUserCode(state, userCode) {
+      state.userCode = userCode;
     },
-    getters: {
-        
-
-    }
-})
-
-// const store = new Vuex.Store({
-//     state: {
-//        token: null
-//     },
-//     mutations: {
-//         setToken(state, token) {
-//             state.token = token;
-//         }
-//     }
-// })
-
-// export default store;
+    setUserName(state, userName) {
+      state.userName = userName;
+    },
+  },
+  getters: {
+    getUserCode(state) {
+      return state.userCode;
+    },
+    getUserName(state) {
+      return state.userName;
+    },
+  },
+});
