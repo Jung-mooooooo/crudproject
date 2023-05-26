@@ -15,23 +15,25 @@
     </div>
     <div class="common-buttons">
       <br>
+      <!-- <button type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnUpdate">수정</button>&nbsp;
+      <button type="button" class="w3-button w3-round w3-red" v-on:click="fnDelete">삭제</button>&nbsp; -->
       <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
     </div>
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs';
 import axios from "axios"
 axios.defaults.withCredentials = true;
 import NoticeDetail from '@/views/cs/NoticeDetail.vue'
 export default {
  name: 'NoticeDetail',
- components: {NoticeDetail},
+ components: {NoticeDetail, dayjs},
   data() { //변수생성
     return {
       requestBody: this.$route.query,
       noticeNo: this.$route.query.noticeNo,
-
       noticeTitle: '',
       noticeContent: '',
       createAt: ''
@@ -42,19 +44,14 @@ export default {
   },
   methods: {
     fnGetView() {
-      console.log("왜 안되지?");
+      console.log("여기는 디테일 뷰");
       axios.get("/cs/NoticeDetail/" + this.noticeNo, {
         params: this.requestBody
       }).then((res) => {
-        console.log(typeof res.data)
         this.noticeNo = res.data.noticeNo
         this.noticeTitle = res.data.noticeTitle
         this.noticeContent = res.data.noticeContent
-        this.createAt = res.data.createAt
-
-        console.log("res.data : " + this.noticeTitle);
-        console.log("noticeTitle : " + this.noticeContent);
-        console.log("noticeTitle : " + this.createAt);
+        this.createAt = dayjs(res.data.createAt).format('YYYY년 MM월 DD일 HH:mm:ss');
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
@@ -70,21 +67,25 @@ export default {
       })
     },
     fnUpdate() {
+      console.log("디테일뷰의 this.requestBody.noticeNo : " + this.requestBody.noticeNo);
+      this.requestBody.noticeTitle = this.noticeTitle;
+      this.requestBody.noticeContent = this.noticeContent;
       this.$router.push({
         path: './NoticeWrite',
-        query: this.requestBody
+        query: this.requestBody 
       })
+      console.log("디테일뷰의 this.requestBody.noticeNo : " + this.requestBody.noticeNo);
     },
     fnDelete() {
-      if (!confirm("삭제하시겠습니까?")) return
-
-      this.$axios.delete("/cs/Notice", {})
-          .then(() => {
-            alert('삭제되었습니다.')
-            this.fnList();
-          }).catch((err) => {
+      if (!confirm("삭제하시겠습니까?")) return;
+      axios.delete(`/cs/NoticeDelete/${this.noticeNo}`, {
+        params: this.requestBody
+      }).then(() => {
+        alert('삭제되었습니다.');
+        this.fnList();
+      }).catch((err) => {
         console.log(err);
-      })
+      });
     }
   }
 }

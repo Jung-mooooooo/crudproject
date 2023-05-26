@@ -14,7 +14,7 @@
               id="qTitle"
               v-model="qTitle"
               placeholder="질문란이 공백입니다."
-            />
+              readonly/>
           </div>
           <br>
           <div class="form-group">
@@ -25,7 +25,7 @@
               id="qUserId"
               v-model="qUserId"
               placeholder="작성자란이 공백입니다."
-            />
+              readonly  />
           </div>
           <br>
           <div class="form-group">
@@ -36,7 +36,7 @@
               id="qnaContent"
               v-model="qContent"
               placeholder="내용이 공백입니다."
-            >{{this.qContent}}</textarea>
+              readonly>{{this.qContent}}</textarea>
           </div>
         </form>
         <br>
