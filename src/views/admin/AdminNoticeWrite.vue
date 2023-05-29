@@ -49,7 +49,7 @@ export default {
     return {
       requestBody: this.$route.query,
       noticeNo: this.$route.query.noticeNo,
-      adminCode: 4,
+      adminCode: '',
       noticeTitle: this.$route.query.noticeTitle,
       noticeContent: this.$route.query.noticeContent,
       createAt: ''
@@ -89,6 +89,9 @@ export default {
       });
     },
     fnSave() {
+
+      console.log("세션에있는 userCode : "+sessionStorage.getItem("userCode"));      
+      this.adminCode = sessionStorage.getItem("userCode");
       const apiUrl = "/admin/AdminNoticeWrite/";
       const formData = {
         noticeNo: this.noticeNo,

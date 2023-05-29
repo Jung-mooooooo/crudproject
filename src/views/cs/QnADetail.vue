@@ -15,8 +15,8 @@
     </div>
     <div class="common-buttons">
       <br>
-      <button v-show="qnaNo === qnaRef" type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnUpdate">답글</button>&nbsp;
-      <button type="button" class="w3-button w3-round w3-red" v-on:click="fnDelete">삭제</button>&nbsp;
+      <button v-show="currentUserCode === userCode" type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnUpdate">수정</button>&nbsp;
+      <button v-show="currentUserCode === userCode" type="button" class="w3-button w3-round w3-red" v-on:click="fnDelete">삭제</button>&nbsp;
       <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
     </div>
   </div>
@@ -38,7 +38,9 @@ export default {
       userId: '',
       qnaTitle: '',
       qnaContent: '',
-      createAt: ''
+      createAt: '',
+      currentUserCode: '',
+      userCode: ''
     }
   },
   mounted() {
@@ -57,8 +59,11 @@ export default {
         this.qnaContent = res.data.qnaContent
         this.createAt = dayjs(res.data.createAt).format('YYYY년 MM월 DD일 HH:mm:ss');
         this.qnaRef = res.data.qnaRef
+        this.currentUserCode = res.data.currentUserCode
+        this.userCode = res.data.userCode
 
         console.log("답글체크용 : "+res.data.qnaNo+", "+this.qnaNo+", "+res.data.qnaRef+", "+this.qnaRef);
+        console.log("접속유저코드 : "+this.currentUserCode+", 게시글 유저코드 : "+this.userCode);
 
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {

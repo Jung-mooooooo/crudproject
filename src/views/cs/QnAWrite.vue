@@ -7,23 +7,23 @@
         <br>
         <form>
           <div class="form-group">
-            <label for="qTitle"><h5>질문</h5></label>
+            <label for="qnaTitle"><h5>질문</h5></label>
             <input
               type="text"
               class="form-control"
-              id="qTitle"
-              v-model="qTitle"
+              id="qnaTitle"
+              v-model="qnaTitle"
               placeholder="질문란이 공백입니다."
-              readonly/>
+              />
           </div>
           <br>
           <div class="form-group">
-            <label for="qUserId"><h5> 작성자</h5></label>
+            <label for="userId"><h5> 작성자</h5></label>
             <input
               type="text"
               class="form-control"
-              id="qUserId"
-              v-model="qUserId"
+              id="userId"
+              v-model="userId"
               placeholder="작성자란이 공백입니다."
               readonly  />
           </div>
@@ -34,10 +34,12 @@
               rows="10"
               class="form-control"
               id="qnaContent"
-              v-model="qContent"
+              v-model="qnaContent"
               placeholder="내용이 공백입니다."
-              readonly>{{this.qContent}}</textarea>
+              >{{this.qnaContent}}</textarea>
           </div>
+          <td><input type="radio" id="qnaPrivateY" name="qnaPrivate" v-model="qnaPrivateY" value="Y" @change="chgRadio($event)" checked/>공개 
+            &nbsp;<input type="radio" id="qnaPrivateN" v-model="qnaPrivateN" name="qnaPrivate" value="N" @change="chgRadio($event)"/>비공개</td>
         </form>
         <br>
       </div>
@@ -63,20 +65,37 @@ export default {
     return {
       requestBody: this.$route.query,
       qnaRef: this.$route.query.qnaNo,
-      csCode: 4,
-      userId: '',
-      qnaTitle: '',
-      qnaContent: '',
-      qUserId: this.$route.query.userId,
-      qTitle: this.$route.query.qnaTitle,
-      qContent: this.$route.query.qnaContent,
-      createAt: ''
+      userId: this.$route.query.userId,
+      qnaTitle: this.$route.query.qnaTitle,
+      qnaContent: this.$route.query.qnaContent,
+      createAt: '',
+      qnaPrivate: 'Y',
+      qnaPrivateY: 'Y',
+      qnaPrivateN: '',
+      qnaYn: '',
+      userCode: ''
     };
   },
   mounted() {
     console.log("this.qnaRef : " + this.qnaRef);
+    this.fnGetView();
   },
   methods: {
+    fnGetView() {
+      console.log("여기는 사용자 작성화면");
+      axios.get("/cs/QnAUserCheck", {})
+      .then((res) => {
+        this.userId = res.data.userId
+
+        console.log("현재 로그인한 아이디 : "+res.data.userId);
+        console.log("도착한 응답 1 : "+res.data);
+
+      }).catch((err) => {
+        if (err.message.indexOf('Network Error') > -1) {
+          alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')
+        }
+      })
+    },
     fnList() {
       delete this.requestBody.qnaNo;
       this.$router.push({
@@ -84,16 +103,25 @@ export default {
         query: this.requestBody
       });
     },
+    chgRadio(event){
+      var selected = event.target.value;
+      this.qnaPrivate = selected;
+      console.log("selected : ", selected);
+      console.log("this.qnaPrivate : ", this.qnaPrivate);
+    },
     fnSave() {
-      console.log("Do fnSave()");
+      console.log("Do fnSave1()");
+      this.userCode = sessionStorage.getItem("userCode");
       const apiUrl = "/cs/QnAWrite/";
       const formData = {
-        qnaRef: this.qnaRef,
+        userId: this.userId,
         qnaTitle: this.qnaTitle,
-        qnaContent: this.qnaContent
+        qnaContent: this.qnaContent,
+        qnaPrivate: this.qnaPrivate,
+        userCode: this.userCode
       };
 
-      if (this.qnaRef !== undefined) {
+      if (this.qnaTitle.length !== 0 && this.qnaContent.length !== 0) {
         console.log("답변글 작성 요청 발송")
         // 글 추가
         this.$axios

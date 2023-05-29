@@ -61,7 +61,7 @@ export default {
       requestBody: this.$route.query,
       faqNo: this.$route.query.faqNo,
       faqTitle: this.$route.query.faqTitle,
-      adminCode: '4',
+      adminCode: '',
       faqContent: this.$route.query.faqContent,
       createAt: '',
       faqCat: ''
@@ -98,6 +98,14 @@ export default {
       this.$router.go(-1)
     },
     fnSave() {
+      if(this.faqCat.length < 1 || this.faqTitle.length < 1 || this.faqContent < 1) {
+        alert('카테고리, 제목, 답변을 확인해주세요.');
+        return;
+      }
+      // console.log("FAQ 세션에있는 userCode : "+sessionStorage.getItem("userPw"));      
+      console.log("FAQ 세션에있는 userCode : "+sessionStorage.getItem("userCode"));      
+      this.adminCode = sessionStorage.getItem("userCode");
+
       let apiUrl = "/admin/AdminFAQWrite/"
       this.form = {     //form data 생성하여 사용.
         "faqNo": this.faqNo,    //v-model 형태로

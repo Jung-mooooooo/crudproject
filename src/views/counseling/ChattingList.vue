@@ -4,7 +4,9 @@
     <h1>오늘 함께 이야기를 나누고 싶은 분을 수락해주세요.</h1>
     <div class="todayEmotion">
       <div class="todayEmotion_header">오늘 나의 기분</div>
-      <div class="todayEmotion_body">😀</div>
+      <div class="todayEmotion_body">
+        {{ emotion }}
+      </div>
     </div>
     <div class="chat_list_header">랜덤채팅 가능 유저 목록</div>
     <br />
@@ -14,22 +16,22 @@
         <th>채팅요청</th>
       </tr>
 
-      <!-- <tr v-if="!user || (Array.isArray(users) && users.length === 0)">
+      <tr v-if="!user || (Array.isArray(users) && users.length === 0)">
         <td>현재 채팅 가능한 회원이 없습니다.</td>
-      </tr> -->
-
-      <!-- <tr v-else v-for="user in users" :key="user.userName"> -->
-      <tr>
-        <td align="center">user01</td>
-        <td align="center"><button type="button">요청</button></td>
       </tr>
-      <tr>
+
+      <tr v-else v-for="user in users" :key="user">
+        <td align="center">{{ user.userName }}</td>
+        <td align="center"><button type="button">요청</button></td>
+
+        <!-- <tr>
         <td align="center">user02</td>
         <td align="center"><button type="button">요청</button></td>
       </tr>
       <tr>
         <td align="center">user03</td>
         <td align="center"><button type="button">요청</button></td>
+      </tr> -->
       </tr>
     </table>
   </div>
@@ -39,18 +41,22 @@ import axios from "axios";
 import store from "@/store";
 let userCode = sessionStorage.getItem("userCode");
 let userName = sessionStorage.getItem("userName");
+let emotion = null;
 export default {
   name: "ChattingList",
   data() {
     return {
       userCode: "",
       userName: "",
+      emotion: "",
+      users: {},
     };
   },
   created() {
     this.chatUserSave();
   },
   mounted() {
+    this.viewEmotion();
     this.chatUserList();
   },
   beforeRouteLeave(to, from, next) {
@@ -63,6 +69,7 @@ export default {
     }
   },
   methods: {
+    //유저 입장
     chatUserSave() {
       let apiUrl = "/chatuser";
       this.form = {
@@ -79,8 +86,9 @@ export default {
         })
         .catch((err) => console.log(err));
     },
+    //유저 퇴장
     chatUserDel() {
-      let apiUrl = "/chatuser/delete/" + sessionStorage.getItem("userCode");
+      let apiUrl = "/chatuser/delete/" + userCode;
       alert(sessionStorage.getItem("userCode"));
       axios
         .delete(apiUrl, {})
@@ -91,12 +99,33 @@ export default {
           console.log(err);
         });
     },
+    //유저 채팅 리스트 출력
     chatUserList() {
-      let apiUrl = "/chatuser";
+      let apiUrl = "/chatuser/list";
       axios
         .get(apiUrl)
-        .then((res) => {})
+        .then((res) => {
+          this.users = res.data;
+          console.log(this.users);
+        })
         .catch((err) => console.log(err));
+    },
+
+    //유저 공통 감정현황 출력
+    viewEmotion() {
+      console.log("viewEmotion userCode : " + this.userCode);
+      console.log(
+        "viewEmotion userCode - session : " + sessionStorage.getItem("userCode")
+      );
+      axios
+        .get("/emotion/" + sessionStorage.getItem("userCode"))
+        .then((res) => {
+          console.log(res.data);
+          this.users = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
