@@ -292,6 +292,12 @@ export default {
   mounted() {},
 
   methods: {
+    home() {
+      this.$router.push({
+        name: "MemberLogin",
+      });
+    },
+
     joinForm() {
       let errorcheck = document.getElementsByClassName("errorBox");
       let apiUrl = "/enroll";
@@ -309,14 +315,12 @@ export default {
           console.log(res);
           this.validate = res.data;
           // status: 200
-          // if (
-          //   errorcheck.value == null ||
-          //   (errorcheck.value == "" && res.data == "saveOk")
-          // ) {
-          //   this.$router.push({ name: "MemberLogin" });
-          // } else {
-          //   alert("필수조건을 충족하여 회원가입을 진행해주세요.");
-          // }
+          if (res.status == 200 && res.data == "saveOk") {
+            this.home();
+            // this.$router.push({ name: "MemberLogin" });
+          } else {
+            alert("필수조건을 충족하여 회원가입을 진행해주세요.");
+          }
         })
         .catch((error) => console.log(error));
     },
