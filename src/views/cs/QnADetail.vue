@@ -84,7 +84,7 @@ export default {
         path: './QnAWrite',
         query: this.requestBody 
       })
-      console.log("디테일뷰의 this.requestBody.qnaNo : " + this.requestBody.qnaNo);
+      
     },
     fnDelete() {
       if (!confirm("삭제하시겠습니까?")) return;

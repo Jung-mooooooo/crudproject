@@ -58,13 +58,15 @@ import dayjs from 'dayjs';
 import axios from "axios"
 axios.defaults.withCredentials = true;
 import QnAWrite from '@/views/cs/QnAWrite.vue'
+import { isIfStatement } from '@babel/types';
 export default {
   name: 'QnAWrite',
   components: { QnAWrite, dayjs },
   data() {
     return {
       requestBody: this.$route.query,
-      qnaRef: this.$route.query.qnaNo,
+      qnaNo: this.$route.query.qnaNo,
+      qnaRef: this.$route.query.qnaRef,
       userId: this.$route.query.userId,
       qnaTitle: this.$route.query.qnaTitle,
       qnaContent: this.$route.query.qnaContent,
@@ -115,13 +117,20 @@ export default {
       const apiUrl = "/cs/QnAWrite/";
       const formData = {
         userId: this.userId,
+        qnaNo: this.qnaNo,
+        qnaRef: this.qnaRef,
         qnaTitle: this.qnaTitle,
         qnaContent: this.qnaContent,
         qnaPrivate: this.qnaPrivate,
         userCode: this.userCode
       };
-
-      if (this.qnaTitle.length !== 0 && this.qnaContent.length !== 0) {
+      console.log("qnaNo : "+formData.qnaNo+", qnaRef : "+formData.qnaRef);
+      if (this.qnaTitle.length == 0 || this.qnaContent.length == 0){
+        alert("제목과 내용을 확인해주세요.");
+        return;
+      }
+      
+      if( this.qnaNo == undefined ) {
         console.log("답변글 작성 요청 발송")
         // 글 추가
         this.$axios
@@ -140,10 +149,11 @@ export default {
               alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.');
             }
           });
-      } else {
+      } else if(this.qnaNo > 0){
         // 글 수정
+        console.log("글 수정할게요 : "+this.qnaNo);
         this.$axios
-          .patch(apiUrl, formData)
+          .post(apiUrl, formData)
           .then((res) => {
             alert('글이 저장되었습니다.');
             this.fnView(this.$route.query.qnaNo);

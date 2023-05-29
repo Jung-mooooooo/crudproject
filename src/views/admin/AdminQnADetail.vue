@@ -75,6 +75,7 @@ export default {
       this.requestBody.userId = this.userId;
       this.requestBody.qnaTitle = this.qnaTitle;
       this.requestBody.qnaContent = this.qnaContent;
+      this.requestBody.qnaRef = this.qnaNo;
       this.$router.push({
         path: './AdminQnAWrite',
         query: this.requestBody 
