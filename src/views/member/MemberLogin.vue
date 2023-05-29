@@ -131,15 +131,24 @@ export default {
   },
   methods: {
     changepage() {
-      this.$router.push({
+      console.log("changePage userId :"+sessionStorage.getItem("userId"));
+      if(sessionStorage.getItem("userId").indexOf("admin")>=0){
+        this.$router.push({
+        path: "/admin",
+      });        
+      }else{
+        this.$router.push({
         path: "/loginhome",
-      });
+      });        
+      }
+
     },
     loginok(){
       if(this.userId !== undefined){
         this.$axios.get("/member/info/" + this.userId)
         .then((res) => {
           console.log(res.data);
+          console.log(this.requestBody.permit);
           this.requestBody = res.data
           store.commit('setToken', res.data)
           store.commit('setUserCode', res.data)
@@ -184,6 +193,37 @@ export default {
         });
       }
     },
+    adminLoginOk(memberId){
+      this.$axios.get("/member/adminInfo/" + memberId)
+        .then((res) => {
+          console.log(res.data);
+          this.requestBody = res.data;
+          // store.commit('setToken', res.data)
+          // store.commit('setUserCode', res.data)
+          localStorage.setItem("userCode", this.requestBody.adminCode);
+          localStorage.setItem("userName", this.requestBody.adminName);
+          sessionStorage.setItem('accessToken', res.data);
+          sessionStorage.setItem("userCode", this.requestBody.adminCode)
+          sessionStorage.setItem("userId", this.requestBody.adminId)
+          sessionStorage.setItem("userName", this.requestBody.adminName)
+          sessionStorage.setItem("phone", this.requestBody.phone)
+          sessionStorage.setItem("email", this.requestBody.email)
+          sessionStorage.setItem("userPw", this.requestBody.adminPwd)
+          sessionStorage.setItem("auth", this.requestBody.auth)
+          console.log(this.$store.getters.userCode);
+          console.log(sessionStorage.getItem("userCode"));
+          window.alert('관리자로 로그인 하였습니다.');
+          console.log(this.store);
+          console.log(this.sessionStorage);
+          console.log(store.commit('setToken', res.data));
+          this.changepage();
+          console.log(res);
+        
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     login() {
       console.log("this.userId " + this.memberId);
       console.log("this.userPw " + this.memberPw);
@@ -207,14 +247,31 @@ export default {
             // store.commit('setToken', res.data)
             // sessionStorage.setItem('accessToken', res.data);
             // window.alert('로그인 하였습니다.');
+            console.log(res.data);
+            if(res.data == "이용제한 고객입니다."){
+              alert("사용제한된 사용자입니다. 관리자에게 문의해주세요.");
+              this.$router.replace({
+                path: "/",
+              });
+              return;
+            }
             localStorage.setItem("token", res.data.token);
             sessionStorage.setItem("token", res.data.token);
             console.log(localStorage);
             console.log(sessionStorage);
             // this.$router.push({name: 'PageHomeLogin'})
             this.userId = this.memberId
-            this.loginok();
-
+            //this.loginok();
+            console.log(this.memberId.indexOf("admin")>=0);
+            if(this.memberId.indexOf("admin")>=0){
+              console.log("Admin login");
+              this.adminLoginOk(this.memberId);
+            }else{
+              console.log("member login");
+              this.loginok();
+            }
+            
+            /**/
           }
         })
 
@@ -223,8 +280,8 @@ export default {
           window.alert('로그인에 실패하였습니다.')
         });
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>

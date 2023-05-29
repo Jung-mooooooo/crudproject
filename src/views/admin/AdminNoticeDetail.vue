@@ -4,7 +4,7 @@
     <div class="board-contents">
       <h3>{{noticeTitle}}</h3><br>
       <div>
-        <b>작성자 : <span>관리자</span></b>
+        <b>작성자 : <span>{{adminId}}</span></b>
         <br><br>
         <b>작성일시 : <span>{{createAt}}</span></b>
         <br><br>
@@ -36,6 +36,7 @@ export default {
       noticeNo: this.$route.query.noticeNo,
       noticeTitle: '',
       noticeContent: '',
+      adminId: '',
       createAt: ''
     }
   },
@@ -49,6 +50,7 @@ export default {
         params: this.requestBody
       }).then((res) => {
         this.noticeNo = res.data.noticeNo
+        this.adminId = res.data.adminId
         this.noticeTitle = res.data.noticeTitle
         this.noticeContent = res.data.noticeContent
         this.createAt = dayjs(res.data.createAt).format('YYYY년 MM월 DD일 HH:mm:ss');

@@ -88,7 +88,7 @@ export default {
     return {
       requestBody: this.$route.query,
       qnaRef: this.$route.query.qnaNo,
-      adminCode: 4,
+      adminCode: '',
       userId: '',
       qnaTitle: '',
       qnaContent: '',
@@ -110,12 +110,14 @@ export default {
       });
     },
     fnSave() {
-      console.log("Do fnSave()");
+      console.log("Do fnSave()"+this.adminCode+", "+sessionStorage.getItem("userCode"));
+      this.adminCode = sessionStorage.getItem("userCode");
       const apiUrl = "/admin/AdminQnAWrite/";
       const formData = {
         qnaRef: this.qnaRef,
         qnaTitle: this.qnaTitle,
-        qnaContent: this.qnaContent
+        qnaContent: this.qnaContent,
+        adminCode: this.adminCode
       };
 
       if (this.qnaRef !== undefined) {

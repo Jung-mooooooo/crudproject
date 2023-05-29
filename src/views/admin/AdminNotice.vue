@@ -36,8 +36,7 @@
         <tr class="KOTRA-fontsize-80" v-for="(row, noticeNo) in list" :key="noticeNo">  
         <td>{{ row.noticeNo }}</td>
         <td><a v-on:click="fnView(`${row.noticeNo}`)">{{ row.noticeTitle }}</a></td>
-        <!-- <td>{{ row.adminCode }}</td> -->
-        <td>관리자</td>
+        <td>{{ row.adminId }}</td>
         <td>{{formatDate(row.createAt)}}</td>
         <td>{{row.noticeReadCount}}</td>
        </tr>

@@ -20,9 +20,9 @@
 
 <br>
 
-  <div class="common-buttons" style="text-align: left; position: relative; left: 1365px;">
-        <button type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
-  </div>
+<div class="common-buttons" style="text-align: left; position: relative; left: 1365px;">
+  <button v-show="currentUserCode !== null" type="button" class="btn btn-outline-primary" v-on:click="fnWrite">등록</button>
+</div>
 
   <table  class="rwd-table">
         <tbody>
@@ -32,14 +32,16 @@
           <th>작성자</th>
           <th>등록일시</th>
           <th>조회수</th>
+          <th>공개여부</th>
         </tr>
 
         <tr class="KOTRA-fontsize-80" v-for="(row, qnaNo) in list" :key="qnaNo">  
         <td>{{ row.qnaNo }}</td>
-        <td><a v-on:click="fnView(`${row.qnaNo}`)">{{ row.qnaTitle }}</a></td>
+        <td><a v-on:click="fnView(`${row.qnaNo}`,`${row.qnaPrivate}`,`${row.userCode}`)">{{ row.qnaTitle }}</a></td>
         <td>{{ row.userId }}</td>
         <td>{{ formatDate(row.createAt)}}</td>
         <td>{{ row.qnaReadCount }}</td>
+        <td>{{ row.qnaPrivate }}</td>
        </tr>
       </tbody>
     </table>
@@ -78,6 +80,7 @@
 import axios from "axios"
 axios.defaults.withCredentials = true;
 import QnA from '@/views/cs/QnA.vue'
+import { emptyStatement } from "@babel/types";
 export default {    //export : 내보내기 -> 외부에서 사용할 수 있게 설정(그 설정에서 사용하는 data)
   name: 'QnA',
   components: {QnA},
@@ -86,6 +89,7 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       requestBody: {}, //리스트 페이지 데이터전송
       list: {}, //리스트 데이터
       no: '', //게시판 숫자처리
+      currentUserCode: 0, // 접속중인 유저코드
       paging: {
         block: 0,
         endPage: 0,
@@ -148,9 +152,12 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
           this.list = res.data.data
           this.paging = res.data.pagination
           this.no = this.paging.totalListCnt - ((this.paging.page - 1) * this.paging.pageSize)
+          if(res.data.currentUserCode != null ) this.currentUserCode = res.data.currentUserCode
+          else this.currentUserCode = null
           console.log("토탈 : "+this.paging.totalListCnt);
           console.log("페이지 : "+this.paging.page);
           console.log("페이지사이즈 : "+this.paging.pageSize);
+          console.log("유저코드 : "+this.currentUserCode);
         }
 
       }).catch((err) => {   //erorr callback
@@ -162,13 +169,22 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       })
 
     },
-    fnView(qnaNo) { //글번호를 전달 후 router에 push. path: url, query: parameter
+    fnView(qnaNo, qnaPrivate, userCode) { //글번호를 전달 후 router에 push. path: url, query: parameter
+      console.log("currentUserCode : "+this.currentUserCode+", userCode : "+userCode);
+      console.log("true or false : "+(this.currentUserCode !== Number(userCode)));
+      if(qnaPrivate == 'N' && // 비공개 이면서, 본인이 아니면 X
+      this.currentUserCode !== Number(userCode)){
+        alert('본인만 읽을 수 있음');
+        return ;
+      }
+      
       console.log("fnView : "+qnaNo);
       this.requestBody.qnaNo = qnaNo;
       this.$router.push({
         path: './QnADetail', //같은 폴더에 있다 = ./
         query: this.requestBody
       })
+
     },
     formatDate: function(datetime) {
           let date = new Date(datetime);
