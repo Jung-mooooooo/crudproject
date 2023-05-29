@@ -206,7 +206,8 @@
         this.showDeleteButtons = !this.showDeleteButtons;
     },
     saveNewRow() {
-        this.rows.unshift({...this.newRow, wfNo: this.rows[0].wfNo + 1});
+        const newWfNo = this.rows.length > 0 ? this.rows[0].wfNo + 1 : 1;
+        this.rows.unshift({...this.newRow, wfNo: newWfNo});
         this.showNewRow = false;
         let apiUrl = '/welfarefacility'
         this.form = {

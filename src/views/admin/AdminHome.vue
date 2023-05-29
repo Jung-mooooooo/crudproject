@@ -9,9 +9,6 @@
 <br>
   <div style="display: flex;">
     <div style="width: 30%; height: 50%; text-align: center;">기간</div>
-    <!-- <c:set var="now" value="<%=new java.util.Date()%>"/>
-    <c:set var="sys"><fmt:formatDate value="${now}" pattern="yyyy"/></c:set>
-    <input style="width: 60%; text-align: center;" type="month" value="년 / 월"/> -->
     <input
           style="width: 30%; height: 50%; text-align: center;"
           type="month"
@@ -36,35 +33,46 @@
    
 <div class= "counting_emotion">
   <h3>감정 현황</h3>
-  <div v-for="(item, emotionNo) in items" :key="{emotionNo}">
+  <br>
+  <div style="display: flex;">
+    <div style="width: 30%; height: 50%; text-align: center;">기간</div>
+    <input
+          style="width: 30%; height: 50%; text-align: center;"
+          type="month"
+          v-model="selectMonth"
+          @change="emotionCountList"
+        />
+ </div>
   <div>
     <div class="title">슬프다</div>
-		<div v-if="item.emotionCat = sad">{{item.ratioPercentage}}</div> 
+    <div id="content">{{ sadAvg }} %</div>
     <div class="title">불안하다</div>
-		<div v-if="item.emotionCat = anxious">{{item.ratioPercentage}}</div> 
+    <div id="content">{{ anxiousAvg }} %</div>
   </div>
   <div>
     <div class="title">무섭다</div>
-		<div>30%</div>
+    <div id="content">{{ scaryAvg }} %</div>
     <div class="title">외롭다</div>
-		<div>40%</div> 
+    <div id="content">{{ lonelyAvg }} %</div>
   </div>
   <div>
-    <div class="title">무기력하다</div>
-		<div>50%</div> 
+    <div class="title">피곤하다</div>
+    <div id="content">{{ tiredAvg }} %</div>
     <div class="title">화가나다</div>
-		<div>60%</div> 
+    <div id="content">{{ angryAvg }} %</div>
   </div>
   <div>
     <div class="title">행복하다</div>
-		<div>70%</div> 
+    <div id="content">{{ happyAvg }} %</div>
     <div class="title">신나다</div>
-		<div>80%</div> 
+    <div id="content">{{ excitedAvg }} %</div>
   </div>
   </div>
 </div>
-
-</div>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -109,7 +117,7 @@
 
 	<tr align="center" v-for="(row, qnaNo) in qnalist" :key="qnaNo">
 		<td>{{ row.qnaNo }}</td>
-    <td>{{ row.qnaTitle }}</td>
+    <td><a v-on:click="fnView(`${row.qnaNo}`)">{{ row.qnaTitle }}</a></td>
     <td>{{ row.userId }}</td>
     <td>{{ row.createAt }}</td>
 	</tr>
@@ -123,18 +131,28 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      //requestBody: {}, //리스트 페이지 데이터전송
+      requestBody: {}, //리스트 페이지 데이터전송
       userlist: {},
       qnalist: {}, //리스트 데이터
       visitorsT: 0,
       visitorsM: 0,
       visitorsAvg: 0,
+      angryAvg: 0,
+      anxiousAvg: 0,
+      excitedAvg: 0,
+      happyAvg: 0,
+      sadAvg: 0,
+      scaryAvg: 0,
+      tiredAvg: 0,
+      lonelyAvg: 0,
+      selectMonth: null,
       selectedMonth: null,
     };
   },
   mounted() {
     this.$axios = axios;
     this.logCountList();
+    this.emotionCountList();
     this.userList();
     this.qnaList();
   },
@@ -176,6 +194,35 @@ export default {
           }
         });
     },
+    emotionCountList() {
+      if (!this.selectedMonth) {
+        return;
+      }
+      const [year, month] = this.selectMonth.split("-");
+
+      setInterval(() => {
+        this.$axios.get("/admin/emotion", {
+          params: {
+              year,
+              month,
+          },
+          })
+          .then((res) => {
+            // 받은 응답 데이터를 변수에 저장
+            const jsonData = res.data;
+
+            // 데이터를 Vue 데이터에 할당
+            this.angryAvg = jsonData.angryAvg;
+            this.anxiousAvg = jsonData.anxiousAvg;
+            this.excitedAvg = jsonData.excitedAvg;
+            this.happyAvg = jsonData.happyAvg;
+            this.sadAvg = jsonData.sadAvg;
+            this.scaryAvg = jsonData.scaryAvg;
+            this.tiredAvg = jsonData.tiredAvg;
+            this.lonelyAvg = jsonData.lonelyAvg;
+          })
+      }, 1000);
+    },
     qnaList(){
       this.$axios.get("/admin/qnalist")
         .then((res) => {
@@ -189,6 +236,14 @@ export default {
           }
         });
     },
+    fnView(qnaNo) { //글번호를 전달 후 router에 push. path: url, query: parameter
+      console.log("fnView : "+ qnaNo);
+      this.requestBody.qnaNo = qnaNo;
+      this.$router.push({
+        path: './AdminQnADetail', //같은 폴더에 있다 = ./
+        query: this.requestBody
+      })
+    },
   },
 };
 
@@ -196,6 +251,9 @@ export default {
 
 
 <style scoped>
+/* template {
+    font-family: 'IBMPlexSansKR-Regular', sans-serif;
+} */
 
 .title{
   background: gold;
