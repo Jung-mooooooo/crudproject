@@ -15,8 +15,9 @@
         &nbsp;
         <input type="text" v-model="search_value" @keyup.enter="fnPage()" />
         &nbsp;
-        <button @click="fnPage()">검색</button>
+        <button class="bt" @click="fnPage()">검색</button>
       </div>
+      <br>
       <table class="rwd-table">
         <tbody>
           <tr>
@@ -34,6 +35,7 @@
           </tr>
         </tbody>
       </table>
+      <div style="display: flex; justify-content : center;">
       <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item" :class="{ disabled: paging.page === 1 }">
@@ -59,6 +61,7 @@
       </li>
     </ul>
   </nav>
+  </div>
   </div>
 
     <div class="map">
@@ -283,6 +286,11 @@ table {
   margin: auto;
   justify-content: center;
   /* height: 70%; */
+}
+
+.bt {
+  background: #5B86EF;
+  color: #fff;
 }
 
 .rwd-table {
