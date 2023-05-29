@@ -40,6 +40,7 @@ export default {
       qnaContent: '',
       createAt: '',
       currentUserCode: '',
+      currentUserId: '',
       userCode: ''
     }
   },
@@ -61,10 +62,12 @@ export default {
         this.qnaRef = res.data.qnaRef
         this.currentUserCode = res.data.currentUserCode
         this.userCode = res.data.userCode
+        this.currentUserId = res.data.currentUserId
+        sessionStorage.setItem("userId", this.requestBody.userId)
 
         console.log("답글체크용 : "+res.data.qnaNo+", "+this.qnaNo+", "+res.data.qnaRef+", "+this.qnaRef);
         console.log("접속유저코드 : "+this.currentUserCode+", 게시글 유저코드 : "+this.userCode);
-
+        console.log("접속유저아이디 : "+sessionStorage.getItem("userId")+", 게시글 유저아이디 : "+this.userId);
       }).catch((err) => {
         if (err.message.indexOf('Network Error') > -1) {
           alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.')

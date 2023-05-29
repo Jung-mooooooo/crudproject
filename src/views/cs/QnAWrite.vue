@@ -149,14 +149,14 @@ export default {
               alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.');
             }
           });
-      } else if(this.qnaNo > 0){
+      } else if (this.qnaNo > 0) {
         // 글 수정
-        console.log("글 수정할게요 : "+this.qnaNo);
+        console.log("글 수정할게요 : " + this.qnaNo);
         this.$axios
           .post(apiUrl, formData)
           .then((res) => {
             alert('글이 저장되었습니다.');
-            this.fnView(this.$route.query.qnaNo);
+            this.$router.replace('/cs/QnA');
           })
           .catch((err) => {
             // 오류 처리
