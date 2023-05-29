@@ -197,7 +197,8 @@ export default {
           headers: {
             'Content-Type': 'application/json',
             Authorization: 'token',
-          }
+          },
+        }
         )
         .then((res) => {
           // console.log(res)
