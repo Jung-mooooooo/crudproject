@@ -37,14 +37,43 @@
             </ul>
           </div>
         </li>
-        <li class="s_tap"><router-link to="/">로그인</router-link></li>
-        <li class="s_tap"><router-link to="/">회원가입</router-link></li>
-
+        <!-- <li class="s_tap"><router-link to="/">로그인</router-link></li>
+        <li class="s_tap"><router-link to="/">회원가입</router-link></li> -->
+        <div v-if="!$store.state.token">
+          <li class="s_tap">
+            <router-link to="/member/login">로그인</router-link>
+          </li>
+          <li class="s_tap">
+            <router-link to="/member/enroll">회원가입</router-link>
+          </li>
+        </div>
+        <div v-else>
+          <li class="s_tap">
+            <button type="button" @click="logout()">로그아웃</button>
+          </li>
+        </div>
       </div>
     </header>
   </div>
   <hr />
 </template>
+<script>
+import store from "@/store";
+import router from "@/router/index";
+
+export default {
+  methods: {
+    logout(){
+      store.commit('setToken', null);
+      sessionStorage.removeItem('accessToken');
+      sessionStorage.clear();
+      localStorage.clear();
+      alert('로그아웃 하셨습니다.');
+      router.push({path: '/'})
+    }
+  }
+}
+</script>
 
 
 <style scoped>

@@ -5,7 +5,6 @@
   <h2>회원관리</h2>
   <br>  
 
-
   </div>
   <table  class="rwd-table">
         <tbody>
@@ -13,13 +12,12 @@
             <th>아이디</th>
             <th>이름</th>
             <th>전화번호</th>
-            <th>생일</th>
             <th>이메일</th>
             <th>가입일</th>
             <th>로그인여부</th>
         </tr>
 
-        <tr class="KOTRA-fontsize-80">
+        <!-- <tr class="KOTRA-fontsize-80">
             <td>coflsl123</td>
             <td>심채린</td>
             <td>010-1234-5678</td>
@@ -27,123 +25,57 @@
             <td>coflsl@gmail.com</td>
             <td>2023-04-01</td>
             <td><input type="radio" name="chk1" checked>가능 &nbsp;<input type="radio" name="chk1">제한</td>
-        </tr>
-          
-        <tr class="KOTRA-fontsize-80">
-            <td>wjdan123</td>
-            <td>허정무</td>
-            <td>010-1234-5678</td>
-            <td>1998.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk2" checked>가능 &nbsp;<input type="radio" name="chk2">제한</td>
-        </tr>
-          
-        <tr class="KOTRA-fontsize-80">
-            <td>gusdbwd1234</td>
-            <td>현유정</td>
-            <td>010-1234-5678</td>
-            <td>1999.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk3" checked>가능 &nbsp;<input type="radio" name="chk3">제한</td>
-        </tr>
-          
-        <tr class="KOTRA-fontsize-80">
-            <td>dhghkwjd123</td>
-            <td>오화정</td>
-            <td>010-1234-5678</td>
-            <td>2000.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk4" checked>가능 &nbsp;<input type="radio" name="chk4">제한</td>
-        </tr>
-           
-         <tr class="KOTRA-fontsize-80">
-            <td>wodks12</td>
-            <td>이재안</td>
-            <td>010-1234-5678</td>
-            <td>1999.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk5" checked>가능 &nbsp;<input type="radio" name="chk5">제한</td>
-        </tr>
-
-         <tr class="KOTRA-fontsize-80">
-            <td>rornfl</td>
-            <td>개구리</td>
-            <td>010-1234-5678</td>
-            <td>1999.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk6" checked>가능 &nbsp;<input type="radio" name="chk6">제한</td>
-        </tr>
-
-         <tr class="KOTRA-fontsize-80">
-            <td>coflsl123</td>
-            <td>채리닝</td>
-            <td>010-1234-5678</td>
-            <td>1996.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk7" checked>가능 &nbsp;<input type="radio" name="chk7">제한</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-            <td>coflsl123</td>
-            <td>채린님</td>
-            <td>010-1234-5678</td>
-            <td>1996.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk8" checked>가능 &nbsp;<input type="radio" name="chk8">제한</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-            <td>coflsl123</td>
-            <td>김채린</td>
-            <td>010-1234-5678</td>
-            <td>1996.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk9" checked>가능 &nbsp;<input type="radio" name="chk9">제한</td>
-        </tr>
-
-        <tr class="KOTRA-fontsize-80">
-            <td>coflsl123</td>
-            <td>이채린</td>
-            <td>010-1234-5678</td>
-            <td>1996.04.07</td>
-            <td>coflsl@gmail.com</td>
-            <td>2023-04-01</td>
-            <td><input type="radio" name="chk10" checked>가능 &nbsp;<input type="radio" name="chk10">제한</td>
-        </tr>
-
+        </tr> -->
+        <tr class="KOTRA-fontsize-80" v-for="(row, userCode) in list" :key="userCode">  
+        <td>{{ row.userId }}</td>
+        <td>{{ row.userName }}</td>
+        <td>{{ row.phone }}</td>
+        <td>{{row.email}}</td>
+        <td>{{formatDate(row.enrollDate)}}</td>
+        <!-- <td><input type="radio" :name="'permit' + userCode" value="able" @change="submitMember($event)"/>가능 &nbsp;<input type="radio" :name="'permit' + userCode" value="unable" @change="permitMember($event)"/>제한</td> -->
+        <td v-show="row.permit=='Y'" @click="permitMember(row.userCode,'N')" >가능</td><td v-show="row.permit=='N'" @click="permitMember(`${row.userCode}`,'Y')">제한</td>
+      </tr>
         </tbody>
     </table>
   <br><br>
   
-  <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">5</a></li>
-    <li class="page-item"><a class="page-link" href="#">6</a></li>
-    <li class="page-item"><a class="page-link" href="#">7</a></li>
-    <li class="page-item"><a class="page-link" href="#">8</a></li>
-    <li class="page-item"><a class="page-link" href="#">9</a></li>
-    <li class="page-item"><a class="page-link" href="#">10</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
+ <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" :class="{ disabled: paging.page === 1 }">
+        <a class="page-link" href="javascript:;" @click="fnPage(1)">&lt;&lt;</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === 1 }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.page - 1)">&lt;</a>
+      </li>
+      <li v-if="paging.totalBlockCnt > 10" class="page-item">
+        <a class="page-link" href="javascript:;">...</a>
+      </li>
+      <li v-for="n in paginavigation()" :class="{ active: paging.page === n }" :key="n" class="page-item">
+        <a class="page-link" href="javascript:;" @click="fnPage(n)">{{ n }}</a>
+      </li>
+      <li v-if="paging.totalBlockCnt > 10 && paging.page < paging.totalBlockCnt" class="page-item">
+        <a class="page-link" href="javascript:;">...</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.page + 1)">&gt;</a>
+      </li>
+      <li class="page-item" :class="{ disabled: paging.page === paging.totalPageCnt }">
+        <a class="page-link" href="javascript:;" @click="fnPage(paging.totalPageCnt)">&gt;&gt;</a>
+      </li>
+    </ul>
+  </nav>
+
  
 </template>
 
 <script>
+  import dayjs from 'dayjs';
+  import axios from "axios"
+  axios.defaults.withCredentials = true;
+  import AdminMemberManage from '@/views/admin/AdminMemberManage.vue'
 export default {    //export : 내보내기 -> 외부에서 사용할 수 있게 설정(그 설정에서 사용하는 data)
+  name: 'AdminMemberManage',
+    components: {AdminMemberManage, dayjs},
   data() { //변수생성
     return {    //단순 list view인 경우, idx없이 넘어감.
       requestBody: {}, //리스트 페이지 데이터전송
@@ -195,17 +127,19 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       }
         //select, insert, update, delete는 $axios.메소드명 <= 에 따라 달라짐. get, post, pach, delete
         //해당 내용에 대한 service로의 연결 요청이다.
-      this.$axios.get(this.$serverUrl + "/board/list", {
+      this.$axios.get("/admin/AdminMemberManager", {
         params: this.requestBody,
         headers: {}
       }).then((res) => {      //.then(res) <= success callback임
 
        // this.list = res.data  //서버에서 데이터를 목록으로 보내므로 바로 할당하여 사용할 수 있다.
-
-       if (res.data.result_code === "OK") {
+        console.log("result_code : "+res.data.resultCode);
+      
+       if (res.data.resultCode === "OK") {
           this.list = res.data.data
           this.paging = res.data.pagination
           this.no = this.paging.total_list_cnt - ((this.paging.page - 1) * this.paging.page_size)
+          console.log("회원관리 this.list : " + this.list);
         }
 
       }).catch((err) => {   //erorr callback
@@ -231,6 +165,32 @@ export default {    //export : 내보내기 -> 외부에서 사용할 수 있게
       }
 
       this.fnGetList()
+    },
+    permitMember(userCode,mode){
+      console.log("permitMember : "+userCode+", "+mode);
+      const apiUrl = "/admin/PermitMember/";
+      const formData = {
+        userId: mode,
+        userCode: userCode
+      };
+
+      console.log("send permit update req")
+      this.$axios
+        .put(apiUrl, formData)
+        .then((res) => {
+          console.log("permit update complete.")
+          this.fnGetList()
+
+        })
+        .catch((err) => {
+          // 오류 처리
+          if (err.message.indexOf('Network Error') > -1) {
+            alert('네트워크가 원활하지 않습니다.\n잠시 후 다시 시도해주세요.');
+          }
+        });
+    },
+    formatDate: function(datetime) {
+          return dayjs(datetime).format('YYYY년 MM월 DD일 HH:mm:ss');
     },
   }
 }
