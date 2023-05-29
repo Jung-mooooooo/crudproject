@@ -15,8 +15,8 @@
     </div>
     <div class="common-buttons">
       <br>
-      <button v-show="currentUserCode === userCode" type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnUpdate">수정</button>&nbsp;
-      <button v-show="currentUserCode === userCode" type="button" class="w3-button w3-round w3-red" v-on:click="fnDelete">삭제</button>&nbsp;
+      <button v-show="currentUserId === userId" type="button" class="w3-button w3-round w3-blue-gray" v-on:click="fnUpdate">수정</button>&nbsp;
+      <button v-show="currentUserId === userId" type="button" class="w3-button w3-round w3-red" v-on:click="fnDelete">삭제</button>&nbsp;
       <button type="button" class="w3-button w3-round w3-gray" v-on:click="fnList">목록</button>
     </div>
   </div>
@@ -62,9 +62,8 @@ export default {
         this.qnaRef = res.data.qnaRef
         this.currentUserCode = res.data.currentUserCode
         this.userCode = res.data.userCode
-        this.currentUserId = res.data.currentUserId
-        sessionStorage.setItem("userId", this.requestBody.userId)
-
+        this.currentUserId = sessionStorage.getItem("userId")
+        // sessionStorage.setItem("userId", this.requestBody.userId)
         console.log("답글체크용 : "+res.data.qnaNo+", "+this.qnaNo+", "+res.data.qnaRef+", "+this.qnaRef);
         console.log("접속유저코드 : "+this.currentUserCode+", 게시글 유저코드 : "+this.userCode);
         console.log("접속유저아이디 : "+sessionStorage.getItem("userId")+", 게시글 유저아이디 : "+this.userId);
